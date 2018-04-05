@@ -1,0 +1,6 @@
+sudo mkdir /usr/share/git-repos/my-config2
+sudo scp -v /usr/share/git-repos/my-config/* /usr/share/git-repos/my-config2/
+sudo srm -lrvz /usr/share/git-repos/my-config /usr/share/git-repos/my-config2/_config.yml /usr/share/git-repos/my-config2/index.md /usr/share/git-repos/my-config2/temp.fish
+sudo git clone --verbose https://hunter-richardson@github.com/hunter-richardson/my-config /usr/share/git-repos/my-config
+sudo scp -v /usr/share/git-repos/my-config2/* /usr/share/git-repos/my-config/
+sudo srm -lrvz /usr/share/git-repos/my-config2
