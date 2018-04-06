@@ -1,0 +1,12 @@
+#!/usr/bin/fish
+
+assert count $argv -eq 4
+if test $argv[3] -eq (getent group dev | cut -d':' -f3)
+  builtin set -l username $argv[1]
+  builtin set -l home-directory $argv[4]
+  command mkdir $home-directory/.config/fish $home-directory/.config/fish/functions /varlog/tmux/$username
+  command touch $home-directory/.config/fish/config.fish $home-directory/.config/fish/.fish_aliases
+  builtin echo '#!/usr/bin/fish\n\ninclude \\\n  $home-directory/.config/fish/functions/*.fish \\\n  $home-directory/.config/fish/.fish_aliases' > $home-directory/.config/fish/config.fish
+  builtin echo '#!/usr/bin/fish\n\n' > $home-directory/.config/fish/.fish_aliases
+  command chsh -s /usr/bin/fish
+end
