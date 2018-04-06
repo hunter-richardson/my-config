@@ -25,7 +25,7 @@ This is the repository for my home computer's setup.
 - Finally, for packages I simply could not find as prebuilt binaries, I installed from Github.
     [./dpkg.git](dpkg.git) contains the Github repositories I use, except this one.
     To install them globally (i.e., in this repo's parent directory):
-    ```
+    ```shell
        for i in $(cat /path/to/repo/dpkg.git)
          set repo=$(echo $i | cut -d'/' -f2)
          sudo git clone --verbose --depth 1 https://github.com/$i /path/to/repo/../$repo
