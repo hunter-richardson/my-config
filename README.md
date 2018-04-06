@@ -97,7 +97,7 @@ This is the repository for my home computer's setup.
     ```shell
        sudo scp -v /path/to/repo/usr/share/icons/DMZhaloR24 /usr/share/icons/
     ```
-### [User files](#user)
+### User files
 - My regular user account is `hunter`. His files are stored in [./home/hunter](home/hunter).
 - My administrative account is `hunter-adm`. His files are stored in [./home/hunter-adm](home/hunter-adm).
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [./root](root).
