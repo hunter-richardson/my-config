@@ -8,7 +8,7 @@ This is the repository for my home computer's setup.
 - [User files](#user)
 - [One-time execution for setup](#once)
 - Installation instructions (i.e., what you're reading now)
------------------------
+---
 ## [Some detail](#detail)
 ### [Software packages and repositories](#software)
 - [Ubuntu](https://ubuntu.com) ships with its own PPAs installed.
