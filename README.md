@@ -65,6 +65,8 @@ This is the repository for my home computer's setup.
 - `w3m` is a terminal internet browser.
     [./etc/w3m/config] contains my `w3m` configuration file.
     To use it:  `sudo scp -v /path/to/repo/etc/w3m /etc/w3m`
+- [./usr/local/sbin/adduser.local](usr/local/sbin/adduser.local) defines an executable that runs when a new user is created.
+    To use it:  `sudo scp -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local`
 ### [Shell configuration, aliases, and functions](#shell)
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell.
     My favorite shell is [Fish](https://fishshell.com), which I also installed above.
@@ -83,8 +85,6 @@ This is the repository for my home computer's setup.
     [Also, each user intending to use the shell should install a configuration file at home.](#user)
 - To use Fish by default without going through the whole `cshs` trouble, I run a script at the bottom of [./etc/bash.bashrc](etc/bash.bashrc) which opens a `tmux` session into Fish. (Make sure both `tmux` and `fish` work before using this!)
     To run it:  `sudo scp -v /path/to/repo/etc/bash.bashrc /etc/bash.bashrc`
-- [./usr/local/sbin/adduser.local](usr/local/sbin/adduser.local) defines an executable that runs when a new user is created.
-    To use it:  `sudo scp -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local`
 ### [Themes](#themes)
 - [Ubuntu](https://ubuntu.com) ships with several cursor themes installed.
     [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default.
