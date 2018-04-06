@@ -33,7 +33,7 @@ This is the repository for my home computer's setup.
        end
     ```
 ### [Operating system configuration](#config)
-    The custom configuration files for Ubuntu are in [./etc](etc) and [./usr](usr) (mostly [./etc](etc).)
+   The custom configuration files for Ubuntu are in [./etc](etc) and [./usr](usr) (mostly [./etc](etc).)
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user.
     [./etc/apt/apt.conf.d](etc/apt/apt.conf.d) contains my custom `apt` configuration. To use it:
     ```
