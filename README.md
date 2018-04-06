@@ -81,6 +81,8 @@ This is the repository for my home computer's setup.
        sudo scp -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/
     ```
     [Also, each user intending to use the shell should install a configuration file at home.](#user)
+- To use Fish by default without going through the whole `cshs` trouble, I run a script at the bottom of [./etc/bash.bashrc](etc/bash.bashrc) which opens a `tmux` session into Fish. (Make sure both `tmux` and `fish` work before using this!)
+    To run it:  `sudo scp -v /path/to/repo/etc/bash.bashrc /etc/bash.bashrc`
 - [./usr/local/sbin/adduser.local](usr/local/sbin/adduser.local) defines an executable that runs when a new user is created.
     To use it:  `sudo scp -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local`
 ### [Themes](#themes)
@@ -92,6 +94,7 @@ This is the repository for my home computer's setup.
 - My regular user account is `hunter`. His files are stored in [./home/hunter](home/hunter).
 - My administrative account is `hunter-adm`. His files are stored in [./home/hunter-adm](home/hunter-adm).
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [./root](root).
+- Each user above runs `~/.config/fish/config.fish` upon opening a Fish shell.
 ### [One-time execution for setup](#once)
 - Quick duplication of all configurations, settings, and files can be attained by executing [./misc](misc).
     It includes these instructions, plus some additional settings I haven't detailed.
