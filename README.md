@@ -53,7 +53,7 @@ This is the repository for my home computer's setup.
 - [./etc/login.defs](etc/login.defs) contains setup flags related to user login, authentication, and permissions.
     See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information.
     To use it:  `sudo scp -v /path/to/repo/etc/login.defs /etc/login.defs`
-- I use `[nano](https://nano-editor.org)` as my default text editor.
+- I use [`nano`](https://nano-editor.org) as my default text editor.
     [./etc/nanorc](etc/nanorc) contains its configuration.
     To use it:  `sudo scp -v /path/to/repo/etc/nanorc /etc/nanorc`
 - [./etc/sudoers](etc/sudoers) contains additional setup flags related to user authentication and permissions.
