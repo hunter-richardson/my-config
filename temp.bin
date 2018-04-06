@@ -1,0 +1,41 @@
+﻿sudo git config --global color.ui always 
+sudo git config --global color.autocrlf input 
+sudo git config --global core.editor nano 
+sudo git config --global core.whitespace trailing-space,space-before-tab,cr-at-eol 
+sudo git config --global help.autocorrect 1 
+
+sudo nano ./usr/local/sbin/adduser.local
+assert count $argv -eq 4
+if builtin test (string match dev $argv[3])
+  builtin set -l username $argv[1]
+  builtin set -l home-directory $argv[4]
+  command mkdir $home-directory/.config/fish $home-directory/.config/git /varlog/tmux/$username
+  command scp -v /home/hunter/.config/fish/config.fish $home-directory/.config/fish/
+  command scp -v /home/hunter/.config/git/config $home-directory/.config/git/
+  command chown -R $username:dev $home-directory/.config/fish/config.fish
+  command chown -R $username:dev $home-directory/.config/git/config
+end
+
+sudo nano ./usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
+[com.canonical.unity-greeter]
+draw-user-backgrounds=false
+draw-grid=false
+background='/usr/share/ubuntu/backgrounds/warty-final-ubuntu.png'
+
+sudo nano ./README.md
+See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information.
+See the [adduser.local manual](http://manpages.ubuntu.com/manpages/artful/man8/adduser.8.html) for more information.
+- [Software packages and repositories](#software-packages-and-repositories)
+- [Operating system configuration](#operating-system-and-program-configuration)
+- [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
+- [Themes](#themes)
+- [User files](#user-files)
+- [One-time execution for setup](#one-time-execution-for-setup)
+- Installation instructions (i.e., what you're reading now)
+---
+## Some detail
+### Software packages and repositories
+### Operating system and program configuration
+### Shell configuration, aliases, and functions
+### User files
+### One-time execution for setup
