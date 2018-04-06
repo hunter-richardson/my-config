@@ -1,0 +1,10 @@
+Debug {
+  Acquire {
+    gpgv;
+    https;
+  }; pkgAcquire {
+    Worker;
+  }; pkgAutoRemove {
+    ShowScores;
+  }; sourceList;
+};

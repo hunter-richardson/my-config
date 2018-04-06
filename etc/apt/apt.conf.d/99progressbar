@@ -1,0 +1,2 @@
+Dpkg::Progress-Fancy "%1b[7m;30m;107m";
+APT::Color "1";

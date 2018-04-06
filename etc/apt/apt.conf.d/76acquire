@@ -1,0 +1,12 @@
+Acquire {
+  gpgv;
+  https;
+  Retries 5;
+  Languages {
+    "environment";
+    "en";
+    "en-us";
+    "en-uk";
+    "en-ca";
+  };
+};
