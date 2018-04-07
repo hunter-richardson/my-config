@@ -8,6 +8,7 @@ This is the repository for my home computer's setup.
 - [User files](#user-files)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - Installation instructions (i.e., [what you're reading now](README.md))
+- [Manual installation of extensions](#manual-installation-of-extensions)
 ---
 ## But first
 I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [rehome](rehome) will perform this action. Run this only once per installation:
@@ -16,7 +17,8 @@ I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate di
     ```
 
 Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F1` shell.
-## Some detail
+
+---
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. [dpkg.apt.sources](dpkg.apt.sources) contains a list of my custom PPA keys. To apply them:
     ```shell
@@ -96,7 +98,7 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
        sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
     ```
 ### Themes
-- [Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR24](usr/share/icons/DMZhaloR24). To apply them:
+[Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR24](usr/share/icons/DMZhaloR24). To apply them:
     ```shell
        sudo scp -v /path/to/repo/usr/share/icons/DMZhaloR24 /usr/share/icons/
     ```
@@ -107,4 +109,8 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
 - Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
-- Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It assumes the `/home` directory is on the right disc, the directory for this repository is `/usr/share/git-repos/my-config`, and all other global Github repositories should be stored in similar locations. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It assumes the `/home` directory is on the right disc, the directory for this repository is `/usr/share/git-repos/my-config`, and all other global Github repositories should be stored in similar locations. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+### Manual installation of extensions 
+Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
+-[firefox.ext](manual/firefox.ext) contains a list of URLs for [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in [Firefox](file:///usr/bin/firefox) and click the "+Add to Firefox" button to apply it.
+-[gnome.ext](manual/gnome.ext) contains a list of URLs for [Gnome extensions](https://extensions.gnome.org). Open each in [Firefox](file:///usr/bin/firefox) or [Chrome](file:///usr/bin/google-chrome-stable) and, once logged in, and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome.
