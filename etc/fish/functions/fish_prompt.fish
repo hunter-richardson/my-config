@@ -55,34 +55,7 @@ function fish_prompt -d 'the left prompt'
   end
   if builtin test ! (builtin string trim $SSH_CONNECTION)
     builtin test (command iwgetid);
-      and builtin printf ' %s%s⦕⸎⦖ ' $bold $green;^G Get Help      ^O Write Out     ^W Where Is      ^K Cut Text      ^J Justify       ^C Cur Pos        builtin printf '%s%u\a ⩻ ✱ )))⮚ ∈ ' $red $last_status
-  else
-    builtin printf '%s%s :D' $cyan (
-      if builtin test (date '+%p' -d "now - 6 hour") = AM
-        builtin printf '∋ ⮘ (((✱ ⮚ '
-        command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
-      else
-        builtin printf '⮘ ✱ )))⮚ ∈ '
-
-      or  builtin printf ' %s%s❮❔❯ ' $bold $red
-  end
-  builtin test $SHLVL
-
-end
-    builtin printf '%s%u\a ⩻ ✱ )))⮚ ∈ ' $red $last_status
-  else
-    builtin printf '%s%s :D' $cyan (
-      if builtin test (date '+%p' -d "now - 6 hour") = AM
-        builtin printf '∋ ⮘ (((✱ ⮚ '
-        command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
-      else
-        builtin printf '⮘ ✱ )))⮚ ∈ '
-        command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-      end
-  end
-  if builtin test ! (builtin string trim $SSH_CONNECTION)
-    builtin test (command iwgetid);
-      and builtin printf '%s⦕⸎⦖ ' $green;
+      and builtin printf ' %s%s⦕⸎⦖ ' $bold $green;
       or  builtin printf '%s❮❔❯ ' $red
   end
   builtin test $SHLVL -gt 1;
