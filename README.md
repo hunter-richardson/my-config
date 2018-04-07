@@ -68,6 +68,7 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
     ```
 - [sudoers](etc/sudoers) contains additional setup flags related to user authentication and permissions. To use it:
     ```shell
+       sudo passwd root
        sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
     ```
 - `tmux` is a terminal multiplexer that sets up a status bar and allows windows to split into panes. [tmux.conf](etc/tmux.conf) contains my tmux configuration file. See the [tmux manual](https://man.openbsd.org/OpenBSD-current/man1/tmux.1) for more information. To use it:
