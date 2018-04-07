@@ -34,11 +34,11 @@ function fish_prompt -d 'the left prompt'
           case '*'
             builtin set -l upstr (builtin printf '▲ %s ▼ %s' $ahead $behind)
         end
-        builtin printf ' %s⚪‒⚫%s' $magenta $commit
+        builtin printf ' %s⚫‒⚪%s' $magenta $commit
         builtin test -n $upstr;
           and builtin printf ' %s%s' $yellow $upstr
       else
-        builtin printf ' %s⚪‒⚫%s' $magenta $commit
+        builtin printf ' %s⚫‒⚪%s' $magenta $commit
       end
     end
   else if builtin test $last_status -gt 0
