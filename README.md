@@ -18,9 +18,11 @@ I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate di
 Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F1` shell.
 ## Some detail
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. [./etc/apt/sources.list.d](etc/apt/sources.list.d) contains my custom PPAs. To load them:
+- [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. [./dpkg.apt.sources](dpkg.apt.sources) contains a list of my custom PPA keys. To load them:
     ```shell
-       sudo scp -v /path/to/repo/etc/apt/sources.list.d/* /etc/apt/sources.list.d/
+       for i in $(cat /path/to/repo/dpkg.apt.sources)
+         sudo add-apt-repository -y $i
+       end
     ```
 - [./dpkg.apt](dpkg.apt) contains the software packages I've installed via `apt`. To install them:
     ```shell
