@@ -26,7 +26,7 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
     ```
 - [./dpkg.apt](dpkg.apt) contains the software packages I've installed via `apt`. To install them:
     ```shell
-       sudo apt install -y $(cat /path/to/repo/dpkg.apt)
+       sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
     ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, artful-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. [./dpkg.snap](dpkg.snap) contains the software packages I've installed via `snap`. To install them:
     ```shell
