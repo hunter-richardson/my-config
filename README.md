@@ -105,6 +105,6 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 - My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm).
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
-- Each user above has a `$HOME/.config/git/config file` (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
+- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
 - Quick duplication of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It includes these instructions, plus some additional settings I haven't detailed. Run this only once per installation.
