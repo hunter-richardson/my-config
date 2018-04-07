@@ -42,14 +42,14 @@ function fish_prompt -d 'the left prompt'
       end
     end
   else if builtin test $last_status -gt 0
-    builtin printf '%s%u\a ⩻ ✱ )))⮚ ∈ ' $red $last_status
+    builtin printf '%s%u\a ⩻*)))⮚∈ ' $red $last_status
   else
     builtin printf '%s%s :D' $cyan (
       if builtin test (date '+%p' -d "now - 6 hour") = AM
-        builtin printf '∋ ⮘ (((✱ ⮚ '
+        builtin printf '∋⮘(((*⮚ '
         command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
       else
-        builtin printf '⮘ ✱ )))⮚ ∈ '
+        builtin printf '⮘*)))⮚∈ '
         command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
       end)
   end
