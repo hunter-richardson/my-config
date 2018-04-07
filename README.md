@@ -10,7 +10,7 @@ This is the repository for my home computer's setup.
 - Installation instructions (i.e., [what you're reading now](README.md))
 ---
 ## But first
-I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [rehome](rehome) will perform this action.
+I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [rehome](rehome) will perform this action. Run this only once per installation.
     ```shell
        source /path/to/repo/rehome
     ```
@@ -107,4 +107,4 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
 - Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
-- Quick duplication of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It includes these instructions, plus some additional settings I haven't detailed. Run this only once per installation.
+- Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It assumes the `/home` directory is on the right disc, the directory for this repository is `/usr/share/git-repos/my-config`, and all other global Github repositories should be stored in similar locations. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
