@@ -1,3 +1,4 @@
+#!/bin/bash
 # Run /path/to/repo/rehome first!
 #    Assume hunter-richardson/my-config is located in /usr/share/git-repos/my-config
 set GIT_DIR=/usr/share/git-repos
@@ -43,5 +44,5 @@ sudo scp -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR24 /usr/share/icons/
 sudo useradd -MU -c Hunter -G user,dev,sudo,ssh
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo chown root:root /home/hunter*/.local/share/Trash
-﻿
+
 # TODO: add gsettings commands
