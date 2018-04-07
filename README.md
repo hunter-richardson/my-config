@@ -32,11 +32,11 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
     ```shell
        sudo snap install $(cat /path/to/repo/dpkg.snap)
     ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. [./dpkg.pip3](dpkg.pip3) contains the [Python](https://python.org) software package I use. To install it:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. [dpkg.pip3](dpkg.pip3) contains the [Python](https://python.org) software package I use. To install it:
     ```shell
        sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
     ```
-- Finally, for packages I simply could not find as prebuilt binaries, I installed from [Github](https://github.com). [dpkg.git](dpkg.git) contains the Github repositories I use, except [my-config](#). To install them globally (i.e., in this repo's parent directory):
+- Finally, for packages I simply could not find as prebuilt binaries, I installed from [Github](https://github.com).  [dpkg.git](dpkg.git) contains the Github repositories I use, except [my-config](#). To install them globally (i.e., in this repo's parent directory):
     ```shell
        for i in $(cat /path/to/repo/dpkg.git)
          set repo=$(echo $i | cut -d'/' -f2)
