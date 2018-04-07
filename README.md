@@ -9,6 +9,12 @@ This is the repository for my home computer's setup.
 - [One-time execution for setup](#one-time-execution-for-setup)
 - Installation instructions (i.e., [what you're reading now](README.md))
 ---
+## But first
+I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [./rehome](rehome) will perform this action.
+    ```shell
+       source /path/to/repo/rehome
+    ```
+Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F1` shell.
 ## Some detail
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. [./etc/apt/sources.list.d](etc/apt/sources.list.d) contains my custom PPAs. To load them:
