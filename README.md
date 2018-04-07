@@ -14,6 +14,7 @@ I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate di
     ```shell
        source /path/to/repo/rehome
     ```
+
 Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F1` shell.
 ## Some detail
 ### Software packages and repositories
