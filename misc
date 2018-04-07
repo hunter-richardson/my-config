@@ -41,7 +41,6 @@ sudo ln -fv $MYCONFIG_DIR/etc/bash.bashrc /etc/bash.bashrc
 sudo scp -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR24 /usr/share/icons/
 
 sudo useradd -MU -c Hunter -G user,dev,sudo,ssh
-sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo chown root:root /home/hunter*/.local/share/Trash
 ﻿
