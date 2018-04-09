@@ -1,8 +1,9 @@
 #!/usr/bin/fish
 
-alias apt 'sudo command apt -V --no-allow-insecure-repositories --show-progress'
+alias apt 'command apt -V --no-allow-insecure-repositories --show-progress'
 alias copy 'command xset -b --input'
 alias cp 'command scp -v'
+alias cpdir 'command scp -rv'
 alias datetime 'builtin test -n $argv[1]; and builtin set -l format $argv[1]; and builtin set -e argv[1]; or builtin set -l format "now"; command date "+%a %e %b %Y, %H%M %Z" -d $format'
 alias dtrx 'command dtrx -v --one-entry inside'
 alias egrep 'command egrep --color=auto'
@@ -13,7 +14,7 @@ alias ls 'command ls -AGhHlo --file-type --time-style="+%a %e %b %Y, %H%M %Z" --
 alias mkdir 'command mkdir -pv'
 alias nano 'command nano -AEiSU --tabsize=2 --softwrap'
 alias now 'command date "+%H%M %Z" -d now'
-alias opsystem "builtin printf '%s ' (command cat /etc/os-release | command head -2 | command cut -d'\"' -f2)"
+alias opsystem "builtin printf '%s ' (command cat /etc/os-release | command head -2 | builtin string split '\"')[2]"
 alias paste 'command xset -b --output'
 alias parent 'test -z $argv[1]; and dirname (pwd); or dirname $argv[1]'
 alias rm 'command srm -v'

@@ -5,7 +5,7 @@ This is the repository for my home computer's setup.
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
 - [Themes](#themes)
-- [User files](#user-files)
+- [User files and configuration](#user-files-and-configuration)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - Installation instructions (i.e., [what you're reading now](README.md))
 - [Manual installation of extensions](#manual-installation-of-extensions)
@@ -24,11 +24,16 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
     ```shell
        for i in $(cat /path/to/repo/dpkg.apt.sources)
          sudo add-apt-repository -y $i
-       end
+       done
     ```
-- [dpkg.apt](dpkg.apt) contains the software packages I've installed via `apt`. To apply them:
+- [dpkg.apt](dpkg.apt) contains the software packages I've installed via `apt`, and [rdpkg.apt](rdpkg.apt) those I specifically want to remove. To apply them:
     ```shell
+       sudo apt-get update -y
+       sudo apt-get autoremove -y
        sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
+       sudo apt-get remove -y $(cat /path/to/repo/rdpkg.apt)
+       sudo apt-get upgrade
+       sudo apt-get clean
     ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, artful-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. [dpkg.snap](dpkg.snap) contains the software packages I've installed via `snap`. To apply them:
     ```shell
@@ -38,13 +43,13 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
     ```shell
        sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
     ```
-- Finally, for packages I simply could not find as prebuilt binaries, I installed from [Github](https://github.com).  [dpkg.git](dpkg.git) contains the Github repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
+- Finally, for packages I simply could not find as prebuilt binaries, I installed with `git`, thus far from [Github](https://github.com).  [dpkg.git](dpkg.git) contains the `git` repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
     ```shell
        for i in $(cat /path/to/repo/dpkg.git)
          set repo=$(echo $i | cut -d'/' -f2)
-         sudo git clone --verbose --depth 1 https://github.com/$i /path/to/repo/../$repo
+         sudo git clone --verbose --depth 1 $i /path/to/repo/../$repo
          set repo=
-       end
+       done
     ```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. [apt.conf.d](etc/apt/apt.conf.d) contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:
@@ -84,6 +89,7 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 ### Shell configuration, aliases, and functions
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above. I've written a few functions and aliases that are helpful for my shell in [fish](etc/fish) and its subdirectories. To apply them:
     ```shell
+       sudo mkdir -p /etc/fish/functions
        sudo ln -rv /path/to/repo/etc/fish/* /etc/fish/
        sudo ln -rv /path/to/repo/etc/fish/functions/* /etc/fish/functions/
     ```
@@ -100,11 +106,13 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR24](usr/share/icons/DMZhaloR24). To apply them:
     ```shell
-       sudo scp -v /path/to/repo/usr/share/icons/DMZhaloR24 /usr/share/icons/
+       sudo mkdir -p /usr/share/icons/DMZhaloR24/cursors
+       sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR24/* /usr/share/icons/
+       sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR24/cursors/* /usr/share/icons/cursors/
     ```
-### User files
-- My regular user account is `hunter`. His files are stored in [hunter](home/hunter).
-- My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm).
+### User files and configuration
+- My regular user account is `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
+- My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm). He belongs to the groups `user`, `dev`, `root`, and `ssh`.
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
 - Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.

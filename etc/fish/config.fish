@@ -14,12 +14,12 @@
 #   ...
 # end
 
-source /etc/fish3/functions/include.fish
+source /etc/fish/functions/include.fish
 
 include \
-  /etc/fish3/export_vars.fish \
-  /etc/fish3/.fish_a* \
-  /etc/fish3/functions/*.fish
+  /etc/fish/export_vars.fish \
+  /etc/fish/.fish_a* \
+  /etc/fish/functions/*.fish
 
 builtin test -e "~/Downloads/*";
   and command srm -lrvz ~/Downloads/*;
