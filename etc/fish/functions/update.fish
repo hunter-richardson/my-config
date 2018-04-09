@@ -6,15 +6,10 @@ function update -d 'automate software updates from installed SPMs'
     and return 121
   command sudo apt update -y;
   and command sudo apt autoremove -y;
-  and for i in (command sudo apt list --upgradable | command cut -d'/' -f1)
-    command sudo apt upgrade -y $i
-  end;
+  and command sudo apt upgrade -y;
   and command sudo apt install -fy;
   and command sudo apt clean -y
-  for i in (command sudo snap list | command sed -n '1!p' | command cut -d' ' -f1)
-    builtin printf '%s /snap/%s\n' (command whereis $i | command cut -d' ' -f2) $i
-    command sudo snap refresh $i
-  end
+  command sudo snap refresh $i
   for i in (command sudo pip3 list --outdated --format=legacy | cut -d' ' -f1)
     builtin echo $i;
       and command sudo pip3 install $i -U;
