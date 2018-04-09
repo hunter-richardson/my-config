@@ -51,7 +51,7 @@ function fish_prompt -d 'the left prompt'
           and command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
       else
         builtin printf '⮘*)))⮚∈ '
-        builtin test ! (command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled) = true;
+        builtin test ! (command gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled) = true;
           and command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
       end)
   end
