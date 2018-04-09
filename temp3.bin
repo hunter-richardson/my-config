@@ -1,0 +1,14 @@
+﻿sudo nano /usr/share/git-repos/my-config/misc.sh
+for i in $(cat $MYCONFIG_DIR/dpkg.apt.sources)
+  sudo add-apt-repository -y $i
+done
+for i in $(cat $MYCONFIG_DIR/dpkg.git)
+  set repo=$(echo $i | cut -d'/' -f2)
+  sudo git clone --verbose --depth 1 https://github.com/$i $GIT_DIR/$repo
+  set repo= 
+done
+sudo ln -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR24/* /usr/share/icons/
+sudo ln -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR24/cursors/* /usr/share/icons/cursors/
+sudo groupadd dev
+sudo groupadd user
+sudo useradd -MU -c Hunter -G user,dev,sudo,ssh hunter
