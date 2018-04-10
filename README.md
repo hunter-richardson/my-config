@@ -17,7 +17,7 @@ I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate di
 source /path/to/repo/rehome
 ```
 
-Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F1` shell.
+Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F2` shell.
 
 ---
 ### Software packages and repositories
@@ -74,9 +74,12 @@ sudo ln -fv /path/to/repo/etc/login.defs /etc/login.defs
 ```shell
 sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
 ```
-- [sudoers](etc/sudoers) contains additional setup flags related to user authentication and permissions. To apply it:
+- [sudoers](etc/sudoers) contains additional setup flags related to user authentication and permissions, first ensure access to the root password and the appropriate groups are loaded. To apply it:
 ```shell
 sudo passwd root
+sudo groupadd dev
+sudo groupadd users
+sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
 ```
 - `tmux` is a terminal multiplexer that sets up a status bar and allows windows to split into panes. [tmux.conf](etc/tmux.conf) contains my tmux configuration file. See the [tmux manual](https://man.openbsd.org/OpenBSD-current/man1/tmux.1) for more information. To apply it:
@@ -117,15 +120,15 @@ sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR24/cursors/* /usr/share/icons/c
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
 - Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
-Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc.sh`](misc.sh). It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
 - The following is a list of links to [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in Firefox and click the +Add to Firefox button to apply it. 
   - [Gnome Shell Integration](https://addons.mozilla.org/firefox/addon/gnome-shell-integration) is necessary to view and/or install [Gnome extensions](https://extensions.gnome.org) using Firefox... and since Gnome hasn't provided a command to do so yet, you must install it for each user.
   - User `hunter` uses [LastPass Password Manager](https://addons.mozilla.org/firefox/addon/lastpass-password-manager) in Firefox to view, utilize, and/or update passwords in the cloud.
-- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). Open each in Firefox or Chrome and and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome. Each user must also if (s)he wants the extensions. There is literally no way to automate this.
+- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). For all users, open each in link Firefox or Chrome and and flip the switch to apply it, if desired; there is literally no way to automate this. Multiple attempts may be necessary for each extension to register with Gnome.
   - [Add Username to Top Panel](https://extensions.gnome.org/extension/1108) appends the user's full name to the topbar.
-  - [Alternate Tab](https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt-Tab` to activate it.
+  - [Alternate Tab](https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt Tab` to activate it.
   - [Applications Menu](https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.
   - [Apt Update Indicator](https://extensions.gnome.org/extension/1139) monitors `apt` for software upgrades and autoremoval stats.
   - [Datetime Format](https://extensions.gnome.org/extension/1173) allows users to customize the datetime format on the status bar.
@@ -139,7 +142,7 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
-Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-tweak-tool` and `dconf-editor` GUI applications or by the `gsettings` command. [gsettings](gsettings) will populate as many variables as are installed with default values. Since most of the `gsettings` are personal to each user, each user must execute the script for him/herself. To load the script as another user:
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-tweak-tool` and `dconf-editor` GUI applications or by the `gsettings` command. The [gsettings](gsettings) script will populate as many variables as are installed with default values. Since most of the `gsettings` key-values are personal to each user, each user must execute it for him/herself. To load the script as another user:
 ```shell
 sudo --user=hunter /path/to/repo/gsettings
 sudo --user=hunter-adm /path/to/repo/gsettings
