@@ -1,0 +1,7 @@
+﻿sudo nano /etc/fish/exports_var.fish
+builtin dirh -c
+builtin history clear
+set -g dir_hist ''
+set -g cmd_hist ''
+set -g bookmarks ''
+set -g nocmdhist commands directories bookmarks cat less ll ls
