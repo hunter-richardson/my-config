@@ -117,8 +117,26 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
 - Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
-Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc`](misc). It assumes the `/home` directory is on the right disc, the directory for this repository is `/usr/share/git-repos/my-config`, and all other global Github repositories should be stored in similar locations. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+Quick application of all configurations, settings, and files can be attained by executing [`source /path/to/repo/misc.sh`](misc.sh). It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
 - [firefox.ext.md](manual/firefox.ext.md) contains a list of URLs for [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in Firefox and click the +Add to Firefox button to apply it. 
+  - [Gnome Shell Integration](https://addons.mozilla.org/firefox/addon/gnome-shell-integration) is necessary to view and/or install [Gnome extensions](https://extensions.gnome.org) using Firefox... and since Gnome hasn't provided a command to do so yet, you must install it for each user.
+  - User `hunter` uses [LastPass Password Manager](https://addons.mozilla.org/firefox/addon/lastpass-password-manager) in Firefox to view, utilize, and/or update passwords in the cloud.
 - [gnome.ext.md](manual/gnome.ext.md) contains a list of URLs for [Gnome extensions](https://extensions.gnome.org). Open each in Firefox or Chrome and and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome.
+This file contains a list of URls to [Gnome extensions](https://extensions.gnome.org). Open each in either Firefox or Chrome and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome.
+  - [Add Username to Top Panel] (https://extensions.gnome.org/extension/1108) appends the user's full name to the topbar.
+  - [Alternate Tab] (https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt-Tab` to activate it.
+  - [Applications Menu] (https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.
+  - [Apt Update Indicator] (https://extensions.gnome.org/extension/1139) monitors `apt` for software upgrades and autoremoval stats.
+  - [Datetime Format] (https://extensions.gnome.org/extension/1173) allows users to customize the datetime format on the status bar.
+  - [Extensions] (https://extensions.gnome.org/extension/1036) allows users to enable or disable Gnome extensions from the topbar.
+  - [Extension Update Notifier] (https://extensions.gnome.org/extension/1166) monitors installed Gnome extensions for updates.
+  - [Mailnag] (https://extensions.gnome.org/extension/886) monitors for email updates to specified addresses.
+  - [No Title Bar] (https://extensions.gnome.org/extension/1267) removes the title bar from the maximized windows.
+  - [OpenWeather] (https://extensions.gnome.org/extension/750) monitors for weather updates at specified locations.
+  - [Places Status Indicator] (https://extensions.gnome.org/extension/8) implements a navigation menu of the userspace.
+  - [Suspend Button] (https://extensions.gnome.org/extension/826) provides or removes buttons for system suspension and/or deactivation.
+  - [Removable Drive Menu] (https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
+  - [User Themes] (https://extensions.gnome.org/extension/19) allows users to load Gnome themes.
+
