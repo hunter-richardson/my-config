@@ -53,4 +53,3 @@ sudo useradd -MU -c Hunter -G user,dev,sudo,ssh hunter
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo chown root:root /home/hunter*/.local/share/Trash
 
-# TODO: add gsettings commands
