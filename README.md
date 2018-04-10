@@ -107,11 +107,11 @@ sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/
 [Also, each user intending to use the shell should install a configuration file at home.](#user)
 - To use Fish by default without going through the whole `cshs` trouble, I run a script at the bottom of [bash.bashrc](etc/bash.bashrc) which opens a `tmux` session into Fish. (Make sure both `tmux` and `fish` work before using this!) To apply it:  `sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc`
 ### Themes
-[Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR24](usr/share/icons/DMZhaloR24). To apply them:
+[Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR32](usr/share/icons/DMZhaloR32). To apply them:
 ```shell
-sudo mkdir -p /usr/share/icons/DMZhaloR24/cursors
-sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR24/* /usr/share/icons/
-sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR24/cursors/* /usr/share/icons/cursors/
+sudo mkdir -p /usr/share/icons/DMZhaloR32/cursors
+sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
+sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/DMZhaloR32/cursors/
 ```
 ### User files and configuration
 - My regular user account is `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
