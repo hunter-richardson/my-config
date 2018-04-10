@@ -4,15 +4,11 @@ function fish_right_prompt -d 'the right prompt'
   builtin set -l cmd_performance $CMD_DURATION
   builtin test $cmd_performance -gt 0;
     and builtin printf '%s%s⏲  %u ms' $bold $blue $cmd_performance
-  builtin set -l audio_output (command cat /proc/asound/card{0,1}/pcm*/sub0/status | command grep -v 'closed')
-  builtin set -l audio_input (command cat /proc/asound/card2/pcm0c/sub0/status | command grep -v 'closed')
-  builtin test -n "$audio_output";
-    and builtin printf ' %s🕪 ' $white
-  builtin test -n "$audio_input";
-    and builtin printf ' %s🎤' $white
+  builtin test (command cat /proc/asound/card{0,1}/pcm*/sub0/status | command grep -v 'closed')
+    and builtin printf ' %s%s🕪 ' $bold $white
   builtin test (command xsel -ko ^/dev/null);
-    and builtin printf ' %s📋' $yellow
-  builtin printf ' %s%s %s' $cyan (
+    and builtin printf ' %s%s📋' $bold $yellow
+  builtin printf ' %s%s%s %s' $bold $cyan (
     if builtin test (command whoami) = root -o (builtin string match ~ (command pwd))
       builtin printf '👤'
     else if builtin test (sudo -nv ^/dev/null)
@@ -24,10 +20,10 @@ function fish_right_prompt -d 'the right prompt'
     end) (command whoami)
   builtin set -l dwnl (count_files ~/Downloads)
   builtin test -n (string trim $dwnl)
-    and builtin printf ' %s📥%s' $green $dwnl
+    and builtin printf ' %s%s📥%s' $bold $green $dwnl
   builtin set -l trsh (count_files ~/.local/share/Trash)
-    and builtin printf ' %s🗑 %s' $red $trsh
-  builtin printf ' %s%s%s' $magenta (
+    and builtin printf ' %s%s🗑 %s' $bold $red $trsh
+  builtin printf ' %s%s%s%s' $bold $magenta (
     if builtin test (command git rev-parse --is-inside-work=tree ^/dev/null)
       builtin set -l url (command git config --get remote.origin.url | builtin string replace -r -i '^(https?://)?(git::0)?(hunter-richardson@)?' '')
       builtin printf '%s%s' (

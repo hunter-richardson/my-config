@@ -9,6 +9,7 @@ This is the repository for my home computer's setup.
 - [One-time execution for setup](#one-time-execution-for-setup)
 - Installation instructions (i.e., [what you're reading now](README.md))
 - [Manual installation of extensions](#manual-installation-of-extensions)
+- [Miscellaneous configuration](#miscellaneous-configuration)
 ---
 ## But first
 I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [rehome](rehome) will perform this action. Run this only once per installation:
@@ -123,7 +124,7 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
 - The following is a list of links to [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in Firefox and click the +Add to Firefox button to apply it. 
   - [Gnome Shell Integration](https://addons.mozilla.org/firefox/addon/gnome-shell-integration) is necessary to view and/or install [Gnome extensions](https://extensions.gnome.org) using Firefox... and since Gnome hasn't provided a command to do so yet, you must install it for each user.
   - User `hunter` uses [LastPass Password Manager](https://addons.mozilla.org/firefox/addon/lastpass-password-manager) in Firefox to view, utilize, and/or update passwords in the cloud.
-- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). Open each in Firefox or Chrome and and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome.
+- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). Open each in Firefox or Chrome and and flip the switch to apply it. Multiple attempts may be necessary for each extension to register with Gnome. Each user must also if (s)he wants the extensions. There is literally no way to automate this.
   - [Add Username to Top Panel](https://extensions.gnome.org/extension/1108) appends the user's full name to the topbar.
   - [Alternate Tab](https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt-Tab` to activate it.
   - [Applications Menu](https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.
@@ -137,5 +138,11 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Places Status Indicator](https://extensions.gnome.org/extension/8) implements a navigation menu of the userspace.
   - [Suspend Button](https://extensions.gnome.org/extension/826) provides or removes buttons for system suspension and/or deactivation.
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
-  - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome themes.
+  - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
+### Miscellaneous configuration
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-tweak-tool` and `dconf-editor` GUI applications or by the `gsettings` command. [gsettings](gsettings) will populate as many variables as are installed with default values. Since most of the `gsettings` are personal to each user, each user must execute the script for him/herself. To load the script as another user:
+    ```shell
+       sudo --user=hunter /path/to/repo/gsettings
+       sudo --user=hunter-adm /path/to/repo/gsettings
+    ```
 
