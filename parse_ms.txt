@@ -1,0 +1,40 @@
+﻿#!/usr/bin/python3
+
+import click
+import numbers
+
+def validate_ms(ms):
+  try:
+    if isinstance(ms, numbers.Real):
+      return int(ms)
+    else
+      raise ValueError
+    
+  except ValueError:
+    raise click.BadParameter('input must be a numerical value')
+
+@click.command()
+@click.option('value', '--value', callback=validate_ms, help='The time in milliseconds to parse.', prompt=True, type=click.FLOAT)
+@click.option('quiet', 'silent', '--quiet', '--silent', help='Simply return without output', default=False, type=click.BOOL)
+@click.argument('value', 'quiet')
+def count_files(ms):
+  """calculate seconds, minutes, hours, weeks, years from milliseconds"""
+  s, ms = (divmod(ms, 1000), ([0, ms])[ms >= 1000]
+  m, s = (divmod(s, 60), ([0, s])[s >= 60]
+  h, m = (divmod(m, 60), ([0, m])[m >= 60]
+  d, h = (divmod(h, 24), ([0, h])[h >= 24]
+  w, d = (divmod(d, 7), ([0, d])[d >= 7]
+  y, w = (divmod(w, 52), ([0, w])[w >= 52]
+  if not quiet
+    ms, ms_p = (['', ''], [ms, ' '.join(ms, 'ms')])[ms == 0]
+    s, s_p = (['', ''], [s, ' '.join(s , 's')])[s == 0]
+    m, m_p = (['', ''], [m, ' '.join(m , 'm')])[m == 0]
+    h, h_p = (['', ''], [h, ' '.join(h , 'h')])[h == 0]
+    d, d_p = (['', ''], [d, ' '.join(d , 'd')])[d == 0]
+    w, w_p = (['', ''], [w, ' '.join(w , 'w')])[w == 0]
+    y, y_p = (['', ''], [y, ' '.join(y , 'y')])[y == 0]
+    print ', '.join(y_p, w_p, d_p, h_p, m_p, s_p, ms_p)
+  
+  return [y, w, d, h, m, s, ms]
+
+
