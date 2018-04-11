@@ -39,7 +39,6 @@ sudo ln -v $MYCONFIG_DIR/etc/tmux.conf /etc/tmux.conf
 sudo ln -v $MYCONFIG_DIR/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
 sudo ln -fv $MYCONFIG_DIR/etc/fish/* /etc/fish/
 sudo ln -v $MYCONFIG_DIR/etc/fish/functions/* /etc/fish/functions/*
-sudo ln -v $MYCONFIG_DIR/etc/python/* /etc/python/
 sudo ln -v $MYCONFIG_DIR/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
 sudo ln -v $MYCONFIG_DIR/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -fv $MYCONFIG_DIR/etc/bash.bashrc /etc/bash.bashrc

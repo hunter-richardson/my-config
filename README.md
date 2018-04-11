@@ -98,7 +98,7 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 sudo mkdir -p /etc/fish/functions
 sudo ln -rv /path/to/repo/etc/fish/* /etc/fish/
 sudo ln -rv /path/to/repo/etc/fish/functions/* /etc/fish/functions/
-sudo /etc/fish/functions/fundle.fish install
+sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
 ```
 
 [fish.lang](usr/share/gtksourceview-3.0/language-specs/fish.lang) and [fish.nanorc](usr/share/nano/fish.nanorc) contain configuration for syntax-highlighting of Fish scripts, in `gedit` and `nano`, respectively. To apply them:
@@ -106,8 +106,6 @@ sudo /etc/fish/functions/fundle.fish install
 sudo ln -v /path/to/repo/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/
 sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/
 ```
-
-[Also, each user intending to use the shell should install a configuration file at home.](#user)
 - To use Fish by default without going through the whole `cshs` trouble, I run a script at the bottom of [bash.bashrc](etc/bash.bashrc) which opens a `tmux` session into Fish. (Make sure both `tmux` and `fish` work before using this!) To apply it:  `sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc`
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored at [DMZhaloR32](usr/share/icons/DMZhaloR32). To apply them:
@@ -121,7 +119,6 @@ sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/D
 - My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm). He belongs to the groups `user`, `dev`, `root`, and `ssh`.
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
 - Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
-- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
 Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
