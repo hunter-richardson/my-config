@@ -1,0 +1,49 @@
+﻿sudo add-apt-repository ppa:cubic-wizard/release
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
+sudo apt update
+sudo apt install cubic
+
+wget http://releases.ubuntu.com/artful/ubuntu-17.10.1-desktop-amd64.iso | cubic - ~/backup/
+  hostnamectl set-hostname 'hrichardson'
+  ln -sr /run/systemd/resolve/resolv.conf /run/systemd/resolve/stub-resolv.conf
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub |  apt-key add - 
+  echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main' > /etc/apt/sources.list.d/google-chrome.list 
+  for i in $(cat /usr/share/git-repos/my-config/dpkg.apt.sources); add-apt-repository -y $i; done 
+  apt-get update -y; apt-get autoremove -y
+  apt-get install -y $(cat /usr/share/git-repos/my-config/dpkg.apt)
+  apt-get remove -y $(cat /usr/share/git-repos/my-config/rdpkg.apt)
+  apt-get upgrade -y; apt-get clean- y 
+  snap install $(cat /usr/share/git-repos/my-config/dpkg.snap) 
+  pip3 install $(cat /usr/share/git-repos/my-config/dpkg.pip3) 
+  for i in $(cat /usr/share/git-repos/my-config/dpkg.git); git clone --verbose --depth 1 $i /usr/share/git-repos/$(echo $i | cut -d'/' -f2 | cut -d'.' -f1); done 
+  mkdir -p /etc/fish/functions /etc/skel/.config/git /usr/share/icons/DMZhaloR24/cursors 
+  ln -fv /usr/share/git-repos/my-config/etc/bash.bashrc /etc/bash.bashrc 
+  ln -v /usr/share/git-repos/my-config/etc/apt/apt.conf.d/* /etc/apt/apt.conf.d/ 
+  ln -fv /usr/share/git-repos/my-config/etc/apt-fast.conf /etc/apt-fast.conf 
+  ln -fv /usr/share/git-repos/my-config/etc/fish/* /etc/fish/ 
+  ln -v /usr/share/git-repos/my-config/etc/fish/functions/* /etc/fish/functions/* 
+  ln -fv /usr/share/git-repos/my-config/etc/lightdm/lightdm-unity-greeter.conf /etc/lightdm/lightdm-unity-greeter.conf 
+  ln -fv /usr/share/git-repos/my-config/etc/lightdm/lightdm.conf.d/* /etc/lightdm/lightdm.conf.d/ 
+  ln -fv /usr/share/git-repos/my-config/etc/login.defs /etc/login.defs 
+  ln -fv /usr/share/git-repos/my-config/etc/nanorc /etc/nanorc 
+  ln -v /usr/share/git-repos/my-config/etc/tmux.conf /etc/tmux.conf 
+  ln -v /usr/share/git-repos/my-config/etc/skel/.config/git/config /etc/skel/.config/git/config 
+  ln -v /usr/share/git-repos/my-config/etc/sudoers /etc/sudoers
+  ln -v /usr/share/git-repos/my-config/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local 
+  ln -v /usr/share/git-repos/my-config/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang 
+  ln -v /usr/share/git-repos/my-config/usr/share/icons/DMZhaloR32/* /usr/share/icons/DMZhaloR32/ 
+  ln -v /usr/share/git-repos/my-config/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/DMZhaloR32/cursors/ 
+  ln -v /usr/share/git-repos/my-config/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc 
+  fish --command="source /etc/fish/functions/fundle.fish; fundle install" 
+  groupadd dev; groupadd user 
+  useradd -MU -c 'Hunter - ADMIN' -G user,dev,root,ssh hunter-adm
+  useradd -MU -c Hunter -G user,dev,sudo,ssh hunter
+  chown root:root /home/hunter-adm/.local/share/Trash
+  chown root:root /home/hunter/.local/share/Trash
+  ln -v /usr/share/git-repos/my-config/home/hunter-adm/Pictures/wallpaper.jpg /home/hunter-adm/Pictures/wallpaper.jpg
+  ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter/Pictures/profile.jpg
+  ln -v /usr/share/git-repos/my-config/home/hunter/Pictures/wallpaper.jpg /home/hunter/Pictures/wallpaper.jpg
+  ln -v /usr/share/git-repos/my-config/home/hunter/Pictures/profile.jpg /home/hunter/Pictures/profile.jpg
+
+sudo usb-creator-gtk ~/backup/*.iso /dev/sdc
