@@ -23,6 +23,8 @@ Since it involves wiping the files in `/home`, it will be easier to run in an `C
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. [dpkg.apt.sources](dpkg.apt.sources) contains a list of my custom PPA keys. To apply them:
 ```shell
+wget -q -O https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+&& sudo sh -c '' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
 for i in $(cat /path/to/repo/dpkg.apt.sources)
   sudo add-apt-repository -y $i
 done
@@ -96,6 +98,7 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 sudo mkdir -p /etc/fish/functions
 sudo ln -rv /path/to/repo/etc/fish/* /etc/fish/
 sudo ln -rv /path/to/repo/etc/fish/functions/* /etc/fish/functions/
+sudo /etc/fish/functions/fundle.fish install
 ```
 
 [fish.lang](usr/share/gtksourceview-3.0/language-specs/fish.lang) and [fish.nanorc](usr/share/nano/fish.nanorc) contain configuration for syntax-highlighting of Fish scripts, in `gedit` and `nano`, respectively. To apply them:

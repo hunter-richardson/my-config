@@ -7,7 +7,6 @@ set GIT_DIR=$(dirname $MYCONFIG_DIR)
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 && sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
-
 for i in $(cat $MYCONFIG_DIR/dpkg.apt.sources)
   sudo add-apt-repository -y $i
 done
@@ -40,11 +39,14 @@ sudo ln -v $MYCONFIG_DIR/etc/tmux.conf /etc/tmux.conf
 sudo ln -v $MYCONFIG_DIR/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
 sudo ln -fv $MYCONFIG_DIR/etc/fish/* /etc/fish/
 sudo ln -v $MYCONFIG_DIR/etc/fish/functions/* /etc/fish/functions/*
+sudo ln -v $MYCONFIG_DIR/etc/python/* /etc/python/
 sudo ln -v $MYCONFIG_DIR/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
 sudo ln -v $MYCONFIG_DIR/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -fv $MYCONFIG_DIR/etc/bash.bashrc /etc/bash.bashrc
 sudo ln -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
 sudo ln -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/DMZhaloR32/cursors/
+
+sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
 
 sudo groupadd dev
 sudo groupadd user

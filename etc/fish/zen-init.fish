@@ -1,4 +1,4 @@
-﻿#!/usr/bin/fish
+#!/usr/bin/fish
 
 sudo nano /etc/fish/functions/zen-init.fish
 function zen-init --on-event zen.init -d 'Initialize primary tmux window'

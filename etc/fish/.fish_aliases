@@ -1,5 +1,6 @@
 #!/usr/bin/fish
 
+alias albert 'command albert show'
 alias apt 'command apt -V --no-allow-insecure-repositories --show-progress'
 alias copy 'command xset -b --input'
 alias cp 'command scp -v'
@@ -10,7 +11,7 @@ alias egrep 'command egrep --color=auto'
 alias fgrep 'command fgrep --color=auto'
 alias fix 'fuck'
 alias grep 'command grep --color=auto'
-alias ls 'command ls -AGhHlo --file-type --time-style="+%a %e %b %Y, %H%M %Z" --color=auto'
+alias ls 'command ls -AhHl --file-type --time-style="+%a %e %b %Y, %H%M %Z" --color=auto'
 alias mkdir 'command mkdir -pv'
 alias nano 'command nano -AEiSU --tabsize=2 --softwrap'
 alias now 'command date "+%H%M %Z" -d now'

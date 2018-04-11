@@ -14,6 +14,14 @@
 #   ...
 # end
 
+fundle plugin 'edc/bass'
+fundle plugin 'oh-my-fish/plugin-await'
+fundle plugin 'oh-my-fish/plugin-balias'
+fundle plugin 'oh-my-fish/plugin-thefuck'
+fundle plugin 'sagebind/tmux-zen'
+fundle plugin 'tuvistavie/oh-my-fish-core'
+fundle init
+
 source /etc/fish/functions/include.fish
 
 include \

@@ -34,4 +34,6 @@ builtin set -g SHELL /usr/bin/fish
 builtin set -g LANG en_US.utf8
 builtin set -g PYTHONIOENCODING 'utf-8'
 builtin set -g LESS ' -R '
+builtin set -g bookmarks ''
+builtin set -g nocmdhist commands directories bookmarks cat less ll ls
 

@@ -44,6 +44,7 @@ zlib1g-dev
 steghide
 google-chrome-stable
 python3-pip
+python3-dev
 caffeine
 flat-remix
 flat-remix-gnome
