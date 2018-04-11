@@ -1,3 +1,5 @@
+[alias]
+        status = 'status --porcelain'
 [color]
         ui = always
         autocrlf = input

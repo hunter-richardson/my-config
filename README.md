@@ -118,7 +118,7 @@ sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/D
 - My regular user account is `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 - My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm). He belongs to the groups `user`, `dev`, `root`, and `ssh`.
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
-- Each user above executes `$HOME/.config/fish/config.fish` (e.g., [config.fish](home/hunter/.config/fish/config.fish)) upon opening a Fish shell.
+- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical
 ### One-time execution for setup
 Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 

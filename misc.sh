@@ -6,7 +6,7 @@ set MYCONFIG_DIR=$(dirname $(locate -eq 'my-config/.git' | head -1))
 set GIT_DIR=$(dirname $MYCONFIG_DIR)
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-&& sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
+  && sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
 for i in $(cat $MYCONFIG_DIR/dpkg.apt.sources)
   sudo add-apt-repository -y $i
 done
@@ -52,7 +52,9 @@ sudo groupadd user
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 
 sudo ln -fv $MYCONFIG_DIR/etc/sudoers /etc/sudoers
+sudo ln -v $MYCONFIG_DIR/home/hunter-adm/.config/git/config /home/hunter-adm/.config/git/config
 
 sudo useradd -MU -c Hunter -G user,dev,sudo,ssh hunter
 sudo chown root:root /home/hunter*/.local/share/Trash
+sudo mkdir -p /home/hunter-adm/.config/git /home/hunter/.config/git
 
