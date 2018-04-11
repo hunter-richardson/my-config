@@ -1,0 +1,8 @@
+﻿sudo scp -v /path/to/repo/home/hunter-adm/.config/git/config /path/to/repo/etc/skel/.config/git/config
+sudo scp -v /home/hunter-adm/.config/fish/fundle/init.fish /path/to/repo/home/hunter-adm/.config/fish/fundle/init.fish
+sudo scp -v /path/to/repo/home/hunter-adm/.config/fish/fundle/init.fish /path/to/repo/home/hunter/.config/fish/fundle/init.fish
+sudo scp -v /path/to/repo/home/hunter-adm/.config/fish/fundle/init.fish /path/to/repo/root/.config/fish/fundle/init.fish
+sudo ln -fv /path/to/repo/home/hunter-adm/.config/fish/fundle/init.fish /home/hunter-adm/.config/fish/fundle/init.fish
+sudo ln -fv /path/to/repo/home/hunter/.config/fish/fundle/init.fish /home/hunter/.config/fish/fundle/init.fish
+sudo ln -fv /path/to/repo/root/.config/fish/fundle/init.fish /root/.config/fish/fundle/init.fish
+
