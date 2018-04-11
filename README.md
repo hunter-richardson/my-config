@@ -42,7 +42,8 @@ sudo apt-get update -y
 ```shell
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. [dpkg.pip3](dpkg.pip3) contains the one [Python](https://python.org) software package I use. To apply it:  ```shell
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. [dpkg.pip3](dpkg.pip3) contains the one [Python](https://python.org) software package I use. To apply it:
+```shell
 sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
 ```
 - Finally, for packages I simply could not find as prebuilt binaries, I installed with [`git`](https://git-scm.com), thus far from [Github](https://github.com).  [dpkg.git](dpkg.git) contains the `git` repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
@@ -118,7 +119,7 @@ sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/D
 - My regular user account is `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 - My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm). He belongs to the groups `user`, `dev`, `root`, and `ssh`.
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
-- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical
+- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
 Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
