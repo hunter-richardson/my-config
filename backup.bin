@@ -42,7 +42,7 @@ wget http://releases.ubuntu.com/artful/ubuntu-17.10.1-desktop-amd64.iso | cubic 
   chown root:root /home/hunter-adm/.local/share/Trash
   chown root:root /home/hunter/.local/share/Trash
   ln -v /usr/share/git-repos/my-config/home/hunter-adm/Pictures/wallpaper.jpg /home/hunter-adm/Pictures/wallpaper.jpg
-  ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter/Pictures/profile.jpg
+  ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter-adm/Pictures/profile.jpg
   ln -v /usr/share/git-repos/my-config/home/hunter/Pictures/wallpaper.jpg /home/hunter/Pictures/wallpaper.jpg
   ln -v /usr/share/git-repos/my-config/home/hunter/Pictures/profile.jpg /home/hunter/Pictures/profile.jpg
 

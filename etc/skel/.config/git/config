@@ -1,0 +1,10 @@
+[alias]
+        status = 'status --porcelain'
+[color]
+        ui = always
+        autocrlf = input
+[core]
+        editor = nano
+        whitespace = trailing-space,space-before-tab-cr-at-eol
+[help]
+        autocorrect = 1
