@@ -19,6 +19,7 @@ case "$user" in
     gsettings set com.canonical.unity-greeter background-color '#2C001E'
     gsettings set com.canonical.unity-greeter background-logo '/usr/share/unity-greeter/cof.png'
     gsettings set com.canonical.unity-greeter draw-grid false
+    gsettings set com.canonical.unity-greeter draw-user-backgrounds false
     gsettings set com.canonical.unity-greeter font-name 'Ubuntu 11'
     gsettings set com.canonical.unity-greeter icon-theme-name 'Flat-Remix-Dark'
     gsettings set com.canonical.unity-greeter logo '/usr/share/unity-greeter/logo.png'
@@ -99,6 +100,7 @@ case "$user" in
     gsettings set com.canonical.unity-greeter background-color '#2C001E'
     gsettings set com.canonical.unity-greeter background-logo '/usr/share/unity-greeter/cof.png'
     gsettings set com.canonical.unity-greeter draw-grid false
+    gsettings set com.canonical.unity-greeter draw-user-backgrounds false
     gsettings set com.canonical.unity-greeter font-name 'Ubuntu 11'
     gsettings set com.canonical.unity-greeter icon-theme-name 'Flat-Remix-Dark'
     gsettings set com.canonical.unity-greeter logo '/usr/share/unity-greeter/logo.png'

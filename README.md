@@ -64,10 +64,11 @@ I also installed [`apt-fast`](https://github.com/ilikenwf/apt-fast) above. The [
 ```
 sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
 ```
-- [Ubuntu](https://ubuntu.com) ships with `gdm3` as its default display manager. Currently, my favorite display manager is LightDM with Unity, which I also installed above. The [lightdm-unity-greeter.conf](etc/lightdm/lightdm-unity-greeter.conf) file and the [lightdm.conf.d](etc/lightdm/lightdm.conf.d) directory contain my `lightdm` configuration. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with `gdm3` as its default display manager. Currently, my favorite display manager is LightDM with Unity, which I also installed above. The [10_unity_greeter_background.gschema.override](usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override) and [lightdm-unity-greeter.conf](etc/lightdm/lightdm-unity-greeter.conf) files, and the [lightdm.conf.d](etc/lightdm/lightdm.conf.d) directory, contain my `lightdm` configuration. To apply them:
 ```shell
 sudo ln -v /path/to/repo/etc/lightdm/lightdm-unity-greeter.conf /etc/lightdm/lightdm-unity-greeter.conf
 sudo ln -v /path/to/repo/etc/lightdm/lightdm.conf.d/* /etc/lightdm/lightdm.conf.d/
+sudo ln -v /path/to/repo/usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```shell

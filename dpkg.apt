@@ -29,6 +29,7 @@ gparted
 lightdm
 lxd
 members
+mesa-utils
 mlocate
 moreutils
 htop

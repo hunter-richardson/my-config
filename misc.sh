@@ -23,9 +23,7 @@ sudo snap install $(cat $MYCONFIG_DIR/dpkg.snap)
 sudo pip3 install --require-hashes $(cat $MYCONFIG_DIR/dpkg.pip3)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
-  set repo=$(echo $i | cut -d'/' -f2 | cut -d'.' -f1)
-  sudo git clone --verbose --depth 1 $i $GIT_DIR/$repo
-  set repo=
+  sudo git clone --verbose --depth 1 $i $GIT_DIR/$(echo $i | cut -d'/' -f2 | cut -d'.' -f1)
 done
 
 sudo mkdir -p /etc/skel/Pictures/screenshots /etc/fish/functions /etc/skel/.config/git /usr/share/icons/DMZhaloR24/cursors
@@ -42,6 +40,7 @@ sudo ln -fv $MYCONFIG_DIR/etc/nanorc /etc/nanorc
 sudo ln -v $MYCONFIG_DIR/etc/skel/.config/git/config /etc/skel/.config/git/config
 sudo ln -v $MYCONFIG_DIR/etc/tmux.conf /etc/tmux.conf
 sudo ln -v $MYCONFIG_DIR/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
+sudo ln -v $MYCONFIG_DIR/usr/glib-2.0/schemas/10_unity_greeter_background.gschema.override /glib-2.0/schemas/10_unity_greeter_background.gschema.override
 sudo ln -v $MYCONFIG_DIR/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
 sudo ln -v $MYCONFIG_DIR/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -rv $MYCONFIG_DIR/usr/share/icons/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
