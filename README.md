@@ -147,10 +147,10 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
-Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-tweak-tool` and `dconf-editor` GUI applications or by the `gsettings` command. The [settings.sh](settings.sh) script will populate as many variables as are installed with default values. Since most of the `gsettings` key-values are personal to each user, each user must execute it for him/herself. To load the script as another user:
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` command. The [settings.sh](settings.sh) script will populate as many variables as are installed with default values. Since many of the `gsettings` key-values are user-personal, each user should execute it for him/herself. (`gsettings` can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as another user:
 ```shell
-sudo --user=root /path/to/repo/settings.sh
-sudo --user=hunter-adm /path/to/repo/settings.sh
-sudo --user=hunter /path/to/repo/settings.sh
+sudo --user=root /path/to/repo/settings.sh 2>/dev/null
+sudo --user=hunter-adm /path/to/repo/settings.sh 2>/dev/null
+sudo --user=hunter /path/to/repo/settings.sh 2>/dev/null
 ```
 

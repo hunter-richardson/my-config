@@ -20,7 +20,7 @@ sudo apt-get update -y
   && sudo apt-get clean- y
 
 sudo snap install $(cat $MYCONFIG_DIR/dpkg.snap)
-sudo pip3 install $(cat $MYCONFIG_DIR/dpkg.pip3)
+sudo pip3 install --require-hashes $(cat $MYCONFIG_DIR/dpkg.pip3)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
   set repo=$(echo $i | cut -d'/' -f2 | cut -d'.' -f1)
