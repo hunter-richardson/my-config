@@ -25,6 +25,8 @@ sudo pip3 install --require-hashes $(cat $MYCONFIG_DIR/dpkg.pip3)
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
   sudo git clone --verbose --depth 1 $i $GIT_DIR/$(echo $i | cut -d'/' -f2 | cut -d'.' -f1)
 done
+cd $GIT_DIR/terminal-slack
+  && sudo npm install
 
 sudo mkdir -p /etc/skel/Pictures/screenshots /etc/fish/functions /etc/skel/.config/git /usr/share/icons/DMZhaloR24/cursors
 
@@ -58,7 +60,7 @@ sudo ln -v $MYCONFIG_DIR/home/hunter-adm/.config/git/config /home/hunter-adm/.co
 sudo useradd -MU -c Hunter -G user,dev,sudo,ssh hunter
 sudo chown root:root /home/hunter*/.local/share/Trash
 sudo mkdir -p /home/hunter-adm/.config/git /home/hunter/.config/git
-sudo ln -v $MYCONFIG_DIR/home/hunter-adm/Pictures/wallpaper.jpg /home/hunter-adm/Pictures/wallpaper.jpg
+sudo ln -v $MYCONFIG_DIR/home/hunter-adm/Pictures/wallpaper.png /home/hunter-adm/Pictures/wallpaper.png
 sudo ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter-adm/Pictures/profile.jpg
 sudo ln -v $MYCONFIG_DIR/home/hunter/Pictures/wallpaper.jpg /home/hunter/Pictures/wallpaper.jpg
 sudo ln -v $MYCONFIG_DIR/home/hunter/Pictures/profile.jpg /home/hunter/Pictures/profile.jpg

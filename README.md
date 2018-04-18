@@ -53,6 +53,8 @@ for i in $(cat /path/to/repo/dpkg.git)
   sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$repo
   set repo=
 done
+cd $(dirname /path/to/repo/)/terminal-slack
+  && sudo npm install
 ```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. The [apt.conf.d](etc/apt/apt.conf.d) file contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:

@@ -293,8 +293,12 @@ case "$user" in
     dconf write /org/gtk/Settings/FileChooser/sort-column "'name'"
     dconf write /org/gtk/Settings/FileChooser/sort-directories-first true
     dconf write /org/gtk/Settings/FileChooser/sort-order "'ascending'"
-    if [ -f $home_dir/Pictures/wallpaper.jpg ] ; then
+    if [ -f $home_dir/Pictures/wallpaper.png ] ; then
+      gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.png'
+    else if [ -f $home_dir/Pictures/wallpaper.jpg ] ; then
       gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.jpg'
+    else if [ -f $home_dir/Pictures/wallpaper.jpeg ] ; then
+      gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.jpeg'
     else
       gsettings set com.canonical.unity-greeter background 'file:///usr/share/backgrounds/warty-final-ubuntu.png'
     fi

@@ -35,6 +35,8 @@ moreutils
 htop
 libreoffice-script-provider-python
 mps-youtube
+nodejs
+npm
 obsidian-gtk-theme
 ocfs2-tools
 pastebinit
@@ -50,6 +52,7 @@ tmux
 unity-greeter
 urlview
 w3m
+wine-stable
 wordgrinder
 youtube-dl
 xsel
