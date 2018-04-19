@@ -234,13 +234,13 @@ case "$user" in
     gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
     gsettings set org.gnome.shell enabled-extensions ['add-username-toppanel@brendaw.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'update-extensions@franglais125.gmail.com', 'no-title-bar@franglais125.gmail.com', 'openweather-extension@jenslody.de', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'mailnag@pulb.github.com', 'ubuntu-appindicators@ubuntu.com']
     dconf write /org/gnome/shell/extensions/apt-update-indicator/always-visible false
-    dconf write /org/gnome/shell/extensions/apt-update-indicator/check-cmd-version "'sudo apt update'"
+    dconf write /org/gnome/shell/extensions/apt-update-indicator/check-cmd-version "'pkexec apt update'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/interval-unit "'days'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/notify true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/output-on-terminal true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/strip-versions true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/terminal "'gnome-terminal -x fish -c'"
-    dconf write /org/gnome/shell/extensions/apt-update-indicator/update-cmd "'sudo apt upgrade -y'"
+    dconf write /org/gnome/shell/extensions/apt-update-indicator/update-cmd "'pkexec apt upgrade -y'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/update-cmd-options "'custom'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/use-custom-cmd true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/verbosity 2
