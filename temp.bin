@@ -1,0 +1,42 @@
+sudo mkdir -p /path/to/repo/root/.config/git/config /root/.config/git/config
+sudo scp /path/to/repo/home/hunter-adm/.config/git/config /path/to/repo/root/.config/git/config
+
+sudo nano /path/to/repo/dpkg.apt
+#albert
+gdebi
+#googler
+#obsidian-gtk-theme
+tlp
+tlp-rdw
+tracker-search-tool
+ubuntu-restricted-extras
+#youtube-dl
+
+sudo nano /path/to/repo/dpkg.apt.sources
+#niloarimogard/webupd8
+#noobslab/themes
+
+sudo nano /path/to/repo/dpkg.snap
+communitheme
+
+# restart
+Alt + F2
+sudo tlp start
+for i in (hunter, hunter-adm, root); do
+  su $i --command="trackerd"
+done
+
+sudo nano /path/to/repo/misc.sh
+wget -nv -O - https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add - <
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /' | sudo tee -a /etc/apt/sources.list.d/home:manuelschneid3r.list"
+sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler && sudo chmod +x /usr/local/bin/googler
+for i in $(cat /path/to/repo/dpkg.apt.sources)
+  sudo add-apt-repository -y ppa:$i
+done
+
+sudo nano /path/to/repo/etc/fish/functions/update.fish
+sudo googler -u
+
+
+adapta-gtk-theme (tista/adapta)
+matcha (https://gnome-look.org/p/1187179/)
