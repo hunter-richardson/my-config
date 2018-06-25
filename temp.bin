@@ -1,5 +1,0 @@
-sudo nano ./usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
-[com.canonical.unity-greeter]
-draw-user-backgrounds=false
-draw-grid=false
-background='/usr/share/ubuntu/backgrounds/warty-final-ubuntu.png'
