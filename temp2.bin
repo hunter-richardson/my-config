@@ -1,0 +1,43 @@
+sudo srm -lrvz /path/to/repo/my-config/usr/share/icons/DMZhaloR32
+
+sudo nano /path/to/repo/dpkg.apt
+https://github.com/vinceliuice/matcha
+
+sudo nano /path/to/repo/install.sh
+r[8-10]
+for i in $(/path/to/repo/apt.key); do
+  wget -v -O - https://$i | sudo apt-key add -
+done
+for i in $(cat /path/to/repo/dpkg.apt.ext-sources); do
+  sudo sh -c 'echo $(echo $i | cut -d';' -f1)' | sudo tee -a /etc/apt/sources.list.d/$(echo $i | cut -d';' -f2).list
+done
+i[15]
+sudo debconf-set-selections /path/to/repo/apt.debconf
+i[30]
+sudo $GIT_DIR/matcha/.Install
+
+sudo nano /path/to/repo/dpkg.apt
+gtk2-engines-murrine
+gtk2-engines-pixbuf
+
+sudo nano /path/to/repo/user.sh
+r[13, 14]
+sudo $i --command="trackerd"
+sudo $i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+
+sudo nano /path/to/repo/settings.sh
+r[27, 109]
+gsettings set com.canonical.unity-greeter theme-name 'Matcha-dark-azul'
+r[139]
+gsettings set org.gnome.desktop.interface gtk-theme 'Matcha-dark-azul'
+r[281]
+dconf write /org/shell/extensions/user-theme/name "'Matcha-dark-azul'"
+
+sudo nano /path/to/repo/README.md
+r[31]
+- [https://ubuntu.com](Ubuntu) ships with its own apt PPAs installed. The [apt.key](apt.key) and [dpkg.apt.ext-sources](dpkg.apt.ext-sources) files contain the authentication and URLs to external apt sources, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
+r[42]
+- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via apt, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allows for automated setup for certain packages. To apply them:
+[https://ubuntu.com](Ubuntu) ships with several themes installed. For cursors, the default is [https://gnome-look.org/content/show.php/?content=159847](DMZ-White). I prefer [https://gnome-look.org/p/999745](DMZHaloR32) respectively. To apply them:
+i[181]
+- Quick setup of downloadable themes (i.e., not available by SPM) can be attained by executing the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme ([https://gnome-look.org/p/999745](DMZHaloR32)) is in the user's `Downloads` directory; otheriwse it follows the instructions above.

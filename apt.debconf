@@ -1,0 +1,7 @@
+ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true
+gdm3 shared/default-x-display-manager select lightdm
+lightdm shared/default-x-display-manager select lightdm
+lightdm lightdm/daemon_name string /usr/sbin/lightdm
+apt-fast apt-fast/maxdownloads string 10
+apt-fast apt-fast/aptmanager select apt
+apt-fast apt-fast/dlflag boolean true
