@@ -32,14 +32,14 @@ case "$user" in
     gsettings set com.ubuntu.update-notifier no-show-notifications false
     gsettings set com.ubuntu.update-notifier show-apport-crashes true
     gsettings set com.ubuntu.user-interface.desktop cursor-size 32
-    gsettings set org.gnome.eog.ui disable-trash-confirmation
+    gsettings set org.gnome.eog.ui disable-trash-confirmation false
     gsettings set org.gnome.eog.ui image-gallery true
     gsettings set org.gnome.eog.ui image-gallery-position 'left'
     gsettings set org.gnome.eog.ui image-gallery-resizable true
     gsettings set org.gnome.eog.ui propsdialog-netbook-mode false
     gsettings set org.gnome.eog.ui scroll-buttons false
     gsettings set org.gnome.eog.ui statusbar false
-    gsettings set org.gnome.gedit.plugins active-plugins ['docinfo', 'externaltools', 'filebrowser', 'modelines', 'pythonconsole', 'quickopen', 'sort', 'snippets', 'spell', 'time']
+    gsettings set org.gnome.gedit.plugins active-plugins "['docinfo', 'externaltools', 'filebrowser', 'modelines', 'pythonconsole', 'quickopen', 'sort', 'snippets', 'spell', 'time']"
     gsettings set org.gnome.gedit.plugins.filebrowser enable-remote true
     gsettings set org.gnome.gedit.plugins.filebrowser.nautilus confirm-trash false
     gsettings set org.gnome.gedit.plugins.pythonconsole font 'Hack 10'
@@ -56,6 +56,7 @@ case "$user" in
     gsettings set org.gnome.gedit.preferences.editor search-highlighting true
     gsettings set org.gnome.gedit.preferences.editor syntax-highlighting true
     gsettings set org.gnome.gedit.preferences.editor tabs-size 2
+    gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
     gsettings set org.gnome.login-screen allowed-failures 5
     gsettings set org.gnome.login-screen disable-user-list false
     gsettings set org.gnome.login-screen enable-password-authentication true
@@ -65,24 +66,24 @@ case "$user" in
     gsettings set org.gnome.nautilus.desktop network-icon-visible false
     gsettings set org.gnome.nautilus.desktop trash-icon-visible false
     gsettings set org.gnome.nautilus.desktop volumes-visible true
-    gsettings set org.gnome.nautilus.list-view default-visible-columns ['name', 'size', 'owner', 'date_modified_with_time']
+    gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'owner', 'date_modified_with_time']"
     gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+    gsettings set org.gnome.nautilus.preferences confirm-trash false
     gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
     gsettings set org.gnome.nautilus.preferences mouse-back-button 0
     gsettings set org.gnome.nautilus.preferences mouse-forward-button 0
     gsettings set org.gnome.nautilus.preferences mouse-use-extra-buttons false
     gsettings set org.gnome.nautilus.preferences show-create-link true
+    gsettings set org.gnome.nautilus.preferences show-delete-permanently true
+    gsettings set org.gnome.nautilus.preferences show-hidden-files true
+    gsettings set org.gnome.online-accounts whitelisted-providers ['']
     gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 4800
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'suspend'
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 4800
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
     gsettings set org.gnome.software external-appstream-system-wide true
-    gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
-    gsettings set org.gnome.nautilus.preferences confirm-trash false
-    gsettings set org.gnome.nautilus.preferences show-delete-permanently true
-    gsettings set org.gnome.nautilus.preferences show-hidden-files true
-    gsettings set org.gnome.online-accounts whitelisted-providers [''] ;;
+    ;;
   *)
     set home_dir=$(getent passwd $user | cut -d':' -f6)
     gsettings set ca.desrt.dconf-editor.Settings show-warning false
@@ -176,14 +177,14 @@ case "$user" in
     gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
     gsettings set org.gnome.desktop.wm.preferences resize-with-right-button false
     gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
-    gsettings set org.gnome.eog.ui disable-trash-confirmation
+    gsettings set org.gnome.eog.ui disable-trash-confirmation true
     gsettings set org.gnome.eog.ui image-gallery true
     gsettings set org.gnome.eog.ui image-gallery-position 'left'
     gsettings set org.gnome.eog.ui image-gallery-resizable true
     gsettings set org.gnome.eog.ui propsdialog-netbook-mode false
     gsettings set org.gnome.eog.ui scroll-buttons false
     gsettings set org.gnome.eog.ui statusbar false
-    gsettings set org.gnome.gedit.plugins active-plugins ['docinfo', 'externaltools', 'filebrowser', 'modelines', 'pythonconsole', 'quickopen', 'sort', 'snippets', 'spell', 'time']
+    gsettings set org.gnome.gedit.plugins active-plugins "['docinfo', 'externaltools', 'filebrowser', 'modelines', 'pythonconsole', 'quickopen', 'sort', 'snippets', 'spell', 'time']"
     gsettings set org.gnome.gedit.plugins.filebrowser enable-remote true
     gsettings set org.gnome.gedit.plugins.filebrowser.nautilus confirm-trash false
     gsettings set org.gnome.gedit.plugins.pythonconsole font 'Hack 10'
@@ -200,7 +201,7 @@ case "$user" in
     gsettings set org.gnome.gedit.preferences.editor search-highlighting true
     gsettings set org.gnome.gedit.preferences.editor syntax-highlighting true
     gsettings set org.gnome.gedit.preferences.editor tabs-size 2
-    gsettings set org.gnome.gnome-screenshot '$home_dir/Pictures/screenshots'
+    gsettings set org.gnome.gnome-screenshot auto-save-directory '$home_dir/Pictures/screenshots'
     gsettings set org.gnome.gnome-screenshot default-file-type 'png'
     gsettings set org.gnome.gnome-screenshot include-border false
     gsettings set org.gnome.gnome-screenshot include-pointer false
@@ -214,7 +215,7 @@ case "$user" in
     gsettings set org.gnome.nautilus.desktop network-icon-visible false
     gsettings set org.gnome.nautilus.desktop trash-icon-visible false
     gsettings set org.gnome.nautilus.desktop volumes-visible true
-    gsettings set org.gnome.nautilus.list-view default-visible-columns ['name', 'size', 'owner', 'date_modified_with_time']
+    gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'owner', 'date_modified_with_time']"
     gsettings set org.gnome.nautilus.preferences always-use-location-entry true
     gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
     gsettings set org.gnome.nautilus.preferences mouse-back-button 0
@@ -232,7 +233,7 @@ case "$user" in
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 4800
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
     gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
-    gsettings set org.gnome.shell enabled-extensions ['add-username-toppanel@brendaw.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'update-extensions@franglais125.gmail.com', 'no-title-bar@franglais125.gmail.com', 'openweather-extension@jenslody.de', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'mailnag@pulb.github.com', 'ubuntu-appindicators@ubuntu.com']
+    gsettings set org.gnome.shell enabled-extensions "['add-username-toppanel@brendaw.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'update-extensions@franglais125.gmail.com', 'no-title-bar@franglais125.gmail.com', 'openweather-extension@jenslody.de', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'mailnag@pulb.github.com']"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/always-visible false
     dconf write /org/gnome/shell/extensions/apt-update-indicator/check-cmd-version "'pkexec apt update'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/interval-unit "'days'"
@@ -245,13 +246,13 @@ case "$user" in
     dconf write /org/gnome/shell/extensions/apt-update-indicator/use-custom-cmd true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/verbosity 2
     dconf write /org/gnome/shell/extensions/datetime-format/datemenudate-format "'%A, %e %B %Y'"
-    dconf write /org/gnome/shell/extensions/datetime-format/datemenuday-format "'%A, %e %B'"
+    dconf write /org/gnome/shell/extensions/datetime-format/datemenuday-format "'%A %e %B'"
     dconf write /org/gnome/shell/extensions/datetime-format/statusbar-format "'%A %e %B %Y, %H%M %Z'"
     dconf write /org/gnome/shell/extensions/extensions/position "'panel'"
     dconf write /org/gnome/shell/extensions/extensions/show-add true
     dconf write /org/gnome/shell/extensions/no-title-bar/buttons-for-snapped true
     dconf write /org/gnome/shell/extensions/no-title-bar/hide-buttons false
-    dconf write /org/gnome/shell/extensions/no-title-bar/only-main-monitor false
+    dconf write /org/gnome/shell/extensions/no-title-bar/only-main-monitor true
     dconf write /org/gnome/shell/extensions/openweather/actual-city 0
     dconf write /org/gnome/shell/extensions/openweather/appid-fc "'5f45bf8521e04c2e702c6f5a2208adba'"
     dconf write /org/gnome/shell/extensions/openweather/center-forecast true
@@ -262,7 +263,7 @@ case "$user" in
     dconf write /org/gnome/shell/extensions/openweather/position-in-panel "'right'"
     dconf write /org/gnome/shell/extensions/openweather/pressure-unit "'atm'"
     dconf write /org/gnome/shell/extensions/openweather/refresh-interval-current 600
-    dconf write /org/gnome/shell/extensions/openweather/refresh-interval-forcast 600
+    dconf write /org/gnome/shell/extensions/openweather/refresh-interval-forecast 600
     dconf write /org/gnome/shell/extensions/openweather/show-comment-in-forecast true
     dconf write /org/gnome/shell/extensions/openweather/show-comment-in-panel false
     dconf write /org/gnome/shell/extensions/openweather/show-text-in-panel true
@@ -294,14 +295,15 @@ case "$user" in
     dconf write /org/gtk/Settings/FileChooser/sort-directories-first true
     dconf write /org/gtk/Settings/FileChooser/sort-order "'ascending'"
     if [ -f $home_dir/Pictures/wallpaper.png ] ; then
-      gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.png'
+      gsettings set org.gnome.desktop.background picture-uri 'file://$home_dir/Pictures/wallpaper.png'
     else if [ -f $home_dir/Pictures/wallpaper.jpg ] ; then
-      gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.jpg'
+      gsettings set org.gnome.desktop.background picture-uri 'file://$home_dir/Pictures/wallpaper.jpg'
     else if [ -f $home_dir/Pictures/wallpaper.jpeg ] ; then
-      gsettings set org.gnome.desktop.background picture-url 'file://$home_dir/Pictures/wallpaper.jpeg'
+      gsettings set org.gnome.desktop.background picture-uri 'file://$home_dir/Pictures/wallpaper.jpeg'
     else
-      gsettings set com.canonical.unity-greeter background 'file:///usr/share/backgrounds/warty-final-ubuntu.png'
+      gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/warty-final-ubuntu.png'
     fi
+    gsettings set com.canonical.unity-greeter background 'file:///usr/share/backgrounds/warty-final-ubuntu.png'
     case "$user" in
       hunter-adm)
         gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
@@ -309,9 +311,10 @@ case "$user" in
         gsettings set org.gnome.nautilus.preferences show-delete-permanently true
         gsettings set org.gnome.nautilus.preferences show-hidden-files true
         gsettings set org.gnome.online-accounts whitelisted-providers ['']
-        gsettings set org.gnome.Terminal.Legacy.Settings confirm.close false
+        gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
         gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
-        dconf write /org/gtk/Settings/FileChooser/show-hidden true ;;
+        dconf write /org/gtk/Settings/FileChooser/show-hidden true
+        ;;
       hunter)
         gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
         gsettings set org.gnome.nautilus.preferences confirm-trash false
@@ -335,7 +338,8 @@ case "$user" in
         gsettings set org.gnome.shell.extensions.mailnag show-mark-all-as-read-button false
         gsettings set org.gnome.shell.extensions.mailnag show-settings-button true
         gsettings set org.gnome.shell favorite-apps ['firefox.desktop']
-        dconf write /org/gtk/Settings/FileChooser/show-hidden true ;;
+        dconf write /org/gtk/Settings/FileChooser/show-hidden true
+        ;;
       *)
         gsettings set org.gnome.gnome-system-monitor show-whose-processes 'user'
         gsettings set org.gnome.nautilus.preferences confirm-trash true
@@ -351,8 +355,10 @@ case "$user" in
         gsettings set org.gnome.rhythmbox.sharing enable-browsing true
         gsettings set org.gnome.rhythmbox.sharing enable-sharing true
         gsettings set org.gnome.rhythmbox.sharing require-password true
-        dconf write /org/gtk/Settings/FileChooser/show-hidden false ;;
-    esac ;;
+        dconf write /org/gtk/Settings/FileChooser/show-hidden false
+        ;;
+    esac
+    ;;
 esac
 
 set user= 

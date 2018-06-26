@@ -26,7 +26,7 @@ done
 sudo snap install $(cat $MYCONFIG_DIR/dpkg.snap)
 sudo pip3 install --require-hashes $(cat $MYCONFIG_DIR/dpkg.pip3)
 
-for i in $(cat $MYCONFIG_DIR/dpkg.git)
+for i in $(cat $MYCONFIG_DIR/dpkg.git); do
   sudo git clone --verbose --depth 1 $i $GIT_DIR/$(echo $i | cut -d'/' -f5 | cut -d'.' -f1)
 done
 cd $GIT_DIR/terminal-slack

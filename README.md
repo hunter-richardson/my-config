@@ -1,13 +1,14 @@
 # my-config
 This is the repository for my home computer's setup.
 ## A rundown of what's stored here.
+- Installation instructions (i.e., [what you're reading now](README.md))
 - [Software packages and repositories](#software-packages-and-repositories)
+- [User files and configuration](#user-files-and-configuration)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
+- [User software/script initialization](#user-software-script-initialization)
 - [Themes](#themes)
-- [User files and configuration](#user-files-and-configuration)
 - [One-time execution for setup](#one-time-execution-for-setup)
-- Installation instructions (i.e., [what you're reading now](README.md))
 - [Manual installation of extensions](#manual-installation-of-extensions)
 - [Miscellaneous configuration](#miscellaneous-configuration)
 ---
@@ -17,16 +18,25 @@ I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate di
 source /path/to/repo/rehome
 ```
 
-Since it involves wiping the files in `/home`, it will be easier to run in an `Ctrl Alt F2` shell.
+Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell.
 
 ---
+## Second,
+The default `root` password is NULL, which is dangerous. Modify it ASAP:
+```shell
+sudo passwd root
+sudo updatedb
+```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own PPAs installed. The [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` PPAs installed. The [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
 ```shell
 wget -q -O https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-&& sudo sh -c '' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
+&& sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
+wget -nv -O - https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add - <
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /' | sudo tee -a /etc/apt/sources.list.d/home:manuelschneid3r.list"
+sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler && sudo chmod +x /usr/local/bin/googler
 for i in $(cat /path/to/repo/dpkg.apt.sources)
-  sudo add-apt-repository -y $i
+  sudo add-apt-repository -y ppa:$i
 done
 ```
 - The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, and [rdpkg.apt](rdpkg.apt) those I specifically want to remove. To apply them:
@@ -38,11 +48,11 @@ sudo apt-get update -y
 && sudo apt-get upgrade
 && sudo apt-get clean
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, artful-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, bionic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```shell
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.pip3](dpkg.pip3) file contains the one [Python](https://python.org) software package I use. To apply it:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.pip3](dpkg.pip3) file contains the two [Python](https://python.org) software packages I use. To apply them:
 ```shell
 sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
 ```
@@ -56,6 +66,36 @@ done
 cd $(dirname /path/to/repo/)/terminal-slack
   && sudo npm install
 ```
+### User files and configuration
+    After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories. (Each user has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.)
+- Most likely, the administrative user `hunter-adm` was created before Ubuntu was installed. His files are stored in [hunter-adm](home/hunter-adm) and he belongs to the groups `user`, `dev`, `root`, and `ssh`.
+```shell
+sudo groupadd dev
+sudo groupadd user
+sudo usermod -a -G user,dev,root,ssh hunter-adm
+sudo mkdir -p /home/hunter-adm/.config/git
+sudo ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter-adm/Pictures/profile.jpg 
+for i in "Pictures/wallpaper.png"
+         ".config/git/config"; do
+  sudo ln -v /path/to/repo/home/hunter-adm/$i /home/hunter-adm/$i
+done
+```
+- Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
+```shell
+sudo usermod -a -G user,dev,sudo,ssh hunter
+sudo mkdir -p /home/hunter/.config/git
+for i in "Pictures/wallpaper.jpg"
+         "Pictures/profile.jpg"
+         ".config/git/config"; do
+  sudo ln -v /path/to/repo/home/home/hunter/$i /home/hunter/$i
+done
+```
+- The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
+```shell
+sudo mkdir -p /root/.config/git
+sudo usermod -a -G dev root
+sudo ln -v /path/to/repo/root/.config/git/config /root/.config/git/config
+```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. The [apt.conf.d](etc/apt/apt.conf.d) file contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:
 ```shell
@@ -68,9 +108,11 @@ sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
 ```
 - [Ubuntu](https://ubuntu.com) ships with `gdm3` as its default display manager. Currently, my favorite display manager is LightDM with Unity, which I also installed above. The [10_unity_greeter_background.gschema.override](usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override) and [lightdm-unity-greeter.conf](etc/lightdm/lightdm-unity-greeter.conf) files, and the [lightdm.conf.d](etc/lightdm/lightdm.conf.d) directory, contain my `lightdm` configuration. To apply them:
 ```shell
-sudo ln -v /path/to/repo/etc/lightdm/lightdm-unity-greeter.conf /etc/lightdm/lightdm-unity-greeter.conf
+for i in "etc/lightdm/lightdm-unity-greeter.conf"
+         "usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override"; do
+  sudo ln -v /path/to/repo/$i /$i
+done
 sudo ln -v /path/to/repo/etc/lightdm/lightdm.conf.d/* /etc/lightdm/lightdm.conf.d/
-sudo ln -v /path/to/repo/usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```shell
@@ -85,12 +127,8 @@ sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
 sudo mkdir -p /etc/skel/.config/git
 sudo ln -v /path/to/repo/etc/skel/.config/git/config /etc/skel/.config/git/config
 ```
-- The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it, first ensure access to the root password and the appropriate groups are loaded:
+- The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it:
 ```shell
-sudo passwd root
-sudo groupadd dev
-sudo groupadd users
-sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
 ```
 - `tmux` is a terminal multiplexer that sets up a status bar and allows windows to split into panes. The [tmux.conf](etc/tmux.conf) file contains my tmux configuration file. See the [tmux manual](https://man.openbsd.org/OpenBSD-current/man1/tmux.1) for more information. To apply it:
@@ -105,30 +143,42 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](etc/fish) and its subdirectories. To apply them:
 ```shell
 sudo mkdir -p /etc/fish/functions
-sudo ln -rv /path/to/repo/etc/fish/* /etc/fish/
-sudo ln -rv /path/to/repo/etc/fish/functions/* /etc/fish/functions/
-sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+for i in "fish"
+         "fish/functions"; do
+  sudo ln -rv /path/to/repo/etc/$i/* /etc/$i/
+done
 ```
 - The [fish.lang](usr/share/gtksourceview-3.0/language-specs/fish.lang) and [fish.nanorc](usr/share/nano/fish.nanorc) files contain configuration for syntax-highlighting of Fish scripts, in `gedit` and `nano`, respectively. To apply them:
 ```shell
-sudo ln -v /path/to/repo/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/
-sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/
+sudo ln -v /path/to/repo/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
+sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nano
 ```
-- To use [Fish](https://fishshell.com) by default without going through the whole `cshs` trouble, I put a script at the bottom of the [bash.bashrc](etc/bash.bashrc) file which opens a `tmux` session into `fish`. (Make sure both `tmux` and `fish` work before using this!) To apply it:  `sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc`
+- To use [Fish](https://fishshell.com) by default without going through the whole `cshs` trouble, I put a script at the bottom of the [bash.bashrc](etc/bash.bashrc) file which opens a `tmux` session into `fish`. (Make sure both `tmux` and `fish` work before using this!) To apply it:
+```shell
+sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
+```
+### User software/script initialization
+- After installing `apt` packages and configuring `fish`, restart and run the following commands in an `Alt F2` window:
+```shell
+sudo tlp start
+for i in $(members user); do
+  su $i --command="trackerd"
+  su $i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+done
+```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored in the [DMZhaloR32](usr/share/icons/DMZhaloR32) directory. To apply them:
 ```shell
 sudo mkdir -p /usr/share/icons/DMZhaloR32/cursors
-sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
-sudo ln -v /path/to/repo/usr/share/icons/DMZhaloR32/cursors/* /usr/share/icons/DMZhaloR32/cursors/
+for i in "DMZhaloR32"
+         "DMZhaloR32/cursors"; do
+  sudo ln -v /path/to/repo/user/share/icons/$i/* /usr/share/icons/$i/
+done
 ```
-### User files and configuration
-- My regular user account is `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
-- My administrative account is `hunter-adm`. His files are stored in [hunter-adm](home/hunter-adm). He belongs to the groups `user`, `dev`, `root`, and `ssh`.
-- The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
-- Each user above has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.
 ### One-time execution for setup
-Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the `/home` directory is on the right disc and all other global Github repositories should be stored in directories near this one. The script includes these instructions, plus some additional settings I haven't detailed yet. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+- Quick installation of all software can be attained by executing the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
+- Quick initialization of users' scripts and files can be attained by executing the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
+- Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
 - The following is a list of links to [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in Firefox and click the +Add to Firefox button to apply it. 
@@ -150,10 +200,11 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
-Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [settings.sh](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of the key-values are user-personal, each user should execute it for him/herself. (`gsettings` and `dconf` commands can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as another user:
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [settings.sh](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of the key-values are user-personal, each user should execute it for him/herself. (`gsettings` and `dconf` commands can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as each user:
 ```shell
-sudo --user=root /path/to/repo/settings.sh 2>/dev/null
-sudo --user=hunter-adm /path/to/repo/settings.sh 2>/dev/null
-sudo --user=hunter /path/to/repo/settings.sh 2>/dev/null
+for i in $(members dev); do
+  sudo --user=$i /path/to/repo/settings.sh 2>/dev/null
+done
 ```
+
 
