@@ -28,27 +28,29 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` PPAs installed. The [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains the authentication keys to external apt sources (shown below), and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
 ```shell
-wget -q -O https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-&& sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
-wget -nv -O - https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add - <
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /' | sudo tee -a /etc/apt/sources.list.d/home:manuelschneid3r.list"
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
+sudo sh -c 'echo "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /"' | sudo tee -a /etc/apt/sources.list.d/home:manuelschneid3r.list
 sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler && sudo chmod +x /usr/local/bin/googler
-for i in $(cat /path/to/repo/dpkg.apt.sources)
+for i in $(cat /path/to/repo/apt.key); do
+  wget -v -O $i | sudo apt-key add -
+done
+for i in $(cat /path/to/repo/dpkg.apt.sources); do
   sudo add-apt-repository -y ppa:$i
 done
 ```
-- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, and [rdpkg.apt](rdpkg.apt) those I specifically want to remove. To apply them:
+- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them:
 ```shell
+sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
-&& sudo apt-get autoremove -y
-&& sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
-&& sudo apt-get remove -y $(cat /path/to/repo/rdpkg.apt)
-&& sudo apt-get upgrade
-&& sudo apt-get clean
+sudo apt-get autoremove -y
+sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
+sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
+sudo apt-get upgrade
+sudo apt-get clean
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, bionic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Bionic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```shell
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
@@ -59,15 +61,13 @@ sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
 - Finally, for packages I simply could not find as prebuilt binaries, I installed with [`git`](https://git-scm.com), thus far from [Github](https://github.com).  The [dpkg.git](dpkg.git) file contains the `git` repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
-  set repo=$(echo $i | cut -d'/' -f2)
-  sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$repo
-  set repo=
+  sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | cut -d'/' -f5 | cut -d'.' -f1)
 done
 cd $(dirname /path/to/repo/)/terminal-slack
   && sudo npm install
 ```
 ### User files and configuration
-    After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories. (Each user has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.)
+After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories. (Each user has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.)
 - Most likely, the administrative user `hunter-adm` was created before Ubuntu was installed. His files are stored in [hunter-adm](home/hunter-adm) and he belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```shell
 sudo groupadd dev
@@ -167,17 +167,18 @@ for i in $(members user); do
 done
 ```
 ### Themes
-[Ubuntu](https://ubuntu.com) ships with several cursor themes installed. [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloRP](https://gnome-look.org/p/999745), stored in the [DMZhaloR32](usr/share/icons/DMZhaloR32) directory. To apply them:
+[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloR32](https://gnome-look.org/p/999745). To apply it:
 ```shell
-sudo mkdir -p /usr/share/icons/DMZhaloR32/cursors
-for i in "DMZhaloR32"
-         "DMZhaloR32/cursors"; do
-  sudo ln -v /path/to/repo/user/share/icons/$i/* /usr/share/icons/$i/
-done
+sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
+sudo mkdir -p /usr/share/icons/DMZhaloR32
+sudo rsync -ADhorX /path/to/DMZhaloRP/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
+sudo ln -fs /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-theme
+sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```
 ### One-time execution for setup
 - Quick installation of all software can be attained by executing the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
 - Quick initialization of users' scripts and files can be attained by executing the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
+- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by executing the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in teh user's `Downloads` directory; otherwise it follows the instructions above.
 - Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.

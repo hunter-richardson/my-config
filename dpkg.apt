@@ -20,12 +20,13 @@ flat-remix-gnome
 fonts-hack-ttf
 gdebi
 git
-gksu
 gnome-tweak-tool
 gnome-shell-mailnag
 google-chrome-stable
 googler
 gparted
+gtk2-engines-murrine
+gtk2-engines-pixbuf
 lxd
 members
 mesa-utils
@@ -50,7 +51,6 @@ tlp
 tlp-rdw
 tmux
 ubuntu-restricted-extras
-unity-greeter
 urlview
 w3m
 wine-stable

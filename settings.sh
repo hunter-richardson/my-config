@@ -24,7 +24,7 @@ case "$user" in
     gsettings set com.canonical.unity-greeter icon-theme-name 'Flat-Remix-Dark'
     gsettings set com.canonical.unity-greeter logo '/usr/share/unity-greeter/logo.png'
     gsettings set com.canonical.unity-greeter play-ready-sound false
-    gsettings set com.canonical.unity-greeter theme-name 'Obsidian-2'
+    gsettings set com.canonical.unity-greeter theme-name 'Matcha-dark-azul'
     gsettings set com.canonical.unity-greeter xft-hintstyle 'hintslight'
     gsettings set com.ubuntu.touch.network gps false
     gsettings set com.ubuntu.touch.sound silent-mode true
@@ -106,7 +106,7 @@ case "$user" in
     gsettings set com.canonical.unity-greeter icon-theme-name 'Flat-Remix-Dark'
     gsettings set com.canonical.unity-greeter logo '/usr/share/unity-greeter/logo.png'
     gsettings set com.canonical.unity-greeter play-ready-sound false
-    gsettings set com.canonical.unity-greeter theme-name 'Obsidian-2'
+    gsettings set com.canonical.unity-greeter theme-name 'Matcha-dark-azul'
     gsettings set com.canonical.unity-greeter xft-hintstyle 'hintslight'
     gsettings set com.ubuntu.touch.network gps false
     gsettings set com.ubuntu.touch.sound silent-mode true
@@ -136,7 +136,7 @@ case "$user" in
     gsettings set org.gnome.desktop.interface cursor-blink true
     gsettings set org.gnome.desktop.interface cursor-theme 'DMZhaloR32'
     gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
-    gsettings set org.gnome.desktop.interface gtk-theme 'Obsidian-2'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Matcha-dark-azul'
     gsettings set org.gnome.desktop.interface icon-theme 'Flat-Remix-Dark'
     gsettings set org.gnome.desktop.interface monospace-font-name 'Hack 10'
     gsettings set org.gnome.desktop.interface show-battery-percentage false
@@ -278,7 +278,7 @@ case "$user" in
     dconf write /org/gnome/shell/extensions/update-extensions/interval-unit "'days'"
     dconf write /org/gnome/shell/extensions/update-extensions/system-wide-ext true
     dconf write /org/gnome/shell/extensions/update-extensions/transient true
-    dconf write /org/gnome/shell/extensions/user-theme/name "'Obsidian-2'"
+    dconf write /org/gnome/shell/extensions/user-theme/name "'Matcha-dark-azul'"
     gsettings set org.gnome.shell.window-switcher app-icon-mode 'thumbnail-only'
     gsettings set org.gnome.software external-appstream-system-wide true
     gsettings set org.gnome.software show-ratings true
