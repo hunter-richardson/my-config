@@ -89,7 +89,7 @@ done
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
 ```shell
 sudo mkdir -p /root/.config/git
-sudo usermod -a -G dev root
+sudo usermod -a -G user,dev,root,ssh root
 sudo ln -v /path/to/repo/root/.config/git/config /root/.config/git/config
 ```
 ### Operating system and program configuration
@@ -196,11 +196,9 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
-Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of the key-values are user-personal, each user should execute it for him/herself. (`gsettings` and `dconf` commands can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as each user:
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of are user-personal, each user has a specific flavor of the key-values, detailed in his/her/its [_settings.dconf](home/hunter-adm/_settings.dconf) file.
+- To load the variables individually as each user:
 ```shell
-for i in $(members dev); do
-  sudo --user=$i /path/to/repo/settings.sh 2>/dev/null
-done
+dconf load / < /path/to/repo/$(getent passwd $user | cut -d';' -f6 | tail -c +2)/_settings.dconf
 ```
-
-
+- Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
