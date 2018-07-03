@@ -13,5 +13,5 @@ for i in $(members user); do
       set home_dir=etc/skel
       ;;
   esac
-  dconf load / < $MYCONFIG_DIR/$home_dir/_settings.dconf
+  sudo --user=$i dconf load / < $MYCONFIG_DIR/$home_dir/_settings.dconf
 done

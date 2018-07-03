@@ -199,6 +199,9 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
 Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of are user-personal, each user has a specific flavor of the key-values, detailed in his/her/its [_settings.dconf](home/hunter-adm/_settings.dconf) file.
 - To load the variables individually as each user:
 ```shell
-dconf load / < /path/to/repo/$(getent passwd $user | cut -d';' -f6 | tail -c +2)/_settings.dconf
+sudo --command="dconf load / < /path/to/repo/home/hunter-adm/_settings.dconf" --user=hunter-adm
+sudo --command="dconf load / < /path/to/repo/home/hunter/_settings.dconf" --user=hunter
+sudo --command="dconf load / < /path/to/repo/root/_settings.dconf" --user=root
+sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(any account created later)
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
