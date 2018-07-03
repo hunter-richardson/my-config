@@ -34,30 +34,30 @@ function fish_prompt -d 'the left prompt'
           case '*'
             builtin set -l upstr (builtin printf '▲ %s ▼ %s' $ahead $behind)
         end
-        builtin printf ' %s⚫‒⚪%s' $magenta $commit
+        builtin printf ' %s⊷ %s' $magenta $commit
         builtin test -n $upstr;
           and builtin printf ' %s%s' $yellow $upstr
       else
-        builtin printf ' %s⚫‒⚪%s' $magenta $commit
+        builtin printf ' %s⊷ %s' $magenta $commit
       end
     end
   else if builtin test $last_status -gt 0
-    builtin printf '%s%u\a ⩻*)))⮚∈ ' $red $last_status
+    builtin printf '%s%u\a ⋜ *)))>∈ ' $red $last_status
   else
     builtin printf '%s%s :D' $cyan (
       if builtin test (date '+%p' -d "now - 6 hour") = AM
-        builtin printf '∋⮘(((*⮚ '
+        builtin printf '∋ <(((*> '
         builtin test ! (command gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled) = false;
           and command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
       else
-        builtin printf '⮘*)))⮚∈ '
+        builtin printf '<*)))>∈ '
         builtin test ! (command gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled) = true;
           and command gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
       end)
   end
   if builtin test ! (builtin string trim $SSH_CONNECTION)
     builtin test (command iwgetid);
-      and builtin printf ' %s%s⦕ ⸎ ⦖ ' $bold $green;
+      and builtin printf ' %s%s≪ ⏆ ≫ ' $bold $green;
       or  builtin printf '%s❮ ❔❯ ' $red
   end
   builtin test $SHLVL -gt 1;

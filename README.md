@@ -74,20 +74,16 @@ sudo groupadd dev
 sudo groupadd user
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo mkdir -p /home/hunter-adm/.config/git
-sudo ln -v /usr/share/pixmaps/faces/lightning.jpg /home/hunter-adm/Pictures/profile.jpg 
-for i in "Pictures/wallpaper.png"
-         ".config/git/config"; do
-  sudo ln -v /path/to/repo/home/hunter-adm/$i /home/hunter-adm/$i
+sudo ln -v /path/to/repo/home/hunter-adm/.config/git/config /home/hunter-adm/.config/git/config
+sudo ln -fv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
 done
 ```
 - Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```shell
 sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo mkdir -p /home/hunter/.config/git
-for i in "Pictures/wallpaper.jpg"
-         "Pictures/profile.jpg"
-         ".config/git/config"; do
-  sudo ln -v /path/to/repo/home/home/hunter/$i /home/hunter/$i
+sudo ln -v /path/to/repo/home/hunter/.config/git/config /home/hunter/.config/git/config
+sudo ln -fv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
 done
 ```
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
@@ -162,12 +158,11 @@ sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
 ```shell
 sudo tlp start
 for i in $(members user); do
-  su $i --command="trackerd"
-  su $i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+  sudo --user=$i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
 done
 ```
 ### Themes
-[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://gnome-look.org/content/show.php/?content=159847) is the default. I prefer [DMZHaloR32](https://gnome-look.org/p/999745). To apply it:
+[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
 ```shell
 sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
 sudo mkdir -p /usr/share/icons/DMZhaloR32
@@ -178,7 +173,7 @@ sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ### One-time execution for setup
 - Quick installation of all software can be attained by executing the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
 - Quick initialization of users' scripts and files can be attained by executing the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
-- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by executing the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in teh user's `Downloads` directory; otherwise it follows the instructions above.
+- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by executing the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in the user's `Downloads` directory; otherwise it follows the instructions above.
 - Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
@@ -201,7 +196,7 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
-Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [settings.sh](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of the key-values are user-personal, each user should execute it for him/herself. (`gsettings` and `dconf` commands can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as each user:
+Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of the key-values are user-personal, each user should execute it for him/herself. (`gsettings` and `dconf` commands can be somewhat finnicky, so the script may not recognize certain schemas. Verify with `gnome-control-center`, `gnome-tweak-center`, and/or `dconf-editor` that the values were successfully written.) To load the script as each user:
 ```shell
 for i in $(members dev); do
   sudo --user=$i /path/to/repo/settings.sh 2>/dev/null

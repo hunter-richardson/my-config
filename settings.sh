@@ -43,7 +43,7 @@ case "$user" in
     gsettings set org.gnome.gedit.plugins.filebrowser enable-remote true
     gsettings set org.gnome.gedit.plugins.filebrowser.nautilus confirm-trash false
     gsettings set org.gnome.gedit.plugins.pythonconsole font 'Hack 10'
-    gsettings set org.gnome.gedit.plugins.time custom-format '%a %e %B %Y, %H%M %Z'
+    gsettings set org.gnome.gedit.plugins.time custom-format '%A %e %B %Y, %H%M %Z'
     gsettings set org.gnome.gedit.plugins.time prompt-type 'use-custom-format'
     gsettings set org.gnome.gedit.preferences.editor auto-indent true
     gsettings set org.gnome.gedit.preferences.editor bracket-matching true
@@ -114,10 +114,6 @@ case "$user" in
     gsettings set com.ubuntu.update-notifier no-show-notifications false
     gsettings set com.ubuntu.update-notifier show-apport-crashes true
     gsettings set com.ubuntu.user-interface.desktop cursor-size 32
-    gsettings set org.gnome.calculator base 10
-    gsettings set org.gnome.calculator button-mode 'keyboard'
-    gsettings set org.gnome.calculator show-thousands true
-    gsettings set org.gnome.calculator show-zeroes false
     gsettings set org.gnome.calendar active-view 'month'
     gsettings set org.gnome.desktop.a11y always-show-text-caret false
     gsettings set org.gnome.desktop.a11y always-show-universal-access-status false
@@ -127,8 +123,6 @@ case "$user" in
     gsettings set org.gnome.desktop.background picture-options 'spanned'
     gsettings set org.gnome.desktop.calendar show-weekdate true
     gsettings set org.gnome.desktop.datetime automatic-timezone true
-    gsettings set org.gnome.desktop.file-sharing bluetooth-accept-files 'ask'
-    gsettings set org.gnome.desktop.file-sharing require-password 'always'
     gsettings set org.gnome.desktop.interface buttons-have-icons true
     gsettings set org.gnome.desktop.interface clock-format '24h'
     gsettings set org.gnome.desktop.interface clock-show-date true
@@ -188,7 +182,7 @@ case "$user" in
     gsettings set org.gnome.gedit.plugins.filebrowser enable-remote true
     gsettings set org.gnome.gedit.plugins.filebrowser.nautilus confirm-trash false
     gsettings set org.gnome.gedit.plugins.pythonconsole font 'Hack 10'
-    gsettings set org.gnome.gedit.plugins.time custom-format '%a %e %B %Y, %H%M %Z'
+    gsettings set org.gnome.gedit.plugins.time custom-format '%A %e %B %Y, %H%M %Z'
     gsettings set org.gnome.gedit.plugins.time prompt-type 'use-custom-format'
     gsettings set org.gnome.gedit.preferences.editor auto-indent true
     gsettings set org.gnome.gedit.preferences.editor bracket-matching true
@@ -237,7 +231,7 @@ case "$user" in
     dconf write /org/gnome/shell/extensions/apt-update-indicator/always-visible false
     dconf write /org/gnome/shell/extensions/apt-update-indicator/check-cmd-version "'pkexec apt update'"
     dconf write /org/gnome/shell/extensions/apt-update-indicator/interval-unit "'days'"
-    dconf write /org/gnome/shell/extensions/apt-update-indicator/notify true
+    dconf write /org/gnome/shell/extensions/apt-update-indicator/notify false
     dconf write /org/gnome/shell/extensions/apt-update-indicator/output-on-terminal true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/strip-versions true
     dconf write /org/gnome/shell/extensions/apt-update-indicator/terminal "'gnome-terminal -x fish -c'"
@@ -306,17 +300,16 @@ case "$user" in
     gsettings set com.canonical.unity-greeter background 'file:///usr/share/backgrounds/warty-final-ubuntu.png'
     case "$user" in
       hunter-adm)
-        gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
         gsettings set org.gnome.nautilus.preferences confirm-trash false
         gsettings set org.gnome.nautilus.preferences show-delete-permanently true
         gsettings set org.gnome.nautilus.preferences show-hidden-files true
         gsettings set org.gnome.online-accounts whitelisted-providers ['']
         gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
         gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false
+        gsettings set org.gnome.shell favorite-apps ['']
         dconf write /org/gtk/Settings/FileChooser/show-hidden true
         ;;
       hunter)
-        gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
         gsettings set org.gnome.nautilus.preferences confirm-trash false
         gsettings set org.gnome.nautilus.preferences show-delete-permanently true
         gsettings set org.gnome.nautilus.preferences show-hidden-files true
@@ -337,11 +330,10 @@ case "$user" in
         gsettings set org.gnome.shell.extensions.mailnag show-dates true
         gsettings set org.gnome.shell.extensions.mailnag show-mark-all-as-read-button false
         gsettings set org.gnome.shell.extensions.mailnag show-settings-button true
-        gsettings set org.gnome.shell favorite-apps ['firefox.desktop']
+        gsettings set org.gnome.shell favorite-apps ['']
         dconf write /org/gtk/Settings/FileChooser/show-hidden true
         ;;
       *)
-        gsettings set org.gnome.gnome-system-monitor show-whose-processes 'user'
         gsettings set org.gnome.nautilus.preferences confirm-trash true
         gsettings set org.gnome.nautilus.preferences show-delete-permanently false
         gsettings set org.gnome.nautilus.preferences show-hidden-files false

@@ -3,17 +3,18 @@
 sudo updatedb
 set MYCONFIG_DIR=$(dirname $(locate -eq 'my-config/.git' | head -1))
 
+sudo tlp start
 cd $(dirname $MYCONFIG_DIR)/terminal-slack
 sudo npm install
 cd $MYCONFIG
-sudo $(dirname $MYCONFIG_DIR)/matcha/.Install
+sudo $(dirname $MYCONFIG_DIR)/matcha/Install
 
-sudo apt-fast install -y lightdm unity-greeter
+sudo apt install -y lightdm unity-greeter
 
-for i in "etc/skel/Pictures/screenshots"
-         "etc/fish/functions"
-         "etc/skel/.config/git"; do
-  sudo mkdir -p /$i
+for i in "fish/functions"
+         "skel/Pictures/screenshots"
+         "skel/.config/git"; do
+  sudo mkdir -p /etc/$i
 done
 
 for i in "etc/skel/.config/git/config"
@@ -39,7 +40,11 @@ for i in "apt-fast.conf"
   sudo ln -fv $MYCONFIG_DIR/etc/$i /etc/$i
 done
 
-for i in "etc/fish"
-         "etc/lightdm/lightdm.conf.d"; do
-  sudo ln -fv $MYCONFIG_DIR/my-config/$i/* /$i/
+for i in "fish"
+         "lightdm/lightdm.conf.d"; do
+  sudo ln -fv $MYCONFIG_DIR/my-config/etc/$i/* /etc/$i/
+done
+
+for i in $(members dev); do
+  sudo --user=$i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
 done
