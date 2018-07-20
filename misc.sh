@@ -10,8 +10,12 @@ cd $MYCONFIG
 sudo $(dirname $MYCONFIG_DIR)/matcha/Install
 
 sudo apt install -y lightdm unity-greeter
+sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 
 for i in "fish/functions"
+         "fish/fundle/edc"
+         "fish/fundle/oh-my-fish"
+         "fish/fundle/tuvistavie"
          "skel/Pictures/screenshots"
          "skel/.config/git"; do
   sudo mkdir -p /etc/$i
@@ -45,6 +49,9 @@ for i in "fish"
   sudo ln -fv $MYCONFIG_DIR/my-config/etc/$i/* /etc/$i/
 done
 
-for i in $(members dev); do
-  sudo --user=$i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+for i in "edc/bass"
+         "oh-my-fish/plugin-*"
+         "tuvistavie/oh-my-fish-core"; do
+  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/fundle/$(echo $i | cut -d'/' -f1)
 done

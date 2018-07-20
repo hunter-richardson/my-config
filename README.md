@@ -135,6 +135,10 @@ sudo ln -v /path/to/repo/etc/tmux.conf /etc/tmux.conf
 ```shell
 sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
 ```
+- Disable the forward and back buttons on the mouse (if so equipped) with the following:
+```shell
+sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
+```
 ### Shell configuration, aliases, and functions
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](etc/fish) and its subdirectories. To apply them:
 ```shell
@@ -154,12 +158,14 @@ sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nano
 sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
 ```
 ### User software/script initialization
-- After installing `apt` packages and configuring `fish`, restart and run the following commands in an `Alt F2` window:
+- After installing `apt` packages and configuring `fish`, initialize TLP and fundle by running the following commands in an `Alt F2` window:
 ```shell
 sudo tlp start
-for i in $(members user); do
-  sudo --user=$i fish --command="source /etc/fish/functions/fundle.fish; fundle install"
-done
+sudo mkdir -p /etc/fish/fundle/edc /etc/fish/fundle/oh-my-fish /etc/fish/fundle/tuvistavie
+sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
+sudo ln -v /root/.config/fish/fundle/edc/bass/functions/*.fish /etc/fish/fundle/edc/
+sudo ln -v /root/.config/fish/fundle/oh-my-fish/plugin-*/functions/*.fish /etc/fish/fundle/oh-my-fish/
+sudo ln -v /root/.config/fish/funcld/tuvistavie/oh-my-fish-core/functions/*.fish /etc/fish/fundle/tuvistavie/
 ```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:

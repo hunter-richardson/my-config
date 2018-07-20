@@ -2,23 +2,22 @@
 
 function update -d 'automate software updates from installed SPMs'
   function __update_apt
-    command sudo apt-fast update;
-      and command sudo apt-fast autoremove -y;
-      and command sudo apt-fast upgrade -y;
-      and command sudo apt-fast install -fy;
-      and command sudo apt-fast clean -y
+        command sudo apt-fast update;
+    and command sudo apt-fast autoremove -y;
+    and command sudo apt-fast upgrade -y;
+    and command sudo apt-fast install -fy;
+    and command sudo apt-fast clean -y
   end
   function __update_git
     for i in /usr/share/git-repos/*
-      command sudo git -C $i config --get remote.origin.url;
-        and command sudo git -C $i pull
+          command sudo git -C $i config --get remote.origin.url;
+      and command sudo git -C $i pull
     end
   end
   function __update_pip
-    for i in (command sudo pip3 list --outdated --format=freeze | cut -d= -f1)
+    for i in (command sudo pip3 list --format=freeze | cut -d= -f1)
       builtin printf '%s\n' (command whereis $i | command cut -d' ' -f2);
-        and command sudo pip3 install $i -Uv;
-        or  command sudo pip3 uninstall $i -yv
+        command sudo pip3 install $i -U -vvv
     end
   end
   function __update_snap
@@ -45,22 +44,23 @@ function update -d 'automate software updates from installed SPMs'
   for s in $SPMs
     switch $s
       case all
-        __update_apt;
-          and __update_git;
-          and __update_pip;
-          and __update_snap
+            __update_apt;
+        and __update_fundle;
+        and __update_git;
+        and __update_pip;
+        and __update_snap
       case apt
         __update_apt
+      case fundle user
+        __update_fundle
       case git
         __update_git
       case pip pip3 python python3
         __update_pip
       case snap
         __update_snap
-      case user
-        __update_fundle
       case '*'
-        builtin printf '\a\tUsage:  update [apt | git | pip pip3 python python3 | snap | user | all]\n\tupdate all =:= update apt git pip snap user\n\tDefault:  update apt git pip snap'
+        builtin printf '\a\tUsage:  update [apt | fundle user | git | pip pip3 python python3 | snap | all]\n\tupdate all =:= update apt fundle git pip snap\n\tDefault:  update apt git pip snap'
     end
   end
   functions -e __update_apt

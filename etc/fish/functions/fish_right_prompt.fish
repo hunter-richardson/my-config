@@ -39,7 +39,7 @@ function fish_right_prompt -d 'the right prompt'
     else if builtin string split ~ (command pwd) >/dev/null
       builtin string replace ~ '🏠' (command pwd)
     else
-      builtin printf '🗁  %s' (command pwd)
+      builtin printf ' √ %s' (builtin string trim -l -c / (command pwd))
     end) $normal
   builtin set -l sshd (builtin string trim $SSH_CONNECTION | cut -d' ' -f3)
   builtin test -z $sshd;

@@ -14,19 +14,14 @@
 #   ...
 # end
 
-fundle plugin 'edc/bass'
-fundle plugin 'oh-my-fish/plugin-await'
-fundle plugin 'oh-my-fish/plugin-balias'
-fundle plugin 'oh-my-fish/plugin-thefuck'
-fundle plugin 'tuvistavie/oh-my-fish-core'
-fundle init
 
 source /etc/fish/functions/include.fish
 
 include \
   /etc/fish/export_vars.fish \
   /etc/fish/a*s.fish \
-  /etc/fish/functions/*.fish
+  /etc/fish/functions/*.fish \
+  /etc/fish/fundle/*/*.fish
 
 builtin test -e "~/Downloads/*";
   and command srm -lrvz ~/Downloads/*;
