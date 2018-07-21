@@ -147,7 +147,7 @@ done
 - The [fish.lang](usr/share/gtksourceview-3.0/language-specs/fish.lang) and [fish.nanorc](usr/share/nano/fish.nanorc) files contain configuration for syntax-highlighting of Fish scripts, in `gedit` and `nano`, respectively. To apply them:
 ```shell
 sudo ln -v /path/to/repo/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
-sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nano
+sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc
 ```
 - To use [Fish](https://fishshell.com) by default without going through the whole `cshs` trouble, I put a script at the bottom of the [bash.bashrc](etc/bash.bashrc) file which opens a `tmux` session into `fish`. (Make sure both `tmux` and `fish` work before using this!) To apply it:
 ```shell
