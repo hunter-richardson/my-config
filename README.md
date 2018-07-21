@@ -6,7 +6,7 @@ This is the repository for my home computer's setup.
 - [User files and configuration](#user-files-and-configuration)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
-- [User software/script initialization](#user-software/script-initialization)
+- [User software and script initialization](#user-software-and-script-initialization)
 - [Themes](#themes)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - [Manual installation of extensions](#manual-installation-of-extensions)
@@ -153,7 +153,7 @@ sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nano
 ```shell
 sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
 ```
-### User software/script initialization
+### User software and script initialization
 - After installing `apt` packages and configuring `fish`, initialize TLP and fundle by running the following commands in an `Alt F2` window:
 ```shell
 sudo tlp start
