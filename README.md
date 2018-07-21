@@ -6,7 +6,7 @@ This is the repository for my home computer's setup.
 - [User files and configuration](#user-files-and-configuration)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
-- [User software/script initialization](#user-software-script-initialization)
+- [User software/script initialization](#user-software/script-initialization)
 - [Themes](#themes)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - [Manual installation of extensions](#manual-installation-of-extensions)
