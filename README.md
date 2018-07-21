@@ -13,13 +13,7 @@ This is the repository for my home computer's setup.
 - [Miscellaneous configuration](#miscellaneous-configuration)
 ---
 ## But first
-I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [rehome](rehome) will perform this action. Run this only once per installation:
-```shell
-source /path/to/repo/rehome
-```
-
-Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell.
-
+I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [`source /path/to/repo/rehome`](rehome) will perform this action. Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell as root. Run this only once per installation.
 ---
 ## Second,
 The default `root` password is NULL, which is dangerous. Modify it ASAP:
@@ -163,9 +157,11 @@ sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
 sudo tlp start
 sudo mkdir -p /etc/fish/fundle/edc /etc/fish/fundle/oh-my-fish /etc/fish/fundle/tuvistavie
 sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
-sudo ln -v /root/.config/fish/fundle/edc/bass/functions/*.fish /etc/fish/fundle/edc/
-sudo ln -v /root/.config/fish/fundle/oh-my-fish/plugin-*/functions/*.fish /etc/fish/fundle/oh-my-fish/
-sudo ln -v /root/.config/fish/funcld/tuvistavie/oh-my-fish-core/functions/*.fish /etc/fish/fundle/tuvistavie/
+for i in "edc/bass"
+         "oh-my-fish/plugin-*"
+         "tuvistavie/oh-my-fish-core"; do
+  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/$(echo $i | cut -d'/' -f1)
+done
 ```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
