@@ -194,7 +194,6 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Extension Update Notifier](https://extensions.gnome.org/extension/1166) monitors installed Gnome extensions for updates.
   - [Mailnag](https://extensions.gnome.org/extension/886) monitors for email updates to specified addresses.
   - [No Title Bar](https://extensions.gnome.org/extension/1267) removes the title bar from the maximized windows.
-  - [OpenWeather](https://extensions.gnome.org/extension/750) monitors for weather updates at specified locations.
   - [Places Status Indicator](https://extensions.gnome.org/extension/8) implements a navigation menu of the userspace.
   - [Suspend Button](https://extensions.gnome.org/extension/826) provides or removes buttons for system suspension and/or deactivation.
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.

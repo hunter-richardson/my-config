@@ -13,6 +13,7 @@ default-jre
 docky
 dtrx
 dos2unix
+duplicity
 exuberant-ctags
 fish
 flat-remix
@@ -20,8 +21,10 @@ flat-remix-gnome
 fonts-hack-ttf
 gdebi
 git
-gnome-tweak-tool
+gnome-paint
+gnome-shell-extension-weather
 gnome-shell-mailnag
+gnome-tweak-tool
 google-chrome-stable
 googler
 gparted

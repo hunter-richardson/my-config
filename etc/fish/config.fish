@@ -20,13 +20,13 @@ source /etc/fish/functions/include.fish
 include \
   /etc/fish/export_vars.fish \
   /etc/fish/a*s.fish \
-  /etc/fish/functions/*.fish
-#  /etc/fish/fundle/*/*.fish
+  /etc/fish/functions/*.fish \
+  /etc/fish/fundle/*/*.fish
 
 builtin test -e "~/Downloads/*";
-  and command srm -lrvz ~/Downloads/*;
-  or  true
+  and command srm -lrvz ~/Downloads/*
+#  or  true
 builtin test -e "~/tmux-*.log"
   and command scp -v ~/tmux-*.log /var/log/tmux/(whoami)/
-  and command srm -lrvz ~/tmux-*.log;
-  or  true
+  and command srm -lrvz ~/tmux-*.log
+#  or  true
