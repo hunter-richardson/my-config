@@ -24,12 +24,12 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains the authentication keys to external apt sources (shown below), and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains the authentication keys to external apt sources, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
 ```shell
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
 sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/sources.list.d/
-sudo sh -c 'echo "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /"' | sudo tee -a /etc/apt/sources.list.d/home:manuelschneid3r.list
-sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler && sudo chmod +x /usr/local/bin/googler
+sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler
+sudo chmod +x /usr/local/bin/googler
 for i in $(cat /path/to/repo/apt.key); do
   wget -v -O $i | sudo apt-key add -
 done
