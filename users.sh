@@ -9,7 +9,7 @@ sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo usermod -a -G user,dev,root,ssh root
 sudo usermod -a -G user,dev,sudo,ssh hunter
 for u in $(members dev); do
-  set home_dir=$(getent passwd $i | cut -d':' -f6 | tail -c +2)
+  command set home_dir=$(command getent passwd $i | command cut -d':' -f6 | command tail -c +2)
   sudo mkdir -p /$home_dir/.config/git
   sudo ln -v $MYCONFIG_DIR/$home_dir/Pictures/* /$home_dir/Pictures/
   sudo ln -v $MYCONFIG_DIR/$home_dir/.config/git/config /$home_dir/.config/git/config
