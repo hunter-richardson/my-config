@@ -24,7 +24,7 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains the authentication keys to external apt sources, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [custom-apt.key](custom-apt.key) file contains the hardcoded authentication keys (with corresponding keyservers) to external apt sources, [apt.key](apt.key) file contains linked authentication keys, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources. To apply them:
 ```shell
 for i in $(cat $MYCONFIG_DIR/custom-apt.key)
 do
@@ -41,7 +41,7 @@ for i in $(cat /path/to/repo/dpkg.apt.sources); do
   sudo add-apt-repository -y ppa:$i
 done
 ```
-- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them:
+- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them (assuming the previous keys and PPAs are loaded):
 ```shell
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
