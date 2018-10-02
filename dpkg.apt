@@ -10,6 +10,7 @@ cubic
 curl
 dconf-editor
 default-jre
+dirmngr
 docky
 dtrx
 dos2unix
@@ -34,6 +35,7 @@ lxd
 members
 mesa-utils
 mlocate
+monodevelop
 moreutils
 htop
 libreoffice-script-provider-python
