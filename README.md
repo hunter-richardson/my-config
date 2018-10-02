@@ -26,7 +26,11 @@ sudo updatedb
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains the authentication keys to external apt sources, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA keys. To apply them:
 ```shell
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"' | sudo tee -a /etc/apt/sources.list.d/google-chrome.list
+for i in $(cat $MYCONFIG_DIR/custom-apt.key)
+do
+  println '%s' $i | read -d'_' server key
+  sudo apt-key adv --keyserver $server --recv-keys $key
+done
 sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/sources.list.d/
 sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler
 sudo chmod +x /usr/local/bin/googler
