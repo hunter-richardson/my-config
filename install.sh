@@ -8,7 +8,7 @@ for i in $(cat $MYCONFIG_DIR/apt.key); do
   wget -v -O - $i | sudo apt-key add -
 done
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
-sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list
+sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/external.list
 sudo wget -v -O /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler
 sudo chmod +x /usr/local/bin/googler
 for i in $(cat $MYCONFIG_DIR/dpkg.apt.sources)
