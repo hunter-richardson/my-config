@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run /path/to/repo/rehome first!
 sudo updatedb
-set MYCONFIG_DIR=$(command dirname $(locate -eq 'my-config/.git' | command head -1))
+set MYCONFIG_DIR=$(command dirname $(command locate -eq 'my-config/.git' | command head -1))
 set GIT_DIR=$(command dirname $MYCONFIG_DIR)
 
 for i in $(command cat $MYCONFIG_DIR/apt.key)
@@ -15,10 +15,6 @@ do
   sudo apt-key adv --keyserver $server --recv-keys $key
 done
 
-sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
-sudo wget -v -O /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/master/googler
-sudo chmod +x /usr/local/bin/googler
-
 for i in $(command cat $MYCONFIG_DIR/apt.key)
 do
   curl -v $i | sudo apt-key add -
@@ -28,6 +24,8 @@ for i in $(command cat $MYCONFIG_DIR/dpkg.apt.sources)
 do
   sudo add-apt-repository -y $i
 done
+
+sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
 
 sudo debconf-set-selections $MYCONFIG_DIR/apt.debconf
 
