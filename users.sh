@@ -5,9 +5,9 @@ set MYCONFIG_DIR=$(command dirname $(command locate -eq 'my-config/.git' | comma
 
 sudo groupadd dev
 sudo groupadd user
-sudo usermod -a -G user,dev,root,ssh hunter-adm
-sudo usermod -a -G user,dev,root,ssh root
+sudo usermod -a -G dev,root,ssh root
 sudo usermod -a -G user,dev,sudo,ssh hunter
+sudo usermod -a -G user,dev,root,ssh hunter-adm
 for u in $(members dev); do
   home_dir=$(command getent passwd $i | command cut -d':' -f6 | command tail -c +2)
   sudo mkdir -p /$home_dir/.config/git
