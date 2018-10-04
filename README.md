@@ -24,7 +24,7 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [custom-apt.key](custom-apt.key) file contains the hardcoded authentication keys (with corresponding keyservers) to external apt sources, [apt.key](apt.key) file contains linked authentication keys, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [custom-apt.key](custom-apt.key) file contains the hardcoded authentication keys (with corresponding keyservers) to external apt sources, [apt.key](apt.key) file contains linked authentication keys, the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources, and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
 ```shell
 for i in $(cat /path/to/repo/custom-apt.key)
 do
@@ -73,6 +73,7 @@ for i in $(cat /path/to/repo/dpkg.git)
 do
   sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
+sudo $(dirname /path/to/repo)/matcha/Install
 ```
 ### User files and configuration
 After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories. (Each user has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.)
