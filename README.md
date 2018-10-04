@@ -26,12 +26,11 @@ sudo updatedb
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [custom-apt.key](custom-apt.key) file contains the hardcoded authentication keys (with corresponding keyservers) to external apt sources, [apt.key](apt.key) file contains linked authentication keys, and the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources. To apply them:
 ```shell
-for i in $(cat $MYCONFIG_DIR/custom-apt.key)
+for i in $(cat /path/to/repo/custom-apt.key)
 do
   IFS="_" read server key <<< $(printf '%s' $i)
   sudo apt-key adv --keyserver $server --recv-keys $key
 done
-sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
 for i in $(cat /path/to/repo/apt.key)
 do
   curl -v $i | sudo apt-key add -
@@ -40,6 +39,7 @@ for i in $(cat /path/to/repo/dpkg.apt.sources)
 do
   sudo add-apt-repository -y $i
 done
+sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
 ```
 - The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them (assuming the previous keys and PPAs are loaded):
 ```shell
@@ -71,7 +71,7 @@ done
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
 do
-  sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | cut -d'/' -f5 | cut -d'.' -f1)
+  sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
 ```
 ### User files and configuration
@@ -103,19 +103,9 @@ sudo ln -v /path/to/repo/root/.config/git/config /root/.config/git/config
 ```shell
 sudo ln -v /path/to/repo/etc/apt/apt.conf.d/* /etc/apt/apt.conf.d/
 ```
-
 I also installed [`apt-fast`](https://github.com/ilikenwf/apt-fast) above. The [apt-fast.conf](etc/apt-fast.conf) file contains my configuration for it. To apply it:
 ```
 sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
-```
-- [Ubuntu](https://ubuntu.com) ships with `gdm3` as its default display manager. Currently, my favorite display manager is LightDM with Unity, which I also installed above. The [10_unity_greeter_background.gschema.override](usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override) and [lightdm-unity-greeter.conf](etc/lightdm/lightdm-unity-greeter.conf) files, and the [lightdm.conf.d](etc/lightdm/lightdm.conf.d) directory, contain my `lightdm` configuration. To apply them:
-```shell
-for i in "etc/lightdm/lightdm-unity-greeter.conf"
-         "usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override"
-do
-  sudo ln -v /path/to/repo/$i /$i
-done
-sudo ln -v /path/to/repo/etc/lightdm/lightdm.conf.d/* /etc/lightdm/lightdm.conf.d/
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```shell
@@ -213,11 +203,10 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration
 Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of are user-personal, each user has a specific flavor of the key-values, detailed in his/her/its [_settings.dconf](home/hunter-adm/_settings.dconf) file.
-- To load the variables individually as each user:
+- To load the variables individually as each login user:
 ```shell
 sudo --command="dconf load / < /path/to/repo/home/hunter-adm/_settings.dconf" --user=hunter-adm
 sudo --command="dconf load / < /path/to/repo/home/hunter/_settings.dconf" --user=hunter
-sudo --command="dconf load / < /path/to/repo/root/_settings.dconf" --user=root
 sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(any account created later)
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
