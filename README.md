@@ -96,7 +96,7 @@ sudo ln -fv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```shell
 sudo mkdir -p /root/.config/git
-sudo usermod -a -G user,dev,root,ssh root
+sudo usermod -a -G dev,root,ssh root
 sudo ln -v /path/to/repo/root/.config/git/config /root/.config/git/config
 ```
 ### Operating system and program configuration
