@@ -32,8 +32,6 @@ do
   sudo apt-key adv --keyserver $server --recv-keys $key
 done
 sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
-sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/master/googler
-sudo chmod +x /usr/local/bin/googler
 for i in $(cat /path/to/repo/apt.key)
 do
   curl -v $i | sudo apt-key add -
