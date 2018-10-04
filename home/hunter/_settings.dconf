@@ -63,7 +63,7 @@ numlock-state='on'
 locate-pointer=true
 
 [org/gnome/shell]
-enabled-extensions=['addusername-toppanel@brendaw.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'update-extensions@franglais125.gmail.com', 'no-title-bar@franglais125.gmail.com', 'openweather-extensions@jenslody.de', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'mailnag@pulb.github.com', 'add-username-toppanel@brendaw.com', 'extensions@abteil.org', 'openweather-extension@jenslody.de']
+enabled-extensions=['addusername-toppanel@brendaw.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'update-extensions@franglais125.gmail.com', 'no-title-bar@franglais125.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'mailnag@pulb.github.com', 'add-username-toppanel@brendaw.com', 'extensions@abteil.org', 'openweather-extension@jenslody.de']
 favorite-apps=@as []
 
 [org/gnome/shell/extensions/update-extensions]
@@ -106,29 +106,6 @@ show-settings-button=true
 only-main-monitor=true
 buttons-for-snapped=true
 hide-buttons=false
-
-[org/gnome/shell/extensions/openweather]
-weather-provider='darksky.net'
-center-forecast=true
-days-forecast=3
-unit='fahrenheit'
-geolocation-provider='geocode'
-actual-city=0
-use-default-owm-key=true
-show-text-in-panel=true
-show-comment-in-panel=false
-refresh-interval-forecast=600
-position-in-panel='right'
-appid-fc='5f45bf8521e04c2e702c6f5a2208adba'
-translate-condition=true
-city='34.663253, -86.718080>Huntsville, AL>1'
-refresh-interval-current=600
-use-symbolic-icons=true
-wind-direction=true
-wind-speed-unit='mph'
-pressure-unit='atm'
-show-comment-in-forecast=true
-decimal-places=0
 
 [org/gnome/shell/extensions/suspend-button]
 show-two-buttons=false

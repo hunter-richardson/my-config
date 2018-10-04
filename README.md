@@ -28,17 +28,19 @@ sudo updatedb
 ```shell
 for i in $(cat $MYCONFIG_DIR/custom-apt.key)
 do
-  println '%s' $i | read -d'_' server key
+  IFS="_" read server key <<< $(printf '%s' $i)
   sudo apt-key adv --keyserver $server --recv-keys $key
 done
-sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/sources.list.d/
-sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v3.6/googler
+sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
+sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/master/googler
 sudo chmod +x /usr/local/bin/googler
-for i in $(cat /path/to/repo/apt.key); do
-  wget -v -O $i | sudo apt-key add -
+for i in $(cat /path/to/repo/apt.key)
+do
+  curl -v $i | sudo apt-key add -
 done
-for i in $(cat /path/to/repo/dpkg.apt.sources); do
-  sudo add-apt-repository -y ppa:$i
+for i in $(cat /path/to/repo/dpkg.apt.sources)
+do
+  sudo add-apt-repository -y $i
 done
 ```
 - The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them (assuming the previous keys and PPAs are loaded):
@@ -59,13 +61,20 @@ sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```shell
 sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
 ```
+- Some developers provide the prebuilt binaries directly on github without version control. The [dpkg.raw](dpkg.raw) file contains these executables. I recomment checking both repositories before applying to ensure they haven't updated since [dpkg.raw](dpkg.raw)'s last commit. To apply them:
+```shell
+for i in $(cat /path/to/repo/dpkg.raw)
+do
+  sudo curl -v -o /usr/local/bin/$(printf '%s' $i | grep -oE '[^//]+$') $i
+  sudo chmod +x /usr/local/bin/$(printf '%s' $i | grep -oE '[^//]+$')
+done
+```
 - Finally, for packages I simply could not find as prebuilt binaries, I installed with [`git`](https://git-scm.com), thus far from [Github](https://github.com).  The [dpkg.git](dpkg.git) file contains the `git` repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
+do
   sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | cut -d'/' -f5 | cut -d'.' -f1)
 done
-cd $(dirname /path/to/repo/)/terminal-slack
-  && sudo npm install
 ```
 ### User files and configuration
 After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories. (Each user has a `$HOME/.config/git/config` file (e.g., [config](home/hunter/.config/git/config)) with  `git`-related configuration settings. Currently, they're identical.)
@@ -77,7 +86,6 @@ sudo usermod -a -G user,dev,root,ssh hunter-adm
 sudo mkdir -p /home/hunter-adm/.config/git
 sudo ln -v /path/to/repo/home/hunter-adm/.config/git/config /home/hunter-adm/.config/git/config
 sudo ln -fv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
-done
 ```
 - Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```shell
@@ -85,9 +93,8 @@ sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo mkdir -p /home/hunter/.config/git
 sudo ln -v /path/to/repo/home/hunter/.config/git/config /home/hunter/.config/git/config
 sudo ln -fv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
-done
 ```
-- The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root).
+- The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```shell
 sudo mkdir -p /root/.config/git
 sudo usermod -a -G user,dev,root,ssh root
@@ -106,7 +113,8 @@ sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
 - [Ubuntu](https://ubuntu.com) ships with `gdm3` as its default display manager. Currently, my favorite display manager is LightDM with Unity, which I also installed above. The [10_unity_greeter_background.gschema.override](usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override) and [lightdm-unity-greeter.conf](etc/lightdm/lightdm-unity-greeter.conf) files, and the [lightdm.conf.d](etc/lightdm/lightdm.conf.d) directory, contain my `lightdm` configuration. To apply them:
 ```shell
 for i in "etc/lightdm/lightdm-unity-greeter.conf"
-         "usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override"; do
+         "usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override"
+do
   sudo ln -v /path/to/repo/$i /$i
 done
 sudo ln -v /path/to/repo/etc/lightdm/lightdm.conf.d/* /etc/lightdm/lightdm.conf.d/
@@ -145,7 +153,8 @@ sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ```shell
 sudo mkdir -p /etc/fish/functions
 for i in "fish"
-         "fish/functions"; do
+         "fish/functions"
+do
   sudo ln -rv /path/to/repo/etc/$i/* /etc/$i/
 done
 ```
@@ -166,7 +175,8 @@ sudo mkdir -p /etc/fish/fundle/edc /etc/fish/fundle/oh-my-fish /etc/fish/fundle/
 sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
 for i in "edc/bass"
          "oh-my-fish/plugin-*"
-         "tuvistavie/oh-my-fish-core"; do
+         "tuvistavie/oh-my-fish-core"
+do
   sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/$(echo $i | cut -d'/' -f1)
 done
 ```
@@ -175,7 +185,7 @@ done
 ```shell
 sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
 sudo mkdir -p /usr/share/icons/DMZhaloR32
-sudo rsync -ADhorX /path/to/DMZhaloRP/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
+sudo scp -rv /path/to/DMZhaloRP/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
 sudo ln -fs /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-theme
 sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```

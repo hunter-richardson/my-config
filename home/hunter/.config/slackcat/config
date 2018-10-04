@@ -1,0 +1,5 @@
+default_team = "PrincessLuckyCharms"
+default_channel = "general"
+
+[teams]
+  PrincessLuckyCharms = "xoxp-313302022529-314082491506-448925107170-874e3760c80c62f1cd817a0e27e700c0"

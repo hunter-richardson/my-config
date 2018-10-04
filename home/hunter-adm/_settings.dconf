@@ -64,7 +64,7 @@ locate-pointer=true
 
 [org/gnome/shell]
 app-picker-view=uint32 1
-enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'extensions@abteil.org', 'update-extensions@franglais125.gmail.com', 'mailnag@pulb.github.com', 'no-title-bar@franglais125.gmail.com', 'openweather-extension@jenslody.de', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'add-username-toppanel@brendaw.com']
+enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'apt-update-indicator@franglais125.gmail.com', 'datetime-format@Daniel-Khodabakhsh.github.com', 'extensions@abteil.org', 'update-extensions@franglais125.gmail.com', 'mailnag@pulb.github.com', 'no-title-bar@franglais125.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'suspend-button@laserb', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'add-username-toppanel@brendaw.com']
 favorite-apps=@as []
 
 [org/gnome/shell/extensions/update-extensions]
@@ -99,33 +99,6 @@ interval-unit='days'
 only-main-monitor=true
 buttons-for-snapped=true
 hide-buttons=false
-
-[org/gnome/shell/extensions/openweather]
-weather-provider='darksky.net'
-menu-alignment=75.0
-days-forecast=2
-unit='fahrenheit'
-geolocation-provider='geocode'
-refresh-interval-forecase=600
-actual-city=0
-use-default-owm-key=true
-show-comment-in-forecase=true
-show-text-in-panel=true
-show-comment-in-panel=false
-refresh-interval-forecast=600
-center-forecase=true
-days-forecase=3
-appid-fc='5f45bf8521e04c2e702c6f5a2208adba'
-city='34.663253, -86.718080>Huntsville, AL>1'
-refresh-interval-current=600
-translate-condition=true
-position-in-panel='center'
-wind-direction=true
-wind-speed-unit='mph'
-use-symbolic-icons=true
-pressure-unit='atm'
-show-comment-in-forecast=true
-decimal-places=0
 
 [org/gnome/shell/extensions/suspend-button]
 show-two-buttons=false
