@@ -118,6 +118,25 @@ show-add=true
 dock-fixed=false
 dash-max-icon-size=16
 
+[org/gnome/shell/extensions/openweather]
+weather-provider='darksky.net'
+center-forecast=true
+days-forecast=2
+unit='fahrenheit'
+geolocation-provider='openstreetmaps'
+actual-city=0
+use-default-owm-key=true
+show-text-in-panel=true
+wind-speed-unit='mph'
+position-in-panel='center'
+appid-fc='5f45bf8521e04c2e702c6f5a2209adba'
+translate-condition=true
+city='34.6638454892244,-86.7180647126127>Huntsville, Alabama, 35824>-1'
+wind-direction=true
+pressure-unit='kPa'
+show-comment-in-forecast=true
+decimal-places=1
+
 [org/gnome/shell/window-switcher]
 app-icon-mode='thumbnail-only'
 
