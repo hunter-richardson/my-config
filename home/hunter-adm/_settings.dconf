@@ -97,6 +97,7 @@ interval-unit='days'
 
 [org/gnome/shell/extensions/no-title-bar]
 only-main-monitor=true
+buttons-for-all-wins=false
 buttons-for-snapped=true
 hide-buttons=false
 
