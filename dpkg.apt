@@ -14,7 +14,6 @@ default-jre
 dirmngr
 docky
 dos2unix
-dotnet-sdk-2.1.105
 dtrx
 duplicity
 exuberant-ctags
@@ -39,7 +38,6 @@ lxd
 members
 mesa-utils
 mlocate
-monodevelop
 moreutils
 htop
 mps-youtube

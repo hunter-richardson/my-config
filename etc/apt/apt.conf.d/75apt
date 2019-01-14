@@ -1,5 +1,5 @@
 Apt {
   Clean-Installed;
-  Default-Release "bionic";
+  Default-Release "cosmic";
   Immediate-Configure;
 };
