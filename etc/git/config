@@ -19,7 +19,8 @@
              status = plain
 [commit]     verbose = true
 [credential] helper = store
-[core]       editor = nano
+[core]       autocrlf = true
+             editor = nano
              eol = lf
              sharedrepository = umask
              pager = less
