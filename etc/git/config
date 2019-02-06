@@ -44,7 +44,7 @@
 [merge]      verifysignatures = true
              renormalize = true
 [push]       default = simple
-             gpgsign = true
+             gpgsign = false
 [rebase]     autostash = true
 [status]     relativepaths = false
              renames = true
