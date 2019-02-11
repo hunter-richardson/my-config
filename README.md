@@ -59,7 +59,12 @@ sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```shell
 sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
 ```
-- Some developers provide the prebuilt binaries directly on github without version control. The [dpkg.raw](dpkg.raw) file contains these executables. I recomment checking both repositories before applying to ensure they haven't updated since [dpkg.raw](dpkg.raw)'s last commit. To apply them:
+- [`bat`](https://github.com/sharkdb/bat) is an advanced implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. Additionally, it requires a [Sublime Package Control](https://packagecontrol.io/installation) installation. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
+```shell
+lynx https://github.com/sharkdp/bat/releases/download/v0.10.0/bat-musl_0.10.0_amd64.deb
+  # press I to install the package
+```
+- Some developers provide the prebuilt binaries directly on github without version control. The [dpkg.raw](dpkg.raw) file contains these executables. I recommend checking the repository before applying to ensure it hasn't updated since [dpkg.raw](dpkg.raw)'s last commit. To apply them:
 ```shell
 for i in $(cat /path/to/repo/dpkg.raw)
 do
@@ -82,22 +87,21 @@ After installing software, use the system GUI to create the users -- the command
 sudo groupadd dev
 sudo groupadd user
 sudo usermod -a -G user,dev,root,ssh hunter-adm
-sudo mkdir -p /home/hunter-adm/.config/git
-sudo ln -v /path/to/repo/home/hunter-adm/.config/git/config /home/hunter-adm/.config/git/config
 sudo ln -fv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
 ```
 - Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```shell
 sudo usermod -a -G user,dev,sudo,ssh hunter
-sudo mkdir -p /home/hunter/.config/git
-sudo ln -v /path/to/repo/home/hunter/.config/git/config /home/hunter/.config/git/config
 sudo ln -fv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
+```
+- Next, create the regular user `michelle`. Her files are stored in [michelle](home/michelle). She belongs to the `user` group.
+```shell
+sudo usermod -a -G user michelle
+sudo ln -fv /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 ```
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```shell
-sudo mkdir -p /root/.config/git
 sudo usermod -a -G dev,root,ssh root
-sudo ln -v /path/to/repo/root/.config/git/config /root/.config/git/config
 ```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. The [apt.conf.d](etc/apt/apt.conf.d) file contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:
@@ -116,18 +120,9 @@ sudo ln -fv /path/to/repo/etc/login.defs /etc/login.defs
 ```shell
 sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
 ```
-- To ensure each user has a consistent [`git`](https://git-scm.com) experience, I copied my `git` configuration to the [skel](etc/skel) directory, where it will populate to each created user. To apply it:
-```shell
-sudo mkdir -p /etc/skel/.config/git
-sudo ln -v /path/to/repo/etc/skel/.config/git/config /etc/skel/.config/git/config
-```
 - The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it:
 ```shell
 sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
-```
-- `tmux` is a terminal multiplexer that sets up a status bar and allows windows to split into panes. The [tmux.conf](etc/tmux.conf) file contains my tmux configuration file. See the [tmux manual](https://man.openbsd.org/OpenBSD-current/man1/tmux.1) for more information. To apply it:
-```shell
-sudo ln -v /path/to/repo/etc/tmux.conf /etc/tmux.conf
 ```
 - The [adduser.local](usr/local/sbin/adduser.local) file defines an executable that runs when a new user is created. See the [adduser manual](manpages.ubuntu.com/manpages/artful/man8/adduser) for more information. To apply it:
 ```shell
@@ -138,36 +133,44 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ```
 ### Shell configuration, aliases, and functions
-- [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](etc/fish) and its subdirectories. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow the [installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```shell
-sudo mkdir -p /etc/fish/functions
-for i in "fish"
-         "fish/functions"
+su - # if applicable
+mkdir -p /path/to/new/config/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
+for i in 'bash'
+         'bash/conf.d'
+         'bash/conf.d/functions'
 do
-  sudo ln -rv /path/to/repo/etc/$i/* /etc/$i/
+  ln -rv /path/to/shell-repo/ubuntu/$i/*.sh /etc/config/$i/
+donefor i in 'fish'
+         'fish/conf.d'
+         'fish/conf.d/functions'
+         'fish/conf.d/completions'
+do
+  ln -rv /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
 done
-```
-- The [fish.lang](usr/share/gtksourceview-3.0/language-specs/fish.lang) and [fish.nanorc](usr/share/nano/fish.nanorc) files contain configuration for syntax-highlighting of Fish scripts, in `gedit` and `nano`, respectively. To apply them:
-```shell
-sudo ln -v /path/to/repo/usr/share/gtksourceview-3.0/language-specs/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
-sudo ln -v /path/to/repo/usr/share/nano/fish.nanorc /usr/share/nano/fish.nanorc
-```
-- To use [Fish](https://fishshell.com) by default without going through the whole `cshs` trouble, I put a script at the bottom of the [bash.bashrc](etc/bash.bashrc) file which opens a `tmux` session into `fish`. (Make sure both `tmux` and `fish` work before using this!) To apply it:
-```shell
-sudo ln -fv /path/to/repo/etc/bash.bashrc /etc/bash.bashrc
+sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
+sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
+ln -v /path/to/repo/ubuntu/tmux.conf /etc/tmux.conf
+printf 'exec tmux -2u -f %s/tmux.conf' /etc/config | tee -a ~/.profile
 ```
 ### User software and script initialization
-- After installing `apt` packages and configuring `fish`, initialize TLP and fundle by running the following commands in an `Alt F2` window:
+- After installing `apt` packages and configuring `fish`, initialize TLP and fundle with the following:
 ```shell
 sudo tlp start
 sudo mkdir -p /etc/fish/fundle/edc /etc/fish/fundle/oh-my-fish /etc/fish/fundle/tuvistavie
 sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
-for i in "edc/bass"
-         "oh-my-fish/plugin-*"
-         "tuvistavie/oh-my-fish-core"
+for i in 'edc/bass'
+         'oh-my-fish/plugin-*'
+         'tuvistavie/oh-my-fish-core'
 do
-  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/$(echo $i | cut -d'/' -f1)
+  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/conf.d/functions/fundle/
 done
+```
+... and uncomment the following line from [`/etc/fish/config.fish`](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish/config.fish):
+```shell
+# $MY_DIR/conf.d/functions/fundle/*.fish
+  $MY_DIR/conf.d/functions/fundle/*.fish
 ```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
@@ -179,10 +182,10 @@ sudo ln -fs /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-
 sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```
 ### One-time execution for setup
-- Quick installation of all software can be attained by executing the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
-- Quick initialization of users' scripts and files can be attained by executing the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
-- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by executing the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in the user's `Downloads` directory; otherwise it follows the instructions above.
-- Quick application of all configurations, settings, and files can be attained by executing the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
+- Quick installation of all software can be attained by the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
+- Quick initialization of users' scripts and files can be attained by the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
+- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in the user's `Downloads` directory; otherwise it follows the instructions above.
+- Quick application of all configurations, settings, and files can be attained by the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
 - The following is a list of links to [Firefox extensions](https://addons.mozilla.org/firefox/extensions). Open each in Firefox and click the +Add to Firefox button to apply it. 
