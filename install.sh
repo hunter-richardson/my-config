@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run /path/to/repo/rehome first!
 sudo updatedb
-set MYCONFIG_DIR=$(command dirname $(command locate -eq 'my-config/.git' | command head -1))
+set MYCONFIG_DIR=$(dirname ${BASH_SOURCE[0]})
 set GIT_DIR=$(command dirname $MYCONFIG_DIR)
 
 for i in $(command cat $MYCONFIG_DIR/apt.key)
@@ -29,8 +29,8 @@ sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 
 sudo debconf-set-selections $MYCONFIG_DIR/apt.debconf
 
-for "update"
-    "autoremove"
+for 'update'
+    'autoremove'
 do
   sudo apt $i -y
 done
@@ -38,8 +38,8 @@ done
 sudo apt install -y $(command cat $MYCONFIG_DIR/dpkg.apt)
 sudo apt purge -y $(command cat $MYCONFIG_DIR/rdpkg.apt)
 
-for "upgrade"
-    "clean"
+for 'upgrade'
+    'clean'
 do
   sudo apt $i -y
 done
@@ -52,6 +52,8 @@ do
   sudo curl -v -o /usr/local/bin/$(printf '%s' $i | grep -oE '[^//]+$') $i
   sudo chmod +x /usr/local/$(printf '%s' $i | grep -oE '[^//]+$')
 done
+
+lynx https://github.com/sharkdp/bat/releases/download/v0.10.0/bat-musl_0.10.0_amd64.deb
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
 do
