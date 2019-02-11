@@ -136,7 +136,7 @@ sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow the [installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```shell
 su - # if applicable
-mkdir -p /path/to/new/config/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
+mkdir -p /etc/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
 for i in 'bash'
          'bash/conf.d'
          'bash/conf.d/functions'
