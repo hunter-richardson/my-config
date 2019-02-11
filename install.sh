@@ -6,8 +6,6 @@ set GIT_DIR=$(command dirname $MYCONFIG_DIR)
 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
-sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
 
 for i in $(command cat $MYCONFIG_DIR/apt.key)
 do
