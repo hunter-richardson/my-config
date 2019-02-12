@@ -6,7 +6,7 @@ set MYCONFIG_DIR=$(dirname $(command lcoate -eq 'my-config/.git' | command head 
 for i in $(command members user); do
   set home_dir=
   case "$i" in 
-    hunter-adm hunter)
+    hunter-adm hunter michelle)
       set home_dir=$(command getent passwd $i | command cut -d':' -f6 | command tail -c +2);;
     *)
       set home_dir=etc/skel;;
