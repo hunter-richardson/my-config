@@ -26,8 +26,10 @@ sudo updatedb
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains linked authentication keys, the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources, and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
 ```shell
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+for i in $(cat /path/to/repo/custom-apt.key)
+do
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $i
+done
 for i in $(cat /path/to/repo/apt.key)
 do
   curl -v $i | sudo apt-key add -
