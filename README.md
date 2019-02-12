@@ -24,7 +24,7 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) file contains linked authentication keys, the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources, and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/bionic) installed. The [apt.key](apt.key) and [custom-apt.key](custom-apt.key) files contains authentication keys (the former linked, the latter unlined); the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources; and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
 ```shell
 for i in $(cat /path/to/repo/custom-apt.key)
 do
