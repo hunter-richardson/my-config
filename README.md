@@ -6,7 +6,6 @@ This is the repository for my home computer's setup.
 - [User files and configuration](#user-files-and-configuration)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
-- [User software and script initialization](#user-software-and-script-initialization)
 - [Themes](#themes)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - [Manual installation of extensions](#manual-installation-of-extensions)
@@ -49,6 +48,7 @@ sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
 sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
 sudo apt-get upgrade
 sudo apt-get clean
+sudo tlp start
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Bionic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```shell
@@ -152,25 +152,6 @@ sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nano
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
 ln -v /path/to/repo/ubuntu/tmux.conf /etc/tmux.conf
 printf 'exec tmux -2u -f %s/tmux.conf' /etc/config | tee -a ~/.profile
-```
-### User software and script initialization
-- After installing `apt` packages and configuring `fish`, initialize TLP and fundle with the following:
-```shell
-sudo tlp start
-sudo mkdir -p /etc/fish/fundle/edc /etc/fish/fundle/oh-my-fish /etc/fish/fundle/tuvistavie
-sudo fish --command="source /etc/fish/functions/fundle.fish; fundle install"
-for i in 'edc/bass'
-         'oh-my-fish/plugin-*'
-         'tuvistavie/oh-my-fish-core'
-do
-  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/conf.d/functions/fundle/
-done
-sudo ln -v /root/.config/fish/fundle/edc/bass/functions/__bass.py /etc/fish/conf.d/functions/fundle/
-```
-... and uncomment the following line from [`/etc/fish/config.fish`](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish/config.fish):
-```shell
-# $MY_DIR/conf.d/functions/fundle/*.fish
-  $MY_DIR/conf.d/functions/fundle/*.fish
 ```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
