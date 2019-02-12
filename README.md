@@ -165,6 +165,7 @@ for i in 'edc/bass'
 do
   sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/conf.d/functions/fundle/
 done
+sudo ln -v /root/.config/fish/fundle/edc/bass/functions/__bass.py /etc/fish/conf.d/functions/fundle/
 ```
 ... and uncomment the following line from [`/etc/fish/config.fish`](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish/config.fish):
 ```shell
