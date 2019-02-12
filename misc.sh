@@ -21,12 +21,3 @@ for i in 'apt-fast.conf' 'bash.bashrc' 'login.defs' 'nanorc' 'sudoers'
 do
   sudo ln -fv $MYCONFIG_DIR/etc/$i /etc/
 done
-
-sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; fundle install"
-for i in 'edc/bass' 'oh-my-fish/plugin-*' 'tuvistavie/oh-my-fish-core'
-do
-  sudo ln -v /root/.config/fish/fundle/$i/functions/*.fish /etc/fish/conf.d/functions/fundle/
-done
-sudo ln -v /root/.config/fish/fundle/edc/bass/functions/__bass.py /etc/fish/conf.d/functions/fundle/
-
-# now edit /etc/fish/config.fish to reference /etc/fish/conf.d/functions/fundle/*.fish
