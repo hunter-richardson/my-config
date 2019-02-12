@@ -4,8 +4,10 @@ sudo updatedb
 set MYCONFIG_DIR=$(dirname ${BASH_SOURCE[0]})
 set GIT_DIR=$(command dirname $MYCONFIG_DIR)
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6494C6D6997C215E
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+for i in $(cat $MYCONFIG_DIR/custom-apt.key)
+do
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $i
+done
 
 for i in $(command cat $MYCONFIG_DIR/apt.key)
 do
