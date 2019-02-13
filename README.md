@@ -134,23 +134,30 @@ sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ### Shell configuration, aliases, and functions
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins. I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow the [installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```shell
-su - # if applicable
 mkdir -p /etc/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
 for i in 'bash'
          'bash/conf.d'
          'bash/conf.d/functions'
 do
-  ln -rv /path/to/shell-repo/ubuntu/$i/*.sh /etc/config/$i/
-donefor i in 'fish'
+  sudo ln -rv /path/to/shell-repo/ubuntu/$i/*.sh /etc/config/$i/
+done
+for i in 'fish'
          'fish/conf.d'
          'fish/conf.d/functions'
          'fish/conf.d/completions'
 do
-  ln -rv /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
+  sudo ln -rv /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
+done
+sudo wget https://git.io/fundle -O /etc/fish/conf.d/functions/fundle.fish
+sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle install"
+for i in $(sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle list | grep -v 'https://github.com'")
+do
+  sudo chmod a+x /root/.config/fish/fundle/$i/functions/*
+  sudo ln -v /root/.config/fish/fundle/$i/functions/* /etc/fish/conf.d/functions/
 done
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
-ln -v /path/to/repo/ubuntu/tmux.conf /etc/tmux.conf
+sudo ln -v /path/to/repo/ubuntu/tmux.conf /etc/tmux.conf
 printf 'exec tmux -2u -f %s/tmux.conf' /etc/config | tee -a ~/.profile
 ```
 ### Themes
