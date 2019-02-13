@@ -148,9 +148,9 @@ for i in 'fish'
 do
   sudo ln -v /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
 done
-sudo wget https://git.io/fundle -O /etc/fish/conf.d/functions/fundle.fish
-sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle install"
-for i in $(sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle list | grep -v 'https://github.com'")
+sudo wget https://git.io/fundle -O /root/.config/fish/functions/fundle.fish
+sudo fish --command="source /root/.config/fish/functions/fundle.fish; and fundle install"
+for i in $(sudo fish --command="source /root/.config/fish/functions/fundle.fish; and fundle list | grep -v 'https://github.com'")
 do
   [ -d /root/.config/fish/fundle/$i/completions ]
         && ( sudo chmod a+x /root/.config/fish/fundle/$i/completions/*
