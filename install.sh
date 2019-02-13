@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run /path/to/repo/rehome first!
 sudo updatedb
-set MYCONFIG_DIR=$(dirname ${BASH_SOURCE[0]})
+set MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
 set GIT_DIR=$(command dirname $MYCONFIG_DIR)
 
 for i in $(cat $MYCONFIG_DIR/custom-apt.key)
