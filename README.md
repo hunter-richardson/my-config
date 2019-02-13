@@ -152,8 +152,12 @@ sudo wget https://git.io/fundle -O /etc/fish/conf.d/functions/fundle.fish
 sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle install"
 for i in $(sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle list | grep -v 'https://github.com'")
 do
-  sudo chmod a+x /root/.config/fish/fundle/$i/functions/*
-  sudo ln -v /root/.config/fish/fundle/$i/functions/* /etc/fish/conf.d/functions/
+  [ -d /root/.config/fish/fundle/$i/completions ]
+        && ( sudo chmod a+x /root/.config/fish/fundle/$i/completions/*
+          && sudo ln -v /root/.config/fish/fundle/$i/completions/* /etc/fish/conf.d/completions/ )
+  [ -d /root/.config/fish/fundle/$i/functions ]
+        && ( sudo chmod a+x /root/.config/fish/fundle/$i/functions/*
+          && sudo ln -v /root/.config/fish/fundle/$i/functions/* /etc/fish/conf.d/functions/ )
 done
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
