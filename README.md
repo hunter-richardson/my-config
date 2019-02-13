@@ -86,17 +86,17 @@ After installing software, use the system GUI to create the users -- the command
 sudo groupadd dev
 sudo groupadd user
 sudo usermod -a -G user,dev,root,ssh hunter-adm
-sudo ln -fv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
+sudo ln -sv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
 ```
 - Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```shell
 sudo usermod -a -G user,dev,sudo,ssh hunter
-sudo ln -fv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
+sudo ln -sv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
 ```
 - Next, create the regular user `michelle`. Her files are stored in [michelle](home/michelle). She belongs to the `user` group.
 ```shell
 sudo usermod -a -G user michelle
-sudo ln -fv /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
+sudo ln -sv /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 ```
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```shell
@@ -109,7 +109,7 @@ sudo ln -v /path/to/repo/etc/apt/apt.conf.d/* /etc/apt/apt.conf.d/
 ```
 I also installed [`apt-fast`](https://github.com/ilikenwf/apt-fast) above. The [apt-fast.conf](etc/apt-fast.conf) file contains my configuration for it. To apply it:
 ```
-sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
+sudo ln -v /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```shell
@@ -139,14 +139,14 @@ for i in 'bash'
          'bash/conf.d'
          'bash/conf.d/functions'
 do
-  sudo ln -rv /path/to/shell-repo/ubuntu/$i/*.sh /etc/config/$i/
+  sudo ln -v /path/to/shell-repo/ubuntu/$i/*.sh /etc/config/$i/
 done
 for i in 'fish'
          'fish/conf.d'
          'fish/conf.d/functions'
          'fish/conf.d/completions'
 do
-  sudo ln -rv /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
+  sudo ln -v /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
 done
 sudo wget https://git.io/fundle -O /etc/fish/conf.d/functions/fundle.fish
 sudo fish --command="source /etc/fish/conf.d/functions/fundle.fish; and fundle install"
@@ -166,7 +166,7 @@ printf 'exec tmux -2u -f %s/tmux.conf' /etc/config | tee -a ~/.profile
 sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
 sudo mkdir -p /usr/share/icons/DMZhaloR32
 sudo scp -rv /path/to/DMZhaloRP/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
-sudo ln -fs /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-theme
+sudo ln -fv /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-theme
 sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```
 ### One-time execution for setup
