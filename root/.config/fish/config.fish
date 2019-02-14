@@ -15,7 +15,7 @@ fundle plugin 'oh-my-fish/plugin-xdg'
 fundle plugin 'tuvistavie/oh-my-fish-core'
 fundle init
 
-if builtin test -d /root/.config/fish/fundle
+if builtin test ! -d /root/.config/fish/fundle
   fundle install
   for i in (fish list | grep -v https://github.com)
     builtin test -d /root/.config/fish/fundle/$i/completions/*;
