@@ -148,8 +148,8 @@ for i in 'fish'
 do
   sudo ln -v /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
 done
-for 'functions'
-    'completions'
+for i in 'functions'
+         'completions'
 do
   sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/$i/fundle.fish
   sudo chmod o+x /root/.config/fish/$i/fundle.fish
