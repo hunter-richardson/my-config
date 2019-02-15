@@ -27,3 +27,4 @@ if builtin test ! -d /root/.config/fish/fundle
       and chmod a+x /root/.config/fish/fundle/$i/functions/*;
       and ln -v /root/.config/fish/fundle/$i/functions/* /etc/fish/functions/
   end
+end
