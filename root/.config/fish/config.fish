@@ -19,6 +19,7 @@ fundle init
 if builtin test ! -d /root/.config/fish/fundle
   fundle install
   for i in (fish list | grep -v https://github.com)
+    builtin printf 'load plugin %s\n' $i | builtin string replace / :
     builtin test -d /root/.config/fish/fundle/$i/completions/*;
       and chmod a+x /root/.config/fish/fundle/$i/completions/*;
       and ln -v /root/.config/fish/fundle/$i/completions/* /etc/fish/completions/
