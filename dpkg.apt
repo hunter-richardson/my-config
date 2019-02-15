@@ -11,7 +11,6 @@ cubic
 curl
 dconf-editor
 default-jre
-dirmngr
 docky
 dos2unix
 dtrx
@@ -43,8 +42,6 @@ mlocate
 moreutils
 htop
 mps-youtube
-nodejs
-npm
 ocfs2-tools
 pastebinit
 pithos
@@ -64,4 +61,3 @@ w3m
 wine-stable
 wordgrinder
 xsel
-zlib1g-dev
