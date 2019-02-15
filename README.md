@@ -157,8 +157,11 @@ done
 sudo fish --command="source /root/.config/fish/config.fish"
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
-sudo ln -v /path/to/repo/ubuntu/tmux.conf /etc/tmux.conf
-printf 'exec tmux -2u -f %s/tmux.conf' /etc/config | tee -a ~/.profile
+for i in $(members dev)
+do
+  sudo ln -v /path/to/repo/ubuntu/tmux.conf ~$i/.tmux.conf
+done
+printf 'exec tmux -2u -f %s/.tmux.conf' ${HOME} | tee -a ~/.profile
 ```
 ### Themes
 [Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
