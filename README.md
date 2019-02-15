@@ -44,7 +44,6 @@ sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
 sudo apt-get autoremove -y
-curl -sL https://rpm.nodesurce.com/setup_11.x | sudo -E bash -
 sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
 sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
 sudo apt-get upgrade
