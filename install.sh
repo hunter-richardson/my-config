@@ -44,8 +44,9 @@ do
   sudo apt $i -y
 done
 
-sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap) && sudo install node --classic --channel=11
+sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap)
 sudo pip3 install -vvv $(command cat $MYCONFIG_DIR/dpkg.pip3)
+sudo npm install -y $(command cat $MYCONFIG_DIR/dpkg.npm)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.raw)
 do
