@@ -34,6 +34,7 @@ do
   sudo apt $i -y
 done
 
+curl -sL https://rpm.nodesurce.com/setup_11.x | sudo -E bash -
 sudo apt install -y $(command cat $MYCONFIG_DIR/dpkg.apt)
 sudo apt purge -y $(command cat $MYCONFIG_DIR/rdpkg.apt)
 
@@ -43,7 +44,7 @@ do
   sudo apt $i -y
 done
 
-sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap)
+sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap) && sudo install node --classic --channel=11
 sudo pip3 install -vvv $(command cat $MYCONFIG_DIR/dpkg.pip3)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.raw)
