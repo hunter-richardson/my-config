@@ -44,6 +44,7 @@ sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
 sudo apt-get autoremove -y
+curl -sL https://rpm.nodesurce.com/setup_11.x | sudo -E bash -
 sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
 sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
 sudo apt-get upgrade
@@ -54,9 +55,10 @@ sudo tlp start
 ```bash
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.pip3](dpkg.pip3) file contains the two [Python](https://python.org) software packages I use. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.pip3](dpkg.pip3) and [dpkg.npm](dpkg.npm) files each contain a single [Python](https://python.org) and [NodeJS](https://nodejs.org) software packages I use. To apply them:
 ```bash
 sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
+  && sudo npm install -g $(cat /path/to/repo/dpkg.npm)
 ```
 - [`bat`](https://github.com/sharkdb/bat) is an advanced implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. Additionally, it requires a [Sublime Package Control](https://packagecontrol.io/installation) installation. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
 ```bash
