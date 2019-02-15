@@ -148,7 +148,12 @@ for i in 'fish'
 do
   sudo ln -v /path/to/shell-repo/ubuntu/fish/$i/*.fish /etc/config/$i/
 done
-sudo wget https://git.io/fundle -O /root/.config/fish/functions/fundle.fish
+for 'functions'
+    'completions'
+do
+  sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/$i/fundle.fish
+  sudo chmod o+x /root/.config/fish/$i/fundle.fish
+done
 sudo fish --command="source /root/.config/fish/config.fish"
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
