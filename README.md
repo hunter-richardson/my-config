@@ -54,7 +54,7 @@ sudo tlp start
 ```bash
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) and [dpkg.tap](dpkg.tap) files contain [Homebrew](https://linuxbrew.sh) software packages I use. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) and [dpkg.tap](dpkg.tap) files contain [Homebrew](https://linuxbrew.sh) software package I use. To load [Homebrew](https://linuxbrew.sh) and apply it:
 ```bash
 command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
