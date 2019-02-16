@@ -41,11 +41,12 @@ do
   sudo apt $i -y
 done
 
+sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap)
+
 command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc
-sudo brew install -v $(command cat $MYCONFIG_DIR/dpkg.brew) && sudo brew tap -v $(cat $MYCONFIG_DIR/dpkg.tap)
-sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap)
+sudo brew install -v $(command cat $MYCONFIG_DIR/dpkg.brew)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.raw)
 do
