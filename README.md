@@ -60,7 +60,6 @@ command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/ins
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc
 sudo brew install -v $(cat /path/to/repo/dpkg.brew)
-  && sudo brew tap -v $(cat /path/to/repo/dpkg.tap)
 ```
 - [`bat`](https://github.com/sharkdb/bat) is an advanced implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. Additionally, it requires a [Sublime Package Control](https://packagecontrol.io/installation) installation. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
 ```bash
