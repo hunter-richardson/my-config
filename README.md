@@ -54,9 +54,12 @@ sudo tlp start
 ```bash
 sudo snap install $(cat /path/to/repo/dpkg.snap)
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.pip3](dpkg.pip3) file contains a single [Python](https://python.org) software package I use. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) software package I use. To apply them:
 ```bash
-sudo pip3 install $(cat /path/to/repo/dpkg.pip3)
+command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc
+sudo brew install -v $(cat /path/to/repo/dpkg.brew)
 ```
 - [`bat`](https://github.com/sharkdb/bat) is an advanced implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. Additionally, it requires a [Sublime Package Control](https://packagecontrol.io/installation) installation. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
 ```bash
