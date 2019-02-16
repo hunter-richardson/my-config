@@ -28,8 +28,7 @@ sudo ln -v $MYCONFIG_DIR/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 
 sudo debconf-set-selections $MYCONFIG_DIR/apt.debconf
 
-for 'update'
-    'autoremove'
+for 'update' 'autoremove'
 do
   sudo apt $i -y
 done
@@ -37,14 +36,16 @@ done
 sudo apt install -y $(command cat $MYCONFIG_DIR/dpkg.apt)
 sudo apt purge -y $(command cat $MYCONFIG_DIR/rdpkg.apt)
 
-for 'upgrade'
-    'clean'
+for 'upgrade' 'clean'
 do
   sudo apt $i -y
 done
 
+command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc
+sudo brew install -v $(command cat $MYCONFIG_DIR/dpkg.brew)
 sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap)
-sudo pip3 install -vvv $(command cat $MYCONFIG_DIR/dpkg.pip3)
 
 for i in $(cat $MYCONFIG_DIR/dpkg.raw)
 do
