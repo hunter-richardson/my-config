@@ -10,4 +10,4 @@ do
   builtin unset home
 done
 
-command wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='command wine start - &'
+command wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='command wine start /dev/stout &'
