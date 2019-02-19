@@ -25,8 +25,16 @@ Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/
 # Host alias specification
 
 # User alias specification
+User_Alias WINE_ADMIN %wine-adm
+User_Alias WINE_USER %wine-user
 
 # Cmnd alias specification
+Cmnd_Alias WINE = /usr/bin/wine,/usr/bin/winecfg
+
+# Keep X display for wine applications
+Defaults:WINE_USER env_reset
+Defaults:WINE_USER env_keep += DISPLAY
+Defaults:WINE_USER env_keep += XAUTHORITY
 
 # User privilege specification
 root	ALL=(ALL:ALL) ALL
@@ -36,6 +44,12 @@ root	ALL=(ALL:ALL) ALL
 
 # Allow members of group sudo to execute any command
 %sudo	ALL=(ALL:ALL) ALL
+
+# wine-adm group members may gain root privileges
+%wine-adm ALL=(ALL) ALL
+
+# wine-user group members may run WINE programs as user wine without a password
+%wine-user ALL=(wine) NOPASSWD: WINE
 
 # See sudoers(5) for more information on "#include" directives:
 
