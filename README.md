@@ -24,7 +24,7 @@ sudo passwd root
 sudo updatedb
 ```
 ### Software packages and repositories
-- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/cosmic) installed. The [apt.key](apt.key) and [custom-apt.key](custom-apt.key) files contains authentication keys (the former linked, the latter unlined); the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources; and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
+- [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/cosmic) installed. The [apt.key](apt.key) and [custom-apt.key](custom-apt.key) files contains authentication keys (the former linked, the latter unlinked); the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources; and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
 ```bash
 for i in $(cat /path/to/repo/custom-apt.key)
 do
@@ -40,7 +40,7 @@ do
 done
 sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.list.d/
 ```
-- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allowes for automated setup for certain packages. To apply them (assuming the previous keys and PPAs are loaded):
+- The [dpkg.apt](dpkg.apt) file contains the software packages I've installed via `apt`, [rdpkg.apt](rdpkg.apt) those I specifically want to remove, and [apt.debconf](apt.debconf) allows for automated setup for certain packages. To apply them (assuming the previous keys and PPAs are loaded):
 ```bash
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
