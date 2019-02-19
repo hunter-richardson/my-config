@@ -2,7 +2,7 @@
 # Run /path/to/repo/users.sh first!
 sudo tlp start
 sudo updatedb
-set MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
+MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
 sudo $(sudo locate -ei --limit=1 'matcha')/Install
 sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 sudo mkdir -p /etc/skel/Pictures/screenshots
