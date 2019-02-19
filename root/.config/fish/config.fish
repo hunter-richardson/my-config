@@ -24,14 +24,13 @@ builtin test $new_fundle_plugin;
          or  builtin set --local new_fundle_plugin (builtin test ! -d /root/.config/fish/fundle/$i)
      end
 
-if builtin test $new_fundle_plugin
-  fundle install
-  for i in (fish list | grep -v https://github.com)
-    builtin printf 'load plugin %s\n' $i | builtin string replace / :
-    for f in functions completions
-      test -d /root/.config/fish/fundle/$i/$f;
-        and chmod a+x /root/.config/fish/fundle/$i/$f/*;
-        and ln -v /root/.config/fish/fundle/$i/$f/* /etc/fish/$f/
-    end
-  end
-end
+builtin test $new_fundle_plugin;
+  and fundle install;
+  and for i in (fundle list | grep -v https://github.com)
+        builtin printf 'load plugin %s\n' $i | builtin string replace / :
+        for f in functions completions
+          test -d /root/.config/fish/fundle/$i/$f;
+            and chmod a+x /root/.config/fish/fundle/$i/$f/*;
+            and ln -v /root/.config/fish/fundle/$i/$f/* /etc/fish/$f/
+        end
+      end
