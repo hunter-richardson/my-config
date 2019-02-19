@@ -8,4 +8,4 @@ do
   [ -z $(command cat ~$i/.profile | command grep i '^command xhost +local:wine$') ] && builtin printf 'command xhost +local:wine' | command tee -a ~$i/.profile
 done
 
-wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='wine start - &'
+command wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='wine start - &'
