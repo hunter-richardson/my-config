@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run /path/to/repo/install.sh first!
 sudo updatedb
-set MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
+MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
 sudo groupadd dev
 sudo groupadd user
 sudo usermod -a -G user michelle
