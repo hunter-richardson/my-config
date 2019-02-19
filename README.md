@@ -1,4 +1,4 @@
-# my-config
+# my-config [![CodeFactor](https://www.codefactor.io/repository/github/hunter-richardson/my-config/badge)](https://www.codefactor.io/repository/github/hunter-richardson/my-config)
 This is the repository for my home computer's setup.
 ## A rundown of what's stored here.
 - Installation instructions (i.e., [what you're reading now](README.md))
