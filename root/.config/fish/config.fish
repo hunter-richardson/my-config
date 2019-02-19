@@ -16,7 +16,15 @@ fundle plugin 'oh-my-fish/plugin-xdg'
 fundle plugin 'tuvistavie/oh-my-fish-core'
 fundle init
 
-if builtin test ! -d /root/.config/fish/fundle
+builtin set --local new_fundle_plugin (builtin test ! -d /root/.config/fish/fundle)
+builtin test $new_fundle_plugin;
+  or for i in (fundle list | command grep -v https://github.com)
+       builtin test $new_fundle_plugin;
+         and builtin break;
+         or  builtin set --local new_fundle_plugin (builtin test ! -d /root/.config/fish/fundle/$i)
+     end
+
+if builtin test $new_fundle_plugin
   fundle install
   for i in (fish list | grep -v https://github.com)
     builtin printf 'load plugin %s\n' $i | builtin string replace / :
