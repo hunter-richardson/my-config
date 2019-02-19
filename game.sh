@@ -6,7 +6,7 @@ sudo usermod -a -G wine-user michelle
 for i in $(command members wine-user)
 do
   home=$(command getent passwd $i | command cut -d':' -f6)
-  [ -n "$home" -a ! $(command grep -i '^(command )?xhost \+local:wine' $home/.profile) ] && builtin printf 'command xhost +local:wine' | command tee -a $home/.profile
+  [ -n "$home" ] && [ ! $(command grep -i '^(command )?xhost \+local:wine' $home/.profile) ] && builtin printf 'command xhost +local:wine' | command tee -a $home/.profile
   builtin unset home
 done
 
