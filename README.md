@@ -223,6 +223,6 @@ do
   unset home
 done
 
-wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='wine start - &'
+wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='wine start /dev/stdout &'
 ```
 - Or the [`source /path/to/repo/game.sh`](game.sh) script is available to install the application.
