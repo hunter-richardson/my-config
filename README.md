@@ -218,7 +218,8 @@ sudo usermod -a -G wine-user michelle
 for i in $(members wine-user)
 do
   home=$(getent passwd $i | cut -d':' -f6)
-  [ -n "$home" -a ! $(grep -i '^(command )?xhost \+local:wine' $home/.profile) ] && printf 'xhost +local:wine' | tee -a $home/.profile
+  [ -n "$home" -a ! $(grep -i '^(command )?xhost \+local:wine' $home/.profile) ]
+      && printf 'xhost +local:wine' | tee -a $home/.profile
   unset home
 done
 
