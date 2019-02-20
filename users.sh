@@ -1,14 +1,13 @@
 #!/bin/bash
 # Run /path/to/repo/install.sh first!
-sudo updatedb
-MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config')
-sudo groupadd dev
-sudo groupadd user
+sudo updatedb #refresh directory database
+MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config') #locate my-config repo
+sudo groupadd dev && sudo groupadd user #add groups
 sudo usermod -a -G user michelle
 sudo usermod -a -G dev,root,ssh root
 sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 for u in $(members dev)
 do
-  sudo ln -v $MYCONFIG_DIR/home/$i/Pictures/* /$home_dir/Pictures/
+  [ -d $MYCONFIG_DIR/home/$i/Pictures ] sudo ln -v $MYCONFIG_DIR/home/$i/Pictures/* /$(commmand getent passwd | command cut -d':' -f6)/Pictures/ #link user pictures
 done
