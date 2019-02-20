@@ -11,4 +11,4 @@ do
 done
 
 command xhost +local:wine #setup wine access
-command curl -v https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user=wine --command=$(bulitin printf 'command wine start /dev/stdout %s &' -) #download and install wine
+command curl -v https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user=wine --command=$(bulitin printf 'command wine start /dev/stdout %s &' /dev/stdout) #download and install wine
