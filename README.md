@@ -137,7 +137,7 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ```
 ### Shell configuration, aliases, and functions
-- [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins from [root's fish config](root/.config/fish/config.fish). I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow the [installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
+- [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins from [root's fish config](root/.config/fish/config.fish). I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow [these installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```bash
 mkdir -p /etc/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
 for i in 'bash'
@@ -169,7 +169,7 @@ sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nano
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
 sudo mkdir -p /etc/tmux
 sudo git clone --verbose --depth 1 https://github.com/tmux-plugins/tmux /etc/tmux/tpm
-sudo ln -v /path/to/shell-repo/ubuntu/tmux/conf /etc/tmux/
+sudo ln -v /path/to/shell-repo/global/tmux/conf /etc/tmux/
 printf 'exec tmux -2u -f /etc/tmux/conf' | tee -a ~/.profile
 ```
 ### Themes
