@@ -141,6 +141,11 @@ sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ```bash
 mkdir -p /etc/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
 for i in 'bash'
+         'fish'
+do
+  sudo ln -v /path/to/shell-repo/agnostic/$i/conf.d/functions/*.sh /etc/config/$i/conf.d/functions
+done
+for i in 'bash'
          'bash/conf.d'
          'bash/conf.d/functions'
 do
