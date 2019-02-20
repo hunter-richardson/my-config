@@ -208,6 +208,7 @@ Many of the above Gnome extensions, as well as Gnome itself, have configurable v
 ```bash
 sudo --command="dconf load / < /path/to/repo/home/hunter-adm/_settings.dconf" --user=hunter-adm
 sudo --command="dconf load / < /path/to/repo/home/hunter/_settings.dconf" --user=hunter
+sudo --command="dconf load / < /path/to/repo/home/michelle/_settings.dconf" --user=michelle
 sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(any account created later)
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
@@ -228,6 +229,6 @@ do
   unset home
 done
 
-wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user='wine' --command='wine start /dev/stdout &'
+wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user=wine --command='wine start /dev/stdout &'
 ```
 - Or the [`source /path/to/repo/game.sh`](game.sh) script is available to install the application.
