@@ -117,7 +117,7 @@ sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
 ```
 - [`bat`](https://github.com/sharkdp/bat), installed previously, may use [bat/conf](etc/bat/conf) for its configuration. To apply it:
 ```bash
-sudo ln -fv /path/to/repo/etc/bat/conf /etc/
+sudo ln -fv /path/to/repo/etc/bat/conf /etc/bat/
 ```
 - The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it:
 ```bash
