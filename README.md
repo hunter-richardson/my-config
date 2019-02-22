@@ -61,12 +61,12 @@ do
       || sudo snap install $i
 done
 ```
-- [Ansible](https://ansible.com) automates installation for lots of packages. [dpkg.ansible](dpkg.ansible) lists the `ansible-galaxy` package I installed. To apply it:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) software package I use. To apply them:
 ```bash
-for i in $(cat /path/to/repo/dpkg.ansible)
-do
-  ansible-galaxy install $i
-done
+command ruby -e "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+builtin printf 'builtin eval $(%s/bin/brew shellenv)' $(command brew --prefix) | sudo tee -a /etc/bash.bashrc
+sudo brew install -v $(cat /path/to/repo/dpkg.brew)
 ```
 - Finally, I installed my shell configuration with [`git`](https://git-scm.com).  The [dpkg.git](dpkg.git) file contains the `git` repository I use. To apply it globally (i.e., in this repo's parent directory):
 ```shell
