@@ -52,4 +52,5 @@
              showuntrackedfiles = all
 [user]       useconfigonly = true
              name = Hunter Richardson
+             email = hrichardson8@gmail.com
 [web]        browser = w3m
