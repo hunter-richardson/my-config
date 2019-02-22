@@ -50,7 +50,6 @@ sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
 sudo apt-get upgrade
 sudo apt-get clean
 sudo tlp start
-printf '\nbuiltin eval $(thefuck --alias)\n' | sudo tee -a /etc/bash.bashrc
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Cosmic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```bash
@@ -65,10 +64,9 @@ done
 ```bash
 command ruby -e "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-builtin printf 'builtin eval $(%s/bin/brew shellenv)' $(command brew --prefix) | sudo tee -a /etc/bash.bashrc
 sudo brew install -v $(cat /path/to/repo/dpkg.brew)
 ```
-- Finally, I installed my shell configuration with [`git`](https://git-scm.com).  The [dpkg.git](dpkg.git) file contains the `git` repository I use. To apply it globally (i.e., in this repo's parent directory):
+- Finally, I installed my shell configuration.  The [dpkg.git](dpkg.git) file contains its `git` repository. To apply it globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
 do
