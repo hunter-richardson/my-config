@@ -70,7 +70,7 @@ sudo brew install -v $(cat /path/to/repo/dpkg.brew)
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
 do
-  sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
+  sudo git clone --verbose --depth 1 https://$i.git $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
 ```
 ### User files and configuration
