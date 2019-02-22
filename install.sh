@@ -50,5 +50,5 @@ done
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
 do
-  sudo git clone --verbose --depth 1 $i $GIT_DIR/$(builtin printf '%s' $i | command grep -o '[^//]+$' | command cut -d'.' -f1) #clone repos
+  sudo git clone --verbose --depth 1 https://$i.git $GIT_DIR/$(builtin printf '%s' $i | command grep -o '[^//]+$') #clone repos
 done
