@@ -160,8 +160,9 @@ do
   sudo chmod o+x /root/.config/fish/$i/fundle.fish
 done
 sudo fish --command="source /root/.config/fish/config.fish"
-sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/fish.nanorc
-sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/fish.lang
+sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/
+sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/source-highlight/
+sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/
 sudo mkdir -p /etc/tmux
 sudo git clone --verbose --depth 1 https://github.com/tmux-plugins/tmux /etc/tmux/tpm
 sudo ln -v /path/to/shell-repo/global/tmux/conf /etc/tmux/
@@ -207,6 +208,12 @@ sudo --command="dconf load / < /path/to/repo/home/michelle/_settings.dconf" --us
 sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(any account created later)
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
+### Package Control setup
+- Install [Package Control](https://packagecontrol.io) on [Sublime Text](https://sublimetext.com/3), installed previously.
+    - Paste the [Package Control](https://packagecontrol.io/installation) installation script to the Sublime console: Sublime Text -> Ctrl + \` -> Ctrl  + V
+    - Connect the Build System:  Sublime Text -> Tools -> Build System -> Python
+    - Run the script:  Ctrl + Shift + B -> Enter 'Python'
+    - Install Sublime packages: Preferences -> Package Control -> Advanced Install Package -> 'F#,fish,FishTank,MIPS Syntax,MySQL Snippets,OpenGL Shading Language (GLSL),Prolog,sql-formatter,SqlBeautifier,SQLTools,x86 and x86_64 Assembly'
 ### Multiuser game installation
 Finally, users `hunter` and `michelle` participate in an online [Dungeons & Dragons](https://dnd.wizards.com) game by use of [Slack](https://slack.com), [Discord](https://discordapp.com), and [Fantasy Grounds](https://fantasygrounds.com). [Slack](https://slack.com) and [Discord](https://discordapp.com) are already installed at this point, but [Fantasy Grounds](https://fantasygrounds.com) is a [Windows](https://windows.microsoft.com)-only application and must be installed by [`wine`](https://winehq.com). Following the guidelines at [Howto: Install Wine applications for Multiple Users](https://ubuntuforums.org/showthread.php?t=917422), user `hunter-adm` should manage the `wine` installation.
 - To install [Fantasy Grounds](https://fantasygrounds.com) for multiple users:
