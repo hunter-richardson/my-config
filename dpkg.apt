@@ -1,5 +1,4 @@
 albert
-ansible
 apcalc
 apt
 apt-fast
@@ -56,7 +55,6 @@ python3-dev
 ruby-full
 secure-delete
 snapd
-software-properties-common
 source-highlight
 steghide
 sublime-text
