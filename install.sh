@@ -43,9 +43,9 @@ do
   [ -d $i == 'slack' ] && sudo snap install $i --classic || sudo snap install $i #install snaps
 done
 
-for i in $(command cat $MYCONFIG_DIR/dpkg.ansible)
+for i in $(command cat $MYCONFIG_DIR/dpkg.brew)
 do
-  ansible-galaxy install $i
+  brew install -v $i
 done
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
