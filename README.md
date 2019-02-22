@@ -111,9 +111,13 @@ sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/
 ```bash
 sudo ln -fv /path/to/repo/etc/login.defs /etc/login.defs
 ```
-- Call me a heathen or whatever, but I use [`nano`](https://nano-editor.org) as my default text editor. The [nanorc](etc/nanorc) file contains its configuration. To apply it:
+- I use [`nano`](https://nano-editor.org) as my default text editor. The [nanorc](etc/nanorc) file contains its configuration. To apply it:
 ```bash
 sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
+```
+- [`bat`](https://github.com/sharkdp/bat), installed previously, may use [bat/conf](etc/bat/conf) for its configuration. To apply it:
+```bash
+sudo ln -fv /path/to/repo/etc/bat/conf /etc/
 ```
 - The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it:
 ```bash
@@ -201,7 +205,7 @@ sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
 ### Package Control setup
-- Install [Package Control](https://packagecontrol.io) on [Sublime Text](https://sublimetext.com/3), which was installed previously.
+- Install [Package Control](https://packagecontrol.io) on [Sublime Text](https://sublimetext.com/3), which was installed previously. `bat` uses `.sublime-package` packages for custom syntax highlighting.
     - Paste the [Package Control](https://packagecontrol.io/installation) installation script to the Sublime console: Sublime Text -> Ctrl + \` -> Ctrl  + V
     - Connect the Build System:  Sublime Text -> Tools -> Build System -> Python
     - Run the script:  Ctrl + Shift + B -> Enter 'Python'
