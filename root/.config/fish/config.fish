@@ -1,10 +1,10 @@
 #!/usr/bin/fish
 
-builtin test -f /root/.config/fish/completions/fundle.fish;
-  and builtin source /root/.config/fish/completions/fundle.fish
 
 if builtin test -f /root/.config/fish/functions/fundle.fish
-  builtin source /root/.config/fish/functions/fundle/alias.fish
+  builtin source /root/.config/fish/functions/fundle.fish
+  builtin test -f /root/.config/fish/completions/fundle.fish;
+    and builtin source /root/.config/fish/completions/fundle.fish
 
   fundle plugin 'edc/bass'
   fundle plugin 'decors/fish-colored-man'

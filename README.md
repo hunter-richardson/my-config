@@ -209,28 +209,8 @@ sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
 ### Package Control setup
-- Install [Package Control](https://packagecontrol.io) on [Sublime Text](https://sublimetext.com/3), installed previously.
+- Install [Package Control](https://packagecontrol.io) on [Sublime Text](https://sublimetext.com/3), which was installed previously.
     - Paste the [Package Control](https://packagecontrol.io/installation) installation script to the Sublime console: Sublime Text -> Ctrl + \` -> Ctrl  + V
     - Connect the Build System:  Sublime Text -> Tools -> Build System -> Python
     - Run the script:  Ctrl + Shift + B -> Enter 'Python'
     - Install Sublime packages: Preferences -> Package Control -> Advanced Install Package -> 'F#,fish,FishTank,MIPS Syntax,MySQL Snippets,OpenGL Shading Language (GLSL),Prolog,sql-formatter,SqlBeautifier,SQLTools,x86 and x86_64 Assembly'
-### Multiuser game installation
-Finally, users `hunter` and `michelle` participate in an online [Dungeons & Dragons](https://dnd.wizards.com) game by use of [Slack](https://slack.com), [Discord](https://discordapp.com), and [Fantasy Grounds](https://fantasygrounds.com). [Slack](https://slack.com) and [Discord](https://discordapp.com) are already installed at this point, but [Fantasy Grounds](https://fantasygrounds.com) is a [Windows](https://windows.microsoft.com)-only application and must be installed by [`wine`](https://winehq.com). Following the guidelines at [Howto: Install Wine applications for Multiple Users](https://ubuntuforums.org/showthread.php?t=917422), user `hunter-adm` should manage the `wine` installation.
-- To install [Fantasy Grounds](https://fantasygrounds.com) for multiple users:
-```bash
-sudo adduser --disabled-password wine
-sudo usermod -a -G wine-adm,wine-user hunter-adm
-sudo usermod -a -G wine-user hunter
-sudo usermod -a -G wine-user michelle
-
-for i in $(members wine-user)
-do
-  home=$(getent passwd $i | cut -d':' -f6)
-  [ -n "$home" -a ! $(grep -i '^(command )?xhost \+local:wine' $home/.profile) ]
-      && printf 'xhost +local:wine' | tee -a $home/.profile
-  unset home
-done
-
-wget https://fantasygrounds.com/filelibrary/FGWebInstall.exe | sudo --user=wine --command='wine start /dev/stdout &'
-```
-- Or the [`source /path/to/repo/game.sh`](game.sh) script is available to install the application.
