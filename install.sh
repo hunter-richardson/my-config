@@ -36,12 +36,16 @@ do
   sudo apt $i -y #upgrade and clean apt
 done
 
-sudo snap install $(command cat $MYCONFIG_DIR/dpkg.snap) #install snaps
+builtin printf '\nbuiltin eval $(thefuck --alias)\n' | sudo tee -a /etc/bash.bashrc #autosetup thefuck
 
-command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)" #download linuxbrew
-builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) #setup linuxbrew
-builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc #autosetup linuxbrew
-sudo brew install -v $(command cat $MYCONFIG_DIR/dpkg.brew) #install brews
+for i in $(command cat $MYCONFIG_DIR/dpkg.snap)
+do
+  [ -d $i == 'slack' ] && sudo snap install $i --classic || sudo snap install $i #install snaps
+done
+
+wget -v https://github.com/sharkdb/bat/releases/download/v0.10.0/bat_amd64.deb -O ~/Downloads/bat.deb
+sudo dpkg -i ~/Downloads/bat.deb
+srm -lvz ~/Downloads/bat.deb
 
 for i in $(cat $MYCONFIG_DIR/dpkg.raw)
 do

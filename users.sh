@@ -9,5 +9,5 @@ sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo usermod -a -G user,dev,root,ssh hunter-adm
 for u in $(members dev)
 do
-  [ -d $MYCONFIG_DIR/home/$i/Pictures ] sudo ln -v $MYCONFIG_DIR/home/$i/Pictures/* /$(commmand getent passwd | command cut -d':' -f6)/Pictures/ #link user pictures
+  [ -d $MYCONFIG_DIR/home/$i/Pictures ] sudo scp -v $MYCONFIG_DIR/home/$i/Pictures/* /$(commmand getent passwd | command cut -d':' -f6)/Pictures/ #copy user pictures
 done

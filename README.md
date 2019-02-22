@@ -50,23 +50,22 @@ sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
 sudo apt-get upgrade
 sudo apt-get clean
 sudo tlp start
+printf '\nbuiltin eval $(thefuck --alias)\n' | sudo tee -a /etc/bash.bashrc
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Cosmic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```bash
-sudo snap install $(cat /path/to/repo/dpkg.snap)
+for i in $(cat /path/to/repo/dpkg.snap)
+do
+  [ $i == 'slack' ]
+      && sudo snap install $i --classic
+      || sudo snap install $i
+done
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or as Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) and [dpkg.tap](dpkg.tap) files contain [Homebrew](https://linuxbrew.sh) software package I use. To load [Homebrew](https://linuxbrew.sh) and apply it:
+- [`bat`](https://github.com/sharkdp/bat) is an advanced `vi`-style implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
 ```bash
-command sh -c "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-builtin printf "builtin eval \$($(brew --prefix)/bin/brew shellenv)" | sudo tee -a /etc/bash.bashrc
-sudo brew install -v $(cat /path/to/repo/dpkg.brew)
-```
-- [`bat`](https://github.com/sharkdb/bat) is an advanced implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
-```bash
-## consider lynx $(curl -s http://api.github.com/repos/sharkdp/bat/releases/latest | jshon -e assets -a -e browser_download_url | grep -i 'amd64.deb' | head -1)
-lynx https://github.com/sharkdp/bat/releases/download/v0.10.0/bat-musl_0.10.0_amd64.deb
-  # press I to install the package
+wget -v https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_amd64.deb -O ~/Downloads/bat.deb
+sudo dpkg -i ~/Downloads/bat.deb
+srm -lvz ~/Downloads/bat.deb
 ```
 - Some developers provide the prebuilt binaries directly on github without version control. The [dpkg.raw](dpkg.raw) file contains these executables. I recommend checking the repository before applying to ensure it hasn't updated since [dpkg.raw](dpkg.raw)'s last commit. To apply them:
 ```bash
@@ -91,17 +90,17 @@ After installing software, use the system GUI to create the users -- the command
 sudo groupadd dev
 sudo groupadd user
 sudo usermod -a -G user,dev,root,ssh hunter-adm
-sudo ln -sv /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
+sudo scp -v /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
 ```
 - Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```bash
 sudo usermod -a -G user,dev,sudo,ssh hunter
-sudo ln -sv /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
+sudo scp -v /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
 ```
 - Next, create the regular user `michelle`. Her files are stored in [michelle](home/michelle). She belongs to the `user` group.
 ```bash
 sudo usermod -a -G user michelle
-sudo ln -sv /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
+sudo scp -v /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 ```
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```bash
@@ -114,7 +113,7 @@ sudo ln -v /path/to/repo/etc/apt/apt.conf.d/* /etc/apt/apt.conf.d/
 ```
 I also installed [`apt-fast`](https://github.com/ilikenwf/apt-fast) above. The [apt-fast.conf](etc/apt-fast.conf) file contains my configuration for it. To apply it:
 ```bash
-sudo ln -v /path/to/repo/etc/apt-fast.conf /etc/apt-fast.conf
+sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```bash
@@ -131,10 +130,6 @@ sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
 - The [adduser.local](usr/local/sbin/adduser.local) file defines an executable that runs when a new user is created. See the [adduser manual](manpages.ubuntu.com/manpages/artful/man8/adduser) for more information. To apply it:
 ```bash
 sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
-```
-- Disable the forward and back buttons on the mouse (if so equipped) with the following:
-```bash
-sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0
 ```
 ### Shell configuration, aliases, and functions
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins from [root's fish config](root/.config/fish/config.fish). I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow [these installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
@@ -188,7 +183,7 @@ sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 - Quick application of all configurations, settings, and files can be attained by the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
-- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). For all users, open each in link Firefox or Chrome and and flip the switch to apply it, if desired; there is literally no way to automate this. Multiple attempts may be necessary for each extension to register with Gnome.
+- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). For users `hunter` and `michelle`, open browse to each link and and flip the switch to apply it, if desired; there is literally no way to automate this. Multiple attempts may be necessary for each extension to register with Gnome.
   - [Add Username to Top Panel](https://extensions.gnome.org/extension/1108) appends the user's full name to the topbar.
   - [Alternate Tab](https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt Tab` to activate it.
   - [Applications Menu](https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.

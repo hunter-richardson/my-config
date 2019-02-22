@@ -36,7 +36,7 @@
              format = man
              htmlpath  = https://git-scm.com/docs
 [http]       emptyauth = true
-             sslversion = tlsv1.3
+             sslversion = tlsv1.2
              sslverify = true
 [log]        abbrevcommit = false
              date = format-local:%A %d %B %Y, %H%M %Z
@@ -52,4 +52,5 @@
              showuntrackedfiles = all
 [user]       useconfigonly = true
              name = Hunter Richardson
+             email = hrichardson8@gmail.com
 [web]        browser = w3m

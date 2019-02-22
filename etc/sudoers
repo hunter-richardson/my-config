@@ -17,7 +17,7 @@ Defaults  editor=/bin/nano
 Defaults  passwd_timeout=2.5
 Defaults  iolog_dir=/var/log/sudo-io/%{user}/%Y%M%d
 Defaults  passwd_tries=5
-Defaults  passprompt="Are you a sudoer? %p [sudo] passwd:\t"
+Defaults  passprompt="Are you a sudoer? %p [sudo] passwd:  "
 Defaults  timestamp_timeout=10
 Defaults  targetpw
 Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
@@ -25,8 +25,8 @@ Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/
 # Host alias specification
 
 # User alias specification
-User_Alias WINE_ADMIN %wine-adm
-User_Alias WINE_USER %wine-user
+#User_Alias WINE_ADMIN %wine-adm
+#User_Alias WINE_USER %wine-user
 
 # Cmnd alias specification
 Cmnd_Alias WINE = /usr/bin/wine,/usr/bin/winecfg
