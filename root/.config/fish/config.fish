@@ -11,6 +11,7 @@ if builtin test -f /root/.config/fish/functions/fundle.fish
   fundle plugin 'decors/fish-source-highlight'
   fundle plugin 'hunter-richardson/fish-humanize-duration'
   fundle plugin 'hunter-richardson/done'
+  fundle plugin 'laughedelic/brew-completions'
   fundle plugin 'laughedelic/pisces'
   fundle plugin 'oh-my-fish/plugin-await'
   fundle plugin 'oh-my-fish/plugin-balias'
