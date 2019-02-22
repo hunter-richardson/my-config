@@ -61,27 +61,19 @@ do
       || sudo snap install $i
 done
 ```
-- [`bat`](https://github.com/sharkdp/bat) is an advanced `vi`-style implementation of `cat`, offering theme-based syntax-highlighting, `git` integration, non-printable characters, and automatic paging. I recommend checking repositories before applying to ensure they haven't updated since the last commit. To install it:
+- [Ansible](https://ansible.com) automates installation for lots of packages. [dpkg.ansible](dpkg.ansible) lists the `ansible-galaxy` package I installed. To apply it:
 ```bash
-wget -v https://github.com/sharkdp/bat/releases/download/v0.10.0/bat_amd64.deb -O ~/Downloads/bat.deb
-sudo dpkg -i ~/Downloads/bat.deb
-srm -lvz ~/Downloads/bat.deb
-```
-- Some developers provide the prebuilt binaries directly on github without version control. The [dpkg.raw](dpkg.raw) file contains these executables. I recommend checking the repository before applying to ensure it hasn't updated since [dpkg.raw](dpkg.raw)'s last commit. To apply them:
-```bash
-for i in $(cat /path/to/repo/dpkg.raw)
+for i in $(cat /path/to/repo/dpkg.ansible)
 do
-  sudo curl -v -o /usr/local/bin/$(printf '%s' $i | grep -oE '[^//]+$') $i
-  sudo chmod +x /usr/local/bin/$(printf '%s' $i | grep -oE '[^//]+$')
+  ansible-galaxy install $i
 done
 ```
-- Finally, for packages I simply could not find as prebuilt binaries, I installed with [`git`](https://git-scm.com), thus far from [Github](https://github.com).  The [dpkg.git](dpkg.git) file contains the `git` repositories I use, except [my-config](#). To apply them globally (i.e., in this repo's parent directory):
+- Finally, I installed my shell configuration with [`git`](https://git-scm.com).  The [dpkg.git](dpkg.git) file contains the `git` repository I use. To apply it globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(cat /path/to/repo/dpkg.git)
 do
   sudo git clone --verbose --depth 1 $i $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
-sudo $(dirname /path/to/repo)/matcha/Install
 ```
 ### User files and configuration
 After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories.

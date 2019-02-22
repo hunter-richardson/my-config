@@ -3,8 +3,6 @@
 sudo tlp start #initialize tlp
 sudo updatedb #refresh directory database
 MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config') #locate my-config repo
-sudo $(sudo locate -ei --limit=1 'matcha')/Install #install shell theme
-sudo xinput set-button-map 11 1 2 3 4 5 6 7 0 0 #disable mouse forward and back buttons
 sudo mkdir -p /etc/skel/Pictures/screenshots
 for i in 'etc/apt/apt.conf.d' 'usr/local/sbin'
 do

@@ -43,17 +43,10 @@ do
   [ -d $i == 'slack' ] && sudo snap install $i --classic || sudo snap install $i #install snaps
 done
 
-wget -v https://github.com/sharkdb/bat/releases/download/v0.10.0/bat_amd64.deb -O ~/Downloads/bat.deb
-sudo dpkg -i ~/Downloads/bat.deb
-srm -lvz ~/Downloads/bat.deb
-
-for i in $(cat $MYCONFIG_DIR/dpkg.raw)
+for i in $(command cat $MYCONFIG_DIR/dpkg.ansible)
 do
-  sudo curl -v -o /usr/local/bin/$(builtin printf '%s' $i | command grep -oE '[^//]+$') $i #download raw binary
-  sudo chmod +x /usr/local/$(builtin printf '%s' $i | command grep -oE '[^//]+$') #make binary executable
+  ansible-galaxy install $i
 done
-
-lynx https://github.com/sharkdp/bat/releases/download/v0.10.0/bat-musl_0.10.0_amd64.deb #install bat
 
 for i in $(cat $MYCONFIG_DIR/dpkg.git)
 do

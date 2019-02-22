@@ -1,4 +1,5 @@
 albert
+ansible
 apcalc
 apt
 apt-fast
@@ -39,6 +40,7 @@ libreoffice-script-provider-python
 libwayland-egl1
 lxd
 lynx
+matcha-theme
 members
 mesa-utils
 mlocate
@@ -47,12 +49,14 @@ htop
 mps-youtube
 ocfs2-tools
 pastebinit
+pianobar
 pithos
 python3-pip
 python3-dev
 ruby-full
 secure-delete
 snapd
+software-properties-common
 source-highlight
 steghide
 sublime-text
