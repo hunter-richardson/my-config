@@ -62,7 +62,6 @@ done
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) software package I use. To apply them:
 ```bash
-command ruby -e "$(sudo curl -fLSs https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 sudo brew install -v $(cat /path/to/repo/dpkg.brew)
 ```
