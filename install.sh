@@ -43,6 +43,7 @@ do
   [ -d $i == 'slack' ] && sudo snap install $i --classic || sudo snap install $i #install snaps
 done
 
+builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 for i in $(command cat $MYCONFIG_DIR/dpkg.brew)
 do
   brew install -v $i
