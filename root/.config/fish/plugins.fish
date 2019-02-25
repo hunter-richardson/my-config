@@ -32,7 +32,7 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
 
   builtin test $new_fundle_plugin;
     and fundle install;
-    and for i in (fundle list | command grep -v https://github.com)
+    and for i in (fundle list --short)
           builtin printf 'load plugin %s\n' $i | builtin string replace / :
           for f in functions completions
             builitn test -d /root/.config/fish/fundle/$i/$f;
