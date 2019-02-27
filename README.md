@@ -152,7 +152,7 @@ do
   sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/$i/fundle.fish
   sudo chmod o+x /root/.config/fish/$i/fundle.fish
 done
-sudo fish --command="source /root/.config/fish/config.fish"
+sudo fish --command="source /root/.config/fish/plugins.fish"
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/source-highlight/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/
