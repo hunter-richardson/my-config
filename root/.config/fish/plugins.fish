@@ -18,6 +18,7 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
   fundle plugin 'oh-my-fish/plugin-sublime'
   fundle plugin 'oh-my-fish/plugin-thefuck'
   fundle plugin 'oh-my-fish/plugin-xdg'
+  fundle plugin 'tuvistavie/fish-completion-helpers'
   fundle plugin 'tuvistavie/oh-my-fish-core'
   fundle init
 
