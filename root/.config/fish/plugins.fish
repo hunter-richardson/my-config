@@ -13,7 +13,6 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
   fundle plugin 'laughedelic/brew-completions'
   fundle plugin 'laughedelic/pisces'
   fundle plugin 'oh-my-fish/plugin-await'
-  fundle plugin 'oh-my-fish/plugin-balias'
   fundle plugin 'oh-my-fish/plugin-errno'
   fundle plugin 'oh-my-fish/plugin-grc'
   fundle plugin 'oh-my-fish/plugin-sublime'
