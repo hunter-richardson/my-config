@@ -4,6 +4,9 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
   builtin source /root/.config/fish/conf.d/functions/fundle.fish
   builtin test -f /root/.config/fish/conf.d/completions/fundle.fish;
     and builtin source /root/.config/fish/conf.d/completions/fundle.fish
+  for i in (builtin set -g | command grep -E '__fundle.*_plugin' | command grep -v history | command cut -d' ' -f1)
+    set -e $i
+  end
 
   fundle plugin 'edc/bass'
   fundle plugin 'decors/fish-colored-man'
