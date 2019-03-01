@@ -207,4 +207,4 @@ sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(
     - Paste the [Package Control](https://packagecontrol.io/installation) installation script to the Sublime console: Sublime Text -> Ctrl + \` -> Ctrl  + V
     - Connect the Build System:  Sublime Text -> Tools -> Build System -> Python
     - Run the script:  Ctrl + Shift + B -> Enter 'Python'
-    - Install Sublime packages: Preferences -> Package Control -> Advanced Install Package -> 'F#,fish,FishTank,MIPS Syntax,MySQL Snippets,OpenGL Shading Language (GLSL),Prolog,sql-formatter,SqlBeautifier,SQLTools,x86 and x86_64 Assembly'
+    - Install Sublime packages: Preferences -> Package Control -> Advanced Install Package -> 'F#,fish,FishTank,MIPS Syntax,MySQL Snippets,OpenGL Shading Language (GLSL),Prolog,sql-formatter,SqlBeautifier,SQLTools,tmux,x86 and x86_64 Assembly'
