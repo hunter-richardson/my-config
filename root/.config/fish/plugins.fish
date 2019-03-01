@@ -8,7 +8,7 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
     set -e $i
   end
 
-  for i in (command cat /root/.config/fish/fundle.plugins)
+  for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins)
     fundle plugin $i
   end
   fundle init
