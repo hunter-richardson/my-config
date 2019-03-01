@@ -8,22 +8,9 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
     set -e $i
   end
 
-  fundle plugin 'edc/bass'
-  fundle plugin 'decors/fish-colored-man'
-  fundle plugin 'decors/fish-source-highlight'
-  fundle plugin 'hunter-richardson/fish-getops'
-  fundle plugin 'hunter-richardson/fish-humanize-duration'
-  fundle plugin 'hunter-richardson/done'
-  fundle plugin 'laughedelic/brew-completions'
-  fundle plugin 'laughedelic/pisces'
-  fundle plugin 'oh-my-fish/plugin-await'
-  fundle plugin 'oh-my-fish/plugin-errno'
-  fundle plugin 'oh-my-fish/plugin-grc'
-  fundle plugin 'oh-my-fish/plugin-sublime'
-  fundle plugin 'oh-my-fish/plugin-thefuck'
-  fundle plugin 'oh-my-fish/plugin-xdg'
-  fundle plugin 'tuvistavie/fish-completion-helpers'
-  fundle plugin 'tuvistavie/oh-my-fish-core'
+  for i in edc/bass decors/fish-colored-man decors/fish-source-highlight hunter-richardson/fish-getops hunter-richardson/fish-humanize-duration hunter-richardson/done laughedelic/brew-completions laughedelic/pisces oh-my-fish/plugin-await oh-my-fish/plugin-errno oh-my-fish/plugin-grc oh-my-fish/plugin-sublime oh-my-fish/plugin-thefuck oh-my-fish/plugin-xdg tuvistavie/fish-completion-helpers tuvistavie/oh-my-fish-core
+    fundle plugin $i
+  end
   fundle init
 
   builtin set --local new_fundle_plugin (builtin test ! -d (__fundle_plugins_dir))
