@@ -11,6 +11,7 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
   fundle plugin 'edc/bass'
   fundle plugin 'decors/fish-colored-man'
   fundle plugin 'decors/fish-source-highlight'
+  fundle plugin 'hunter-richardson/fish-getops'
   fundle plugin 'hunter-richardson/fish-humanize-duration'
   fundle plugin 'hunter-richardson/done'
   fundle plugin 'laughedelic/brew-completions'
