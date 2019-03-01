@@ -26,15 +26,15 @@ sudo updatedb
 ### Software packages and repositories
 - [Ubuntu](https://ubuntu.com) ships with its own `apt` [PPAs](https://launchpad.com/ubuntu/cosmic) installed. The [apt.key](apt.key) and [custom-apt.key](custom-apt.key) files contains authentication keys (the former linked, the latter unlinked); the [dpkg.apt.sources](dpkg.apt.sources) file contains a list of my custom PPA sources; and the [external.list](etc/apt/sources.list.d/external.list) file contains a list of my custom non-PPA sources. To apply them:
 ```bash
-for i in $(cat /path/to/repo/custom-apt.key)
+for i in $(cat /path/to/repo/custom-apt.key | grep -Ev '^#')
 do
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $i
 done
-for i in $(cat /path/to/repo/apt.key)
+for i in $(cat /path/to/repo/apt.key | grep -Ev '^#')
 do
   curl -v $i | sudo apt-key add -
 done
-for i in $(cat /path/to/repo/dpkg.apt.sources)
+for i in $(cat /path/to/repo/dpkg.apt.sources | grep -Ev '^#')
 do
   sudo add-apt-repository -y $i
 done
@@ -45,15 +45,15 @@ sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
 sudo apt-get autoremove -y
-sudo apt-get install -y $(cat /path/to/repo/dpkg.apt)
-sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt)
+sudo apt-get install -y $(cat /path/to/repo/dpkg.apt | grep -Ev '^#')
+sudo apt-get purge -y $(cat /path/to/repo/rdpkg.apt | grep -Ev '^#')
 sudo apt-get upgrade
 sudo apt-get clean
 sudo tlp start
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Cosmic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```bash
-for i in $(cat /path/to/repo/dpkg.snap)
+for i in $(cat /path/to/repo/dpkg.snap | grep -Ev '^#')
 do
   [ $i == 'slack' ]
       && sudo snap install $i --classic
@@ -63,11 +63,11 @@ done
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) software package I use. To apply them:
 ```bash
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-sudo brew install -v $(cat /path/to/repo/dpkg.brew)
+sudo brew install -v $(cat /path/to/repo/dpkg.brew | grep -Ev '^#')
 ```
 - Finally, I installed my shell configuration.  The [dpkg.git](dpkg.git) file contains its `git` repository. To apply it globally (i.e., in this repo's parent directory):
 ```shell
-for i in $(cat /path/to/repo/dpkg.git)
+for i in $(cat /path/to/repo/dpkg.git | grep -Ev '^#')
 do
   sudo git clone --verbose --depth 1 https://$i.git $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
