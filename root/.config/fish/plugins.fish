@@ -8,7 +8,7 @@ if builtin test -f /root/.config/fish/conf.d/functions/fundle.fish
     set -e $i
   end
 
-  for i in edc/bass decors/fish-colored-man decors/fish-source-highlight hunter-richardson/fish-getops hunter-richardson/fish-humanize-duration hunter-richardson/done laughedelic/brew-completions laughedelic/pisces oh-my-fish/plugin-await oh-my-fish/plugin-errno oh-my-fish/plugin-grc oh-my-fish/plugin-sublime oh-my-fish/plugin-thefuck oh-my-fish/plugin-xdg tuvistavie/fish-completion-helpers tuvistavie/oh-my-fish-core
+  for i in edc/bass decors/fish-colored-man decors/fish-source-highlight hunter-richardson/fish-getopts hunter-richardson/fish-humanize-duration hunter-richardson/done laughedelic/brew-completions laughedelic/pisces oh-my-fish/plugin-await oh-my-fish/plugin-errno oh-my-fish/plugin-grc oh-my-fish/plugin-sublime oh-my-fish/plugin-thefuck oh-my-fish/plugin-xdg tuvistavie/fish-completion-helpers tuvistavie/oh-my-fish-core
     fundle plugin $i
   end
   fundle init
