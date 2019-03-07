@@ -14,9 +14,8 @@ This is the repository for my home computer's setup.
 
 ---
 ## But first
-I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [`source /path/to/repo/rehome`](rehome) will perform this action. Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell as root. Run this only once per installation.
+I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [`source /path/to/repo/rehome.sh`](rehome.sh) will perform this action. Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell as root. Run this only once per installation.
 
----
 ## Second,
 The default `root` password is NULL, which is dangerous. Modify it ASAP:
 ```bash
