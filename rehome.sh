@@ -7,5 +7,5 @@ sudo srm -lrvz /home # zero out /home
 sudo mkdir /home # recreate /home directory
 sudo mount -v /dev/sdb /home # mount device onto home
 sudo rsync -ADhorX /apartment/* /home/ # copy temporary directory back to /home
-cat /etc/mtab | grep home | sudo tee -a /etc/fstab # ensure system keeps new mount
+grep 'home' /etc/mtab | sudo tee -a /etc/fstab # ensure system keeps new mount
 sudo reboot # restart system
