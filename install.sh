@@ -58,3 +58,4 @@ for i in $(command grep -Ev '^#' $MYCONFIG_DIR/dpkg.gem)
 do
   sudo gem install $i --verbose
 done
+gem manpages --update-all
