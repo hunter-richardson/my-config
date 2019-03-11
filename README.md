@@ -59,11 +59,16 @@ do
       || sudo snap install $i
 done
 ```
-- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) software package I use. To apply them:
+- For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) formula I use. To apply them:
 ```bash
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
+- Some packages aren't event available by [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) file contains a single [Ruby](https://rubygems.org) gem I use. To apply it:
+for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
+do
+  sudo gem install $i --verbose
+done
 - Finally, I installed my shell configuration.  The [dpkg.git](dpkg.git) file contains its `git` repository. To apply it globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.git)
@@ -127,6 +132,7 @@ sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.lo
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins from [fundle.plugins](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish/fundle.plugins). I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow [these installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```bash
 mkdir -p /etc/fish/conf.d/functions /etc/fish/conf.d/completions /etc/bash/conf.d/functions
+wget -v https://raw.githubusercontent.com/cheat/cheat/master/cheat/autocompletion/cheat.fish -O /etc/fish/conf.d/completions/cheat.fish
 for i in 'bash'
          'fish'
 do
