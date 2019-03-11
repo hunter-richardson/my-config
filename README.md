@@ -64,11 +64,12 @@ done
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
-- Some packages aren't event available by [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) file contains a single [Ruby](https://rubygems.org) gem I use. To apply it:
+- Some packages aren't event available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) file contains the [Ruby](https://rubygems.org) gems I use. To apply it:
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
 do
   sudo gem install $i --verbose
 done
+gem manpages --update-all
 - Finally, I installed my shell configuration.  The [dpkg.git](dpkg.git) file contains its `git` repository. To apply it globally (i.e., in this repo's parent directory):
 ```shell
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.git)
