@@ -57,6 +57,6 @@ done
 sudo ruby install bundle --verbose
 for i in $(command grep -Ev '^#' $MYCONFIG_DIR/dpkg.gem)
 do
-  sudo bundle install $i --verbose
+  bundle install $i --verbose
 done
 gem manpages --update-all
