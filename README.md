@@ -69,7 +69,7 @@ sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 sudo gem install bundle --verbose
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
 do
-  sudo bundle install $i --verbose
+  bundle install $i --verbose
 done
 gem manpages --update-all
 ```
