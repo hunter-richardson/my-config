@@ -54,9 +54,8 @@ do
   sudo git clone --verbose --depth 1 https://$i.git $GIT_DIR/$(builtin printf '%s' $i | command grep -o '[^//]+$') #clone repos
 done
 
-sudo ruby install bundle --verbose
 for i in $(command grep -Ev '^#' $MYCONFIG_DIR/dpkg.gem)
 do
-  bundle add $i --verbose
+  sudo gem install $i --verbose
 done
 gem manpages --update-all
