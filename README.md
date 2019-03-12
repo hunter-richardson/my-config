@@ -66,10 +66,9 @@ sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
 - Some packages aren't event available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) file contains the [Ruby](https://rubygems.org) gems I use. To apply it:
 ```bash
-sudo gem install bundle --verbose
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
 do
-  bundle add $i --verbose
+  sudo gem install $i --verbose
 done
 gem manpages --update-all
 ```
