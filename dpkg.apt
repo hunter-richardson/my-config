@@ -34,6 +34,7 @@ gparted
 grc
 gtk2-engines-murrine
 gtk2-engines-pixbuf
+htop
 jshon
 libreoffice-script-provider-python
 libwayland-egl1
@@ -45,8 +46,8 @@ members
 mesa-utils
 mlocate
 moreutils
-htop
 mps-youtube
+nanny
 ocaml
 ocfs2-tools
 opam
