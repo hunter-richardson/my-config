@@ -171,12 +171,12 @@ sudo ln -v /path/to/shell-repo/global/tmux/conf /etc/tmux/
 printf 'exec tmux -2u -f /etc/tmux/conf' | tee -a ~/.profile
 ```
 ### Themes
-[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR32](https://opendesktop.org/c/1460734834). First download it (it should direct a hashed-url similar to `https://dl.opendesktop.org/api/files/downloadfile/id/1460734834/s/.../t/.../u//163336-DMZhaloRP.tar.gz`); to apply it:
+[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR](https://pling.com/s/Gnome/p/999749). First [download it](https://pling.com/dl?file_id=1460734841&file_type=application/x-gzip&file_name=163335-DMZhaloR.tar.gz&file_size=1059111&project_id=999749); to apply it:
 ```bash
 sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
-sudo mkdir -p /usr/share/icons/DMZhaloR32
-sudo scp -rv /path/to/DMZhaloRP/DMZhaloR32/* /usr/share/icons/DMZhaloR32/
-sudo ln -fv /usr/share/icons/DMZhaloR32/cursor.theme /etc/alternatives/x-cursor-theme
+sudo mkdir -p /usr/share/icons/DMZhaloR
+sudo scp -rv /path/to/DMZhaloRP/* /usr/share/icons/DMZhaloR/
+sudo ln -fv /usr/share/icons/DMZhaloR/cursor.theme /etc/alternatives/x-cursor-theme
 sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```
 ### One-time execution for setup

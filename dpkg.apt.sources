@@ -1,10 +1,5 @@
 ppa:apt-fast/stable
-ppa:avsm/ppa
 ppa:cubic-wizard/release
 ppa:daniruiz/flat-remix
-ppa:fish-shell/release-2
-ppa:gnome-shell-extensions
-ppa:nanny/ppa
-ppa:twodopeshaggy/jarun
+ppa:fish-shell/release-3
 ppa:oibaf/graphics-drivers
-ppa:ryu0/aesthetics

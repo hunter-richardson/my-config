@@ -4,6 +4,8 @@ sudo updatedb #update directory database
 MYCONFIG_DIR=$(sudo locate -ei --limit=1 'my-config') #locate my-config repo
 GIT_DIR=$(command dirname $MYCONFIG_DIR) #dir up from my-config repo
 
+sudo apt install -y curl
+
 for i in $(command grep -Ev '^#' $MYCONFIG_DIR/custom-apt.key)
 do
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $i #add manual apt keys

@@ -1,5 +1,5 @@
 Apt {
   Clean-Installed;
-  Default-Release "cosmic";
+  Default-Release "disco";
   Immediate-Configure;
 };
