@@ -169,11 +169,11 @@ done
 for i in 'functions'
          'completions'
 do
-  sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /path/to/new/config/fish/conf.d/$i/fundle.fish
-  sudo chmod o+x /path/to/new/config/fish/conf.d/$i/fundle.fish
+  sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/conf.d/$i/fundle.fish
+  sudo chmod o+x /root/.config/fish/conf.d/$i/fundle.fish
 done
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fundle.plugins /root/.config/fish/
-fish --command="source /path/to/new/config/fish/conf.d/*/fundle.fish
+fish --command="source /root/.config/fish/conf.d/*/fundle.fish
                 for i in (set -g | cut -d' ' -f1 | grep -E '^__fundle.*_plugin')
                   set -e $i
                 end
