@@ -169,11 +169,25 @@ done
 for i in 'functions'
          'completions'
 do
-  sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/$i/fundle.fish
-  sudo chmod o+x /root/.config/fish/$i/fundle.fish
+  sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /path/to/new/config/fish/conf.d/$i/fundle.fish
+  sudo chmod o+x /path/to/new/config/fish/conf.d/$i/fundle.fish
 done
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fundle.plugins /root/.config/fish/
-sudo fish --command="source /root/.config/fish/plugins.fish"
+fish --command="source /path/to/new/config/fish/conf.d/*/fundle.fish
+                for i in (set -g | cut -d' ' -f1 | grep -E '^__fundle.*_plugin')
+                  set -e $i
+                end
+                for i in (grep -Ev '^#' /root/.config/fish/fundle.plugins)
+                  printf 'load plugin %s\n' $i | string replace / :
+                  fundle plugin $i
+                end
+                fundle install;
+                  and fundle init
+                for i in (ls -1 /root/.config/fish/fundle/**.fish)
+                  chmod a+x $i
+                  ln -v $i /etc/fish/conf.d/(basename (dirname $i))/
+                end
+                exit"
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/source-highlight/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/
