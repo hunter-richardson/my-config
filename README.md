@@ -183,7 +183,7 @@ fish --command="source /path/to/new/config/fish/conf.d/*/fundle.fish
                 end
                 fundle install;
                   and fundle init
-                for i in (ls -1 /root/.config/fish/fundle/**.fish)
+                for i in (ls -1 /root/.config/fish/fundle/**/{completions,functions}/*.fish)
                   chmod a+x $i
                   ln -v $i /etc/fish/conf.d/(basename (dirname $i))/
                 end
