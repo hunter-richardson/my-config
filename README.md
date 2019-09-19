@@ -206,7 +206,7 @@ sudo ln -fv /usr/share/icons/DMZhaloR/cursor.theme /etc/alternatives/x-cursor-th
 sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 ```
 ### One-time execution for setup
-- Quick installation of all software can be attained by the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `/home` directory is on the right disc and the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
+- Quick installation of all software can be attained by the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
 - Quick initialization of users' scripts and files can be attained by the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
 - Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in the user's `Downloads` directory; otherwise it follows the instructions above.
 - Quick application of all configurations, settings, and files can be attained by the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
