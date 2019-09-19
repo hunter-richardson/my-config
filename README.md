@@ -4,6 +4,7 @@ This is the repository for my home computer's setup.
 - Installation instructions (i.e., [what you're reading now](README.md))
 - [Software packages and repositories](#software-packages-and-repositories)
 - [User files and configuration](#user-files-and-configuration)
+- [Custom userspace on internal SSD](#custom-userspace-on-internal-ssd)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
 - [Themes](#themes)
@@ -14,9 +15,6 @@ This is the repository for my home computer's setup.
 
 ---
 ## But first
-I like having my non-root userspace (i.e., `/home/*`) mounted onto a separate disk. So far, [Ubuntu](https://ubuntu.com) has labeled this disk `/dev/sdb`. Getting `/home` mounted is a pain, but seeing as I've had to do it a few times, I think I've got it down. The script [`source /path/to/repo/rehome.sh`](rehome.sh) will perform this action. Since it involves wiping the files in `/home`, it will be easier to run in an `Alt F2` shell as root. Run this only once per installation.
-
-## Second,
 The default `root` password is NULL, which is dangerous. Modify it ASAP:
 ```bash
 sudo passwd root
@@ -101,6 +99,20 @@ sudo scp -v /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```bash
 sudo usermod -a -G dev,root,ssh root
+```
+### Custom userspace on internal SSD
+After creating users, mount the custom internal SSD (so far assigned to /dev/sdb) to a directory and allocate space for each user.
+```bash
+sudo mkdir /apartment
+sudo mkfs.ext4 -cc -v /dev/sdb
+sudo mount -v /dev/sdb /apartment
+grep 'apartment' /etc/mtab | sudo tee -a /etc/fstab
+for i in $(members user)
+do
+  sudo mkdir /apartment/$i
+  sudo chown $i:$i /apartment/$i
+  sudo chmod 744 /apartment/$i
+done
 ```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. The [apt.conf.d](etc/apt/apt.conf.d) file contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:
