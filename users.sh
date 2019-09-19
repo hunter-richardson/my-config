@@ -11,3 +11,12 @@ for u in $(members dev)
 do
   [ -d $MYCONFIG_DIR/home/$i/Pictures ] sudo scp -v $MYCONFIG_DIR/home/$i/Pictures/* /$(commmand getent passwd | command cut -d':' -f6)/Pictures/ #copy user pictures
 done
+sudo mkdir /apartment
+sudo mkfs.ext4 /dev/sdb /apartment
+grep 'apartment' /etc/mtab | sudo tee -a /etc/fstab
+for i in $(members user)
+do
+  sudo mkdir /apartment/$i
+  sudo chown $i:$i /apartment/$i
+  sudo chmod 744 /apartment/$i
+done
