@@ -45,6 +45,7 @@ do
   [ -d $i == 'slack' ] && sudo snap install $i --classic || sudo snap install $i #install snaps
 done
 
+command sh -c "$(command curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 for i in $(command grep -Ev '^#' $MYCONFIG_DIR/dpkg.brew)
 do
