@@ -178,15 +178,14 @@ fish --command="source /root/.config/fish/conf.d/*/fundle.fish
                   set -e $i
                 end
                 for i in (grep -Ev '^#' /root/.config/fish/fundle.plugins)
-                  printf 'load plugin %s\n' $i | string replace / :
-                  fundle plugin $i
+                  fundle plugin $i;
+                    and printf 'load plugin %s\n' (string replace / : $i)
                 end
                 fundle install;
                   and fundle init
                 for i in (ls -1 /root/.config/fish/fundle/**/{completions,functions}/*.fish)
                   ln -v $i /etc/fish/conf.d/(basename (dirname $i))/
-                end
-                exit"
+                end"
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/source-highlight/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/
