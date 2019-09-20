@@ -170,7 +170,6 @@ for i in 'functions'
          'completions'
 do
   sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/conf.d/$i/fundle.fish
-  sudo chmod o+x /root/.config/fish/conf.d/$i/fundle.fish
 done
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fundle.plugins /root/.config/fish/
 fish --command="source /root/.config/fish/conf.d/*/fundle.fish
@@ -184,7 +183,6 @@ fish --command="source /root/.config/fish/conf.d/*/fundle.fish
                 fundle install;
                   and fundle init
                 for i in (ls -1 /root/.config/fish/fundle/**/{completions,functions}/*.fish)
-                  chmod a+x $i
                   ln -v $i /etc/fish/conf.d/(basename (dirname $i))/
                 end
                 exit"
