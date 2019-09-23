@@ -102,7 +102,7 @@ sudo scp -v /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 sudo usermod -a -G dev,root,ssh root
 ```
 ### Custom userspace on internal SSD
-After creating users, mount the custom internal SSD (so far assigned to /dev/sdb) to a directory and allocate space for each user.
+After creating users, mount the custom internal SSD (so far assigned to `/dev/sdb`) to a directory and allocate space for each user.
 ```bash
 sudo mkdir /apartment
 sudo mkfs.ext4 -cc -v /dev/sdb
