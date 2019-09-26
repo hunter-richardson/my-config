@@ -148,6 +148,12 @@ sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
 ```bash
 sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
 ```
+- The [policy.json](etc/opt/chrome/policies/managed/policy.json) and [policies.json](usr/lib/firefox/distribution/policies.json) files should configure Internet browsers so that users are prevented from opening [Incognito Mode]() and [Private Mode]() tabs. To apply them:
+```bash
+sudo ln -v /path/to/repo/etc/opt/chrome/policies/managed/policy.json /etc/opt/chrome/policies/managed/
+sudo ln -v /path/to/repo/etc/opt/chrome/policies/managed/policy /etc/chromium/policies/managed/
+sudo ln -v /path/to/repo/usr/lib/firefox/distribution/policies.json /usr/lib/firefox/distribution/
+```
 ### Shell configuration, aliases, and functions
 - [Ubuntu](https://ubuntu.com) ships with `bash` as its default shell. My favorite shell is [Fish](https://fishshell.com), which I also installed above, using [`fundle`](https://github.com/tuvistavie/fundle) to load some useful plugins from [fundle.plugins](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish/fundle.plugins). I've also written a few functions and aliases that are helpful for my shell in [fish](https://github.com/hunter-richardson/shell-config/blob/master/ubuntu/fish) and its subdirectories. To apply them, follow [these installation instructions](https://github.com/hunter-richardson/shell-config/blob/master/README.md):
 ```bash
