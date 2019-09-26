@@ -23,6 +23,7 @@ flat-remix-gnome
 fonts-hack-ttf
 gdebi
 git
+gnome-common
 gnome-paint
 gnome-shell-extension-weather
 gnome-shell-mailnag
