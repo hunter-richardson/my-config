@@ -63,13 +63,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
-- Some packages aren't even available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) file contains the [Ruby](https://rubygems.org) gems I use. To apply it:
+- Some packages aren't even available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem) and [dpkg.pip3](dpkg.pip3) files contains the [Ruby](https://rubygems.org) gems and [Python](https://python.org) libraries I use. To apply them:
 ```bash
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
 do
   sudo gem install $i --verbose
 done
 gem manpages --update-all
+for i in $(grep -Ev '^#' /path/to/repo/dpkg.pip3)
+do
+  sudo pip3 install $i
+done
 ```
 - Finally, I installed my shell configuration.  The [dpkg.git](dpkg.git) file contains its `git` repository. To apply it globally (i.e., in this repo's parent directory):
 ```shell
@@ -102,7 +106,7 @@ sudo scp -v /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 sudo usermod -a -G dev,root,ssh root
 ```
 ### Custom userspace on internal SSD
-After creating users, mount the custom internal SSD (so far assigned to /dev/sdb) to a directory and allocate space for each user.
+After creating users, mount the custom internal SSD (so far assigned to `/dev/sdb`) to a directory and allocate space for each user.
 ```bash
 sudo mkdir /apartment
 sudo mkfs.ext4 -cc -v /dev/sdb
