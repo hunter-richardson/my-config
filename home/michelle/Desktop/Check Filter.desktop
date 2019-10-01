@@ -1,0 +1,7 @@
+[Desktop Entruy]
+Engoding=UTF-8
+Name=test_filter
+Comment=Test web filters and policies
+Exec=fish --command="builtin source /home/michelle/test_filter.fish"
+Icon=preferences-desktop-locale
+Type=Application
