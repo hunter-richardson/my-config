@@ -182,6 +182,7 @@ for i in 'functions'
 do
   sudo wget https://raw.githubusercontent.com/danhper/fundle/master/$i/fundle.fish -O /root/.config/fish/conf.d/$i/fundle.fish
 done
+sudo ln -v /path/to/repo/root/.config/fish/conf.d/functions/update_fish.fish /root/.config/fish/conf.d/functions/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fundle.plugins /root/.config/fish/
 fish --command="source /root/.config/fish/conf.d/*/fundle.fish
                 for i in (set -g | cut -d' ' -f1 | grep -E '^__fundle.*_plugin')

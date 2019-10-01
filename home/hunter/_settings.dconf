@@ -225,7 +225,7 @@ enable-smartcard-authentication=false
 enable-password-authentication=true
 
 [org/gnome/desktop/calendar]
-show-weekdate=true
+show-weekdate=false
 
 [org/gnome/desktop/notifications]
 application-children=['update-manager']
