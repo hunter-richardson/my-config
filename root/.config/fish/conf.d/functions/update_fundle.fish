@@ -12,7 +12,7 @@ end
   and for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins | command shuf)
         fundle plugin $i
       end
-fundle install | builtin string replace / : | builtin string replace hunter-richardson \$ME | builtin string replace 'installed in' '=>';
+fundle install | builtin string replace / : | builtin string replace 'installed in' '=>' | builtin string replace hunter-richardson \$ME;
   and fundle init;
   and fundle self-update;
   and fundle clean;
