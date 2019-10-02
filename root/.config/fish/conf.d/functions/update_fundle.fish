@@ -23,9 +23,8 @@ end;
   and fundle clean;
   and for i in (fundle list --short | command shuf)
         builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-          and for j in (fundle update $i)
-                builtin printf 'Updating %s%s%s/%s%s%s\n' $bold $blue $src $red (builtin string replace / : $i | builtin string replace hunter-richardson \$ME) $normal
-              end
+          and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME);
+          and fundle update $i | builtin string replace $i (builtin printf '%s%s%s/%s%s%s' $bold $blue $src $red $iden $normal)
       end;
 for i in (command ls -1 /root/.config/fish/fundle/**/{comple,func}tions/*.fish | command shuf)
   builtin set -l iden (builtin printf '%s' $i | command cut -d/ -f6,7)
