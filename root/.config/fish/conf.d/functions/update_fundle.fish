@@ -19,7 +19,7 @@ for i in (fundle install)
     and builtin printf '%s%s%s/%s%s%s => %s\n' $bold $blue $src $red (builtin printf '%s' $iden | builtin string replace / : | builtin string replace hunter-richardson \$ME) $normal $path
 end;
   and fundle init;
-  and fundle self-update;
+  and fundle self-update | builtin string replace fundle (builtin printf '%s%sGITHUB/%sdanhper:fundle%s');
   and fundle clean;
   and for i in (fundle list --short | command shuf)
         builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
