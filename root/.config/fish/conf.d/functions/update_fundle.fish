@@ -40,4 +40,4 @@ end | command column -t -s, -o' ';
                 command ln -f $f /etc/fish/conf.d/(command basename (command dirname $f))/;
                   and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename (command dirname $f) | builtin string replace s '') (command basename $f .fish)
               end
-      end;
+      end | command column -t -s, -o' ';
