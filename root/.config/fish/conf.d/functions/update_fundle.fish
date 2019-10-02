@@ -12,7 +12,7 @@ end;
   and for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins | command shuf)
         fundle plugin $i
       end
-for i in (fundle install)
+for i in (fundle install | command shuf)
   builtin set -l iden (builtin printf '%s' $i | command cut -d' ' -f1);
     and builtin set -l path (builtin printf '%s' $i | command awk '{print $NF}');
     and builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
