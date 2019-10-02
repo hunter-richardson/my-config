@@ -5,9 +5,9 @@ for i in (builtin set -g | command grep '__fundle.*_plugin' | command cut -d' ' 
     and builtin set -e $i;
     or  builtin continue
 end;
-  and for i in (command find /root -type f -name fundle.fish | command shuf)
-        builtin source $i;
-          and builtin printf 'load %s%sGITHUB/%sdanhper:fundle%s fundle %s\n' $bold $blue $red $normal (command basename (command dirname $i))
+  and for i in functions completions
+        builtin source /root/.config/fish/conf.d/$i/fundle.fish;
+          and builtin printf 'load %s%sGITHUB/%sdanhper:fundle%s fundle %s\n' $bold $blue $red $normal (builtin string replace s '' $i)
       end;
   and for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins | command shuf)
         fundle plugin $i
