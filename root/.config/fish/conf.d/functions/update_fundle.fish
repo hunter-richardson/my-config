@@ -28,7 +28,7 @@ for i in (fundle install | command shuf)
         and builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
         and builtin printf '%s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
   end
-end | command column -t -s, -o' ';
+end | command column -t -s;
   and fundle init;
   and fundle self-update | builtin string replace fundle (builtin printf '%s%sGITHUB/%sdanhper:fundle%s') $bold $blue $red $normal;
   and fundle clean;
@@ -40,4 +40,4 @@ end | command column -t -s, -o' ';
                 command ln -f $f /etc/fish/conf.d/(command basename (command dirname $f))/;
                   and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename (command dirname $f) | builtin string replace s '') (command basename $f .fish)
               end
-      end | command column -t -s, -o' ';
+      end | command column -t -s;
