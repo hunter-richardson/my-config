@@ -10,9 +10,9 @@ end;
           and builtin printf 'load %s%sGITHUB/%sdanhper:fundle%s fundle %s\n' $bold $blue $red $normal (builtin string replace s '' $i)
       end;
   and for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins | command shuf)
-        builtin set -l src (builtin printf '%s' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-          and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME)
         fundle plugin $i;
+          and builtin set -l src (builtin printf '%s' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
+        builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME);
           and builtin printf 'load plugin %s%s%s/%s%s%s\n' $bold $blue $src $red $iden $normal
       end
 for i in (fundle install | command shuf)
