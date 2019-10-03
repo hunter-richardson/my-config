@@ -20,7 +20,7 @@ for i in (fundle install | command shuf)
     case Installing
       builtin set -l (builtin printf '%s' $i | command awk '{print $NF}');
         and builtin set -l (builtin printf '%s' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-        and bulitin set -l (builtin string join / (command find /root -type d -name fundle) $iden);
+        and builtin set -l (builtin string join / (command find /root -type d -name fundle) $iden);
         and builtin printf 'Installing %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
     case '*'
       builtin set -l iden (builtin printf '%s' $i | command cut -d' ' -f1);
