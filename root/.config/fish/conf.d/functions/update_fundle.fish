@@ -35,9 +35,9 @@ end | command column -t -s,;
   and for i in (fundle list --short | command shuf)
         builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
           and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME)
-        fundle update $i | builtin string replace $i (builtin printf '%s%s%s/%s%s%s' $bold $blue $src $red $iden $normal);
+        fundle update $i | builtin string replace $i (builtin printf 'plugin %s%s%s/%s%s%s' $bold $blue $src $red $iden $normal);
           and for f in (command ls -1 /root/.config/fish/fundle/$i/{comple,func}tions/*.fish | command shuf)
                 command ln -f $f /etc/fish/conf.d/(command basename (command dirname $f))/;
-                  and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename $f .fish) (command basename (command dirname $f) | builtin string replace s '')
+                  and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s%s%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename $f .fish) $yellow (command basename (command dirname $f) | builtin string replace s '') $normal
               end
       end | command column -t -s,;
