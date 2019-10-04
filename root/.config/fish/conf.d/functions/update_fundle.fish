@@ -13,22 +13,22 @@ end;
         fundle plugin $i;
           and builtin set -l src (builtin printf '%s' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
           and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME);
-        builtin printf 'load plugin %s%s%s/%s%s%s\n' $bold $blue $src $red $iden $normal
-      end
+        builtin printf 'load %s%s%s/%s%s%s,fundle plugin\n' $bold $blue $src $red $iden $normal
+      end | command column -t -s,
 for i in (fundle install | command shuf)
   switch (builtin printf '%s' $i | command cut -d' ' -f1)
     case Installing
       builtin set -l (builtin printf '%s' $i | command awk '{print $NF}');
         and builtin set -l (builtin printf '%s' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
         and builtin set -l (builtin string join / (command find /root -type d -name fundle) $iden);
-        and builtin printf 'Installing %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
+        and builtin printf 'Installing plugin %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
     case '*'
       builtin set -l iden (builtin printf '%s' $i | command cut -d' ' -f1);
         and builtin set -l path (builtin printf '%s' $i | command awk '{print $NF}');
         and builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-        and builtin printf '%s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
+        and builtin printf 'plugin %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
   end
-end | command column -t -s;
+end | command column -t -s,;
   and fundle init;
   and fundle self-update | builtin string replace fundle (builtin printf '%s%sGITHUB/%sdanhper:fundle%s') $bold $blue $red $normal;
   and fundle clean;
@@ -38,6 +38,6 @@ end | command column -t -s;
         fundle update $i | builtin string replace $i (builtin printf '%s%s%s/%s%s%s' $bold $blue $src $red $iden $normal);
           and for f in (command ls -1 /root/.config/fish/fundle/$i/{comple,func}tions/*.fish | command shuf)
                 command ln -f $f /etc/fish/conf.d/(command basename (command dirname $f))/;
-                  and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename (command dirname $f) | builtin string replace s '') (command basename $f .fish)
+                  and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename $f .fish) (command basename (command dirname $f) | builtin string replace s '')
               end
-      end | command column -t -s;
+      end | command column -t -s,;
