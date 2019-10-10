@@ -10,10 +10,10 @@ end;
           and builtin printf 'load %s%sGITHUB/%sdanhper:fundle%s fundle %s\n' $bold $blue $red $normal (builtin string replace s '' $i)
       end;
   and for i in (command grep -Ev '^#' /root/.config/fish/fundle.plugins | command shuf)
+        builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME)
         fundle plugin $i;
           and builtin set -l src (builtin printf '%s' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-          and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME);
-        builtin printf 'load %s%s%s/%s%s%s,fundle plugin\n' $bold $blue $src $red $iden $normal
+          and builtin printf 'load %s%s%s/%s%s%s,fundle plugin\n' $bold $blue $src $red $iden $normal
       end | command column -t -s,
 for i in (fundle install | command shuf)
   switch (builtin printf '%s' $i | command cut -d' ' -f1)
@@ -30,7 +30,7 @@ for i in (fundle install | command shuf)
   end
 end | command column -t -s,;
   and fundle init;
-  and fundle self-update | builtin string replace fundle (builtin printf '%s%sGITHUB/%sdanhper:fundle%s') $bold $blue $red $normal;
+  and fundle self-update | builtin string replace fundle (builtin printf '%s%sGITHUB/%sdanhper:fundle%s' $bold $blue $red $normal);
   and fundle clean;
   and for i in (fundle list --short | command shuf)
         builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
