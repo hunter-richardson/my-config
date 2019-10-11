@@ -36,8 +36,16 @@ end | command column -t -s,;
         builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $i | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
           and builtin set -l iden (builtin string replace / : $i | builtin string replace hunter-richardson \$ME)
         fundle update $i | builtin string replace $i (builtin printf 'plugin %s%s%s/%s%s%s' $bold $blue $src $red $iden $normal);
-          and for f in (command ls -1 /root/.config/fish/fundle/$i/{comple,func}tions/*.fish | command shuf)
-                command ln -f $f /etc/fish/conf.d/(command basename (command dirname $f))/;
-                  and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s %s,%s%s%s\n' (command basename (command dirname $f)) (command basename $f) $bold $blue $src $red $iden $normal (command basename $f .fish) $yellow (command basename (command dirname $f) | builtin string replace s '') $normal
-              end
-      end | command column -t -s,;
+        builtin printf '%s\n' (
+          builtin test -f /root/.config/fish/fundle/$i/init.fish;
+            and command ln -f /root/.config/fish/fundle/$i/init.fish /etc/fish/conf.d/init/(builtin printf '%s' $i | command cut -d/ -f2).fish;
+            and builtin printf 'global /etc/fish/conf.d/init/%s.fish,=> %s%s%s/%s%s%s,,%sinitialization%s\n' (builtin printf '%s' $i | command cut -d/ -f2) $bold $blue $src $red $iden $normal $yellow $normal
+          for d in (builtin printf 'completions\nfunctions' | command shuf)
+            builtin test -d /root/.config/fish/fundle/$i/$d;
+              and for f in (command ls -1 /root/.config/fish/fundle/$i/$d/*.fish | command shuf)
+                    command ln -f $f /etc/fish/conf.d/$d/;
+                      and builtin printf 'global /etc/fish/conf.d/%s/%s,=> %s%s%s/%s%s%s,%s,%s%s%s\n' $d (command basename $f) $bold $blue $src $red $iden $normal (command basename $f .fish) $yellow (builtin string replace s '' $d) $normal
+                  end
+          end
+        ) | command column -nt -s,
+      end
