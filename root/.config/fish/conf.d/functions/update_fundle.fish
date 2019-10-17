@@ -21,12 +21,12 @@ for i in (fundle install | command shuf)
       builtin set -l (builtin printf '%s' $i | command awk '{print $NF}');
         and builtin set -l (builtin printf '%s' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
         and builtin set -l (builtin string join / (command find /root -type d -name fundle) $iden);
-        and builtin printf 'Installing plugin %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
+        and builtin printf 'Installing plugin %s%s%s/%s%s%s,=> %s%s%s%s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $bold $yellow $path $normal
     case '*'
       builtin set -l iden (builtin printf '%s' $i | command cut -d' ' -f1);
         and builtin set -l path (builtin printf '%s' $i | command awk '{print $NF}');
         and builtin set -l src (builtin printf '%s\n' $__fundle_plugin_urls | command grep $iden | command cut -d/ -f3 | command cut -d. -f1 | builtin string upper);
-        and builtin printf 'plugin %s%s%s/%s%s%s,=> %s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $path
+        and builtin printf 'plugin %s%s%s/%s%s%s,=> %s%s%s%s\n' $bold $blue $src $red (builtin string replace / : $iden | builtin string replace hunter-richardson \$ME) $normal $bold $yellow $path $normal
   end
 end | command column -t -s,;
   and fundle init;
