@@ -130,11 +130,15 @@ sudo ln -fv /path/to/repo/etc/apt-fast.conf /etc/
 ```
 - The [login.defs](etc/login.defs) file contains setup flags related to user login, authentication, and permissions. See the [login.defs manual](http://man7.org/linux/man-pages/man5/login.defs.5.html) for more information. To apply it:
 ```bash
-sudo ln -fv /path/to/repo/etc/login.defs /etc/login.defs
+sudo ln -fv /path/to/repo/etc/login.defs /etc/
+```
+- The [hosts](etc/hosts) file contains configuration for DNS routing, used to set up internal servers, both IPv4 and IPv6, as well as inforce search engine content filters on [Bing](https://bing.com), [DuckDuckGo](https://duckduckgo.com), [Google](https://google.com), and [all its foreign variants](https://ipfs.io/ipfs/QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco/wiki/List_of_Google_domains.html). To apply it:
+```bash
+sudo ln -fv /path/to/repo/etc/hosts /etc/
 ```
 - I use [`nano`](https://nano-editor.org) as my default text editor. The [nanorc](etc/nanorc) file contains its configuration. To apply it:
 ```bash
-sudo ln -fv /path/to/repo/etc/nanorc /etc/nanorc
+sudo ln -fv /path/to/repo/etc/nanorc /etc/
 ```
 - [`bat`](https://github.com/sharkdp/bat), installed previously, may use [bat/conf](etc/bat/conf) for its configuration. To apply it:
 ```bash
@@ -142,11 +146,11 @@ sudo ln -fv /path/to/repo/etc/bat/conf /etc/bat/
 ```
 - The [sudoers](etc/sudoers) file contains additional setup flags related to user authentication and permissions. To apply it:
 ```bash
-sudo ln -fv /path/to/repo/etc/sudoers /etc/sudoers
+sudo ln -fv /path/to/repo/etc/sudoers /etc/
 ```
 - The [adduser.local](usr/local/sbin/adduser.local) file defines an executable that runs when a new user is created. See the [adduser manual](manpages.ubuntu.com/manpages/artful/man8/adduser) for more information. To apply it:
 ```bash
-sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/adduser.local
+sudo ln -v /path/to/repo/usr/local/sbin/adduser.local /usr/local/sbin/
 ```
 - The [policy.json](etc/opt/chrome/policies/managed/policy.json) and [policies.json](usr/lib/firefox/distribution/policies.json) files should configure Internet browsers so that users are prevented from opening [Incognito Mode]() and [Private Mode]() tabs. To apply them:
 ```bash
