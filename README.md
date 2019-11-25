@@ -81,12 +81,6 @@ for i in $(grep -Ev '^#' /path/to/repo/dpkg.git)
 do
   sudo git clone --verbose --depth 1 https://$i.git $(dirname /path/to/repo)/$(echo $i | grep -oE '[^//]+$' | cut -d'.' -f1)
 done
-if [[ -d $(dirname /path/to/repo)/dragon ]]
-then
-  cd $(dirname /path/to/repo)/dragon
-  make && make PREFIX=/bin install
-  cd -
-fi
 ```
 ### User files and configuration
 After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories.
