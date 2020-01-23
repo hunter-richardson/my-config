@@ -62,3 +62,7 @@ do
   sudo gem install $i --verbose
 done
 gem manpages --update-all
+for i in $(command grep -Ev '^#' $MYCONFIG_DIR/dpkg.npm)
+do
+  sudo npm install -g --loglevel verbose
+done
