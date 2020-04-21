@@ -36,7 +36,6 @@ grc
 gtk2-engines-murrine
 gtk2-engines-pixbuf
 htop
-jitsi-meet
 jshon
 libreoffice-script-provider-python
 libwayland-egl1
@@ -48,6 +47,7 @@ mesa-utils
 mlocate
 moreutils
 mps-youtube
+npm
 ocaml
 ocfs2-tools
 opam

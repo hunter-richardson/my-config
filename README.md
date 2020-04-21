@@ -4,7 +4,6 @@ This is the repository for my home computer's setup.
 - Installation instructions (i.e., [what you're reading now](README.md))
 - [Software packages and repositories](#software-packages-and-repositories)
 - [User files and configuration](#user-files-and-configuration)
-- [Custom userspace on internal SSD](#custom-userspace-on-internal-ssd)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
 - [Themes](#themes)
@@ -41,10 +40,10 @@ sudo ln -v /path/to/repo/etc/apt/sources.list.d/external.list /etc/apt/sources.l
 ```bash
 sudo debconf-set-selections /path/to/repo/apt.debconf
 sudo apt-get update -y
-sudo apt-get autoremove -y
 sudo apt-get install -y $(grep -Ev '^#' /path/to/repo/dpkg.apt)
 sudo apt-get purge -y $(grep -Ev '^#' /path/to/repo/rdpkg.apt)
-sudo apt-get upgrade
+sudo apt-get upgrade -y
+sudo apt-get autoremove -y
 sudo apt-get clean
 sudo tlp start
 ```
@@ -65,10 +64,7 @@ sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
 - Some packages aren't even available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem), [dpkg.pip3](dpkg.pip3), and [dpkg.npm](dpkg.npm) files respectively contain the [Ruby](https://rubygems.org) gems, [Python](https://python.org) libraries, and [NPM](https://nmpjs.org) packages I use. To apply them:
 ```bash
-for i in $(grep -Ev '^#' /path/to/repo/dpkg.gem)
-do
-  sudo gem install $i --verbose
-done
+sudo gem install $(grep -Ev '^#' /path/to/repo/dpkg.gem) --verbose
 gem manpages --update-all
 for i in $(grep -Ev '^#' /path/to/repo/dpkg.pip3)
 do
@@ -87,41 +83,16 @@ do
 done
 ```
 ### User files and configuration
-After installing software, use the system GUI to create the users -- the commands `adduser` and `useradd` don't seem to work. After each, allow the new user to authenticate, which creates his/her userspace directories.
-- Most likely, the administrative user `hunter-adm` was created before Ubuntu was installed. His files are stored in [hunter-adm](home/hunter-adm) and he belongs to the groups `user`, `dev`, `root`, and `ssh`.
+- Most likely, the administrative user `hunter` was created before Ubuntu was installed. His files are stored in [hunter](home/hunter) and he belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
 ```bash
 sudo groupadd dev
 sudo groupadd user
-sudo usermod -a -G user,dev,root,ssh hunter-adm
-sudo scp -v /path/to/repo/home/hunter-adm/Pictures/* /home/hunter-adm/Pictures/
-```
-- Next, create the regular user `hunter`. His files are stored in [hunter](home/hunter). He belongs to the groups `user`, `dev`, `sudo`, and `ssh`.
-```bash
 sudo usermod -a -G user,dev,sudo,ssh hunter
 sudo scp -v /path/to/repo/home/hunter/Pictures/* /home/hunter/Pictures/
-```
-- Next, create the regular user `michelle`. Her files are stored in [michelle](home/michelle). She belongs to the `user` group.
-```bash
-sudo usermod -a -G user michelle
-sudo scp -v /path/to/repo/home/michelle/Pictures/* /home/michelle/Pictures/
 ```
 - The owner of all files not specific to any user is, of course, `root`. Its files are stored in [root](root). It belongs to the groups `user`, `dev`, `root`, and `ssh`.
 ```bash
 sudo usermod -a -G dev,root,ssh root
-```
-### Custom userspace on internal SSD
-After creating users, mount the custom internal SSD (so far assigned to `/dev/sdb`) to a directory and allocate space for each user.
-```bash
-sudo mkdir /apartment
-sudo mkfs.ext4 -cc -v /dev/sdb
-sudo mount -v /dev/sdb /apartment
-grep 'apartment' /etc/mtab | sudo tee -a /etc/fstab
-for i in $(members user)
-do
-  sudo mkdir /apartment/$i
-  sudo chown $i:$i /apartment/$i
-  sudo chmod 744 /apartment/$i
-done
 ```
 ### Operating system and program configuration
 - [Ubuntu](https://ubuntu.com) ships with `apt` well-configured for the average user's needs -- but I'm not the average user. The [apt.conf.d](etc/apt/apt.conf.d) file contains my custom `apt` configuration. See the [apt.conf manual](https://linux.die.net/man/5/apt.conf) for more information. To apply them:
@@ -247,9 +218,7 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
 Many of the above Gnome extensions, as well as Gnome itself, have configurable variables. These are available to view and edit either by the `gnome-control-center`, `gnome-tweak-tool`, and `dconf-editor` GUI applications or by the `gsettings` and `dconf` commands. The [`source /path/to/repo/settings.sh`](settings.sh) script will populate as many such variables as are installed with what I think should be the default values. Since many of are user-personal, each user has a specific flavor of the key-values, detailed in his/her/its [_settings.dconf](home/hunter-adm/_settings.dconf) file.
 - To load the variables individually as each login user:
 ```bash
-sudo --command="dconf load / < /path/to/repo/home/hunter-adm/_settings.dconf" --user=hunter-adm
 sudo --command="dconf load / < /path/to/repo/home/hunter/_settings.dconf" --user=hunter
-sudo --command="dconf load / < /path/to/repo/home/michelle/_settings.dconf" --user=michelle
 sudo --command="dconf load / < /path/to/repo/etc/skel/_settings.dconf" --user=$(any account created later)
 ```
 - Or the [`source /path/to/repo/settings.sh`](settings.sh) script is available to load the variables for each user automatically.
