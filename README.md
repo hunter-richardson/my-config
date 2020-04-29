@@ -49,18 +49,13 @@ sudo tlp start
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in public, Cosmic-secure PPAs, [Snaps](https://snapcraft.io) may do the trick. The [dpkg.snap](dpkg.snap) file contains the software packages I've installed via `snap`. To apply them:
 ```bash
-for i in $(grep -Ev '^#' /path/to/repo/dpkg.snap)
-do
-  [ $i == 'slack' ]
-      && sudo snap install $i --classic
-      || sudo snap install $i
-done
+sudo snap install $(grep -Ev '^#' /path/to/repo/dpkg.snap)
 ```
 - For packages [Ubuntu](https://ubuntu.com) doesn't offer in PPAs or Snaps, I looked elsewhere. The [dpkg.brew](dpkg.brew) file contains a single [Homebrew](https://linuxbrew.sh) formula I use. To apply them:
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 builtin eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-sudo brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
+brew install -v $(grep -Ev '^#' /path/to/repo/dpkg.brew)
 ```
 - Some packages aren't even available on [Homebrew](https://linuxbrew.sh). The [dpkg.gem](dpkg.gem), [dpkg.pip3](dpkg.pip3), and [dpkg.npm](dpkg.npm) files respectively contain the [Ruby](https://rubygems.org) gems, [Python](https://python.org) libraries, and [NPM](https://nmpjs.org) packages I use. To apply them:
 ```bash
@@ -180,7 +175,7 @@ sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.nanorc /usr/share/nano/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/source-highlight/
 sudo ln -v /path/to/shell-repo/ubuntu/fish/fish.lang /usr/share/gtksourceview-3.0/language-specs/
 sudo mkdir -p /etc/tmux
-sudo git clone --verbose --depth 1 https://github.com/tmux-plugins/tmux /etc/tmux/tpm
+sudo git clone --verbose --depth 1 https://github.com/tmux-plugins/tpm /etc/tmux/tpm
 sudo ln -v /path/to/shell-repo/global/tmux/conf /etc/tmux/
 printf 'exec tmux -2u -f /etc/tmux/conf' | tee -a ~/.profile
 ```
@@ -200,7 +195,7 @@ sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
 - Quick application of all configurations, settings, and files can be attained by the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
-- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). For users `hunter` and `michelle`, open browse to each link and and flip the switch to apply it, if desired; there is literally no way to automate this. Multiple attempts may be necessary for each extension to register with Gnome.
+- The following is a list of links to [Gnome extensions](https://extensions.gnome.org). Open browse to each link and and flip the switch to apply it, if desired; there is literally no way to automate this. Multiple attempts may be necessary for each extension to register with Gnome.
   - [Add Username to Top Panel](https://extensions.gnome.org/extension/1108) appends the user's full name to the topbar.
   - [Alternate Tab](https://extensions.gnome.org/extension/15) implements a window switcher that resembles MacOS. `Alt Tab` to activate it.
   - [Applications Menu](https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.

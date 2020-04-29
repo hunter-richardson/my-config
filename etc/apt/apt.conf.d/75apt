@@ -1,5 +1,5 @@
 Apt {
   Clean-Installed;
-  Default-Release "disco";
+  Default-Release "focal";
   Immediate-Configure;
 };

@@ -1,4 +1,4 @@
-albert
+#albert
 apcalc
 apt
 apt-fast
@@ -13,7 +13,7 @@ curl
 dconf-editor
 default-jre
 dos2unix
-dtrx
+#dtrx
 duplicity
 e2guardian
 exuberant-ctags
@@ -39,7 +39,7 @@ htop
 jshon
 libreoffice-script-provider-python
 libwayland-egl1
-linuxbrew-wrapper
+#linuxbrew-wrapper
 lxd
 lynx
 members
@@ -75,5 +75,7 @@ ubuntu-restricted-extras
 urlview
 w3m
 wine-stable
+wine32
+winetricks
 wordgrinder
 xsel
