@@ -6,7 +6,6 @@ This is the repository for my home computer's setup.
 - [User files and configuration](#user-files-and-configuration)
 - [Operating system and program configuration](#operating-system-and-program-configuration)
 - [Shell configuration, aliases, and functions](#shell-configuration-aliases-and-functions)
-- [Themes](#themes)
 - [One-time execution for setup](#one-time-execution-for-setup)
 - [Manual installation of extensions](#manual-installation-of-extensions)
 - [Miscellaneous configuration](#miscellaneous-configuration)
@@ -179,19 +178,9 @@ sudo git clone --verbose --depth 1 https://github.com/tmux-plugins/tpm /etc/tmux
 sudo ln -v /path/to/shell-repo/global/tmux/conf /etc/tmux/
 printf 'exec tmux -2u -f /etc/tmux/conf' | tee -a ~/.profile
 ```
-### Themes
-[Ubuntu](https://ubuntu.com) ships with several themes installed. For cursors, the default is [DMZ-White](https://opendesktop.org/c/1460733789) is the default. I prefer [DMZHaloR](https://pling.com/s/Gnome/p/999749). First [download it](https://pling.com/dl?file_id=1460734841&file_type=application/x-gzip&file_name=163335-DMZhaloR.tar.gz&file_size=1059111&project_id=999749); to apply it:
-```bash
-sudo dtrx -nv /path/to/163336-DMZhaloRP.tar.gz
-sudo mkdir -p /usr/share/icons/DMZhaloR
-sudo scp -rv /path/to/DMZhaloRP/* /usr/share/icons/DMZhaloR/
-sudo ln -fv /usr/share/icons/DMZhaloR/cursor.theme /etc/alternatives/x-cursor-theme
-sudo srm -lrvz /path/to/DMZhaloRP /path/to/163336-DMZhaloRP.tar.gz
-```
 ### One-time execution for setup
 - Quick installation of all software can be attained by the [`source /path/to/repo/install.sh`](install.sh) script. It assumes the `root` password has been secured; otherwise it follows the instructions above. Run this only once per installation.
 - Quick initialization of users' scripts and files can be attained by the [`source /path/to/repo/users.sh`](users.sh) script. It assumes the above script has been run and all users have been created, otherwise it follows the instructions above. Run this only once per installation.
-- Quick setup of downloaded themes (i.e., those not available by SPMs) can be attained by the [`source /path/to/repo/themes.sh`](themes.sh) script. It assumes the theme(s) is/are in the user's `Downloads` directory; otherwise it follows the instructions above.
 - Quick application of all configurations, settings, and files can be attained by the [`source /path/to/repo/misc.sh`](misc.sh) script. It assumes the above scripts have been run, otherwise it follows the instructions above. Run this only once per installation. **NOTE:  if anything breaks with this script, the machine will need to be purged _again_.**
 ### Manual installation of extensions 
 Unfortunately and despite popular belief to the contrary, not _everything_ may be automated with CLI scripts, even in Linux.
@@ -201,12 +190,10 @@ Unfortunately and despite popular belief to the contrary, not _everything_ may b
   - [Applications Menu](https://extensions.gnome.org/extension/6) implements a category-based applications menu, accessible from the topbar.
   - [Apt Update Indicator](https://extensions.gnome.org/extension/1139) monitors `apt` for software upgrades and autoremoval stats.
   - [Datetime Format](https://extensions.gnome.org/extension/1173) allows users to customize the datetime format on the status bar.
-  - [Extensions](https://extensions.gnome.org/extension/1036) allows users to enable or disable Gnome extensions from the topbar.
   - [Extension Update Notifier](https://extensions.gnome.org/extension/1166) monitors installed Gnome extensions for updates.
   - [Mailnag](https://extensions.gnome.org/extension/886) monitors for email updates to specified addresses.
   - [No Title Bar](https://extensions.gnome.org/extension/1267) removes the title bar from the maximized windows.
   - [Places Status Indicator](https://extensions.gnome.org/extension/8) implements a navigation menu of the userspace.
-  - [Suspend Button](https://extensions.gnome.org/extension/826) provides or removes buttons for system suspension and/or deactivation.
   - [Removable Drive Menu](https://extensions.gnome.org/extension/7) implements a navigation and management menu for removable drives.
   - [User Themes](https://extensions.gnome.org/extension/19) allows users to load Gnome-UI themes.
 ### Miscellaneous configuration

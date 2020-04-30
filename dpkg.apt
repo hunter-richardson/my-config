@@ -1,4 +1,3 @@
-#albert
 apcalc
 apt
 apt-fast
@@ -13,7 +12,6 @@ curl
 dconf-editor
 default-jre
 dos2unix
-#dtrx
 duplicity
 e2guardian
 exuberant-ctags
@@ -39,7 +37,6 @@ htop
 jshon
 libreoffice-script-provider-python
 libwayland-egl1
-#linuxbrew-wrapper
 lxd
 lynx
 members
