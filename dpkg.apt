@@ -50,7 +50,6 @@ ocfs2-tools
 opam
 pastebinit
 pianobar
-pithos
 plank
 python3-pip
 python3-dev
@@ -59,6 +58,7 @@ ruby-full
 rubygems-integration
 secure-delete
 snapd
+snapd-xdg-open
 source-highlight
 steam-installer
 steghide
@@ -71,8 +71,5 @@ tmux
 ubuntu-restricted-extras
 urlview
 w3m
-wine-stable
-wine32
-winetricks
 wordgrinder
 xsel
